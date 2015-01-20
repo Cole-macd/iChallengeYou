@@ -7,12 +7,16 @@
 //
 
 #import "GCTurnBasedMatchHelper.h"
+#import "CoinFlipVC.h"
+#import "HomePageVC.h"
 
 @implementation GCTurnBasedMatchHelper
 
 @synthesize gameCenterAvailable;
 @synthesize currentMatch;
 @synthesize delegate;
+int playerCount = 0;
+bool bothPlayersJoined = false;
 
 #pragma mark Initialization
 
@@ -85,25 +89,35 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (void)findMatchWithMinPlayers:(int)minPlayers
                      maxPlayers:(int)maxPlayers
-                 viewController:(UIViewController *)viewController {
-    NSLog(@"kelly has no titties");
+                 viewController:(UIViewController *)viewController
+                    showMatches:(bool)showMatches
+                    playerGroup:(unsigned int)playerGroup{
+    
     if (!gameCenterAvailable) return;
     
+    playerCount++;
     presentingViewController = viewController;
     
     GKMatchRequest *request = [[GKMatchRequest alloc] init];
     request.minPlayers = minPlayers;
     request.maxPlayers = maxPlayers;
+    request.playerGroup = playerGroup;      //will only match with players who have same playerGroup.
     
     GKTurnBasedMatchmakerViewController *mmvc =
     [[GKTurnBasedMatchmakerViewController alloc]
      initWithMatchRequest:request];
     mmvc.turnBasedMatchmakerDelegate = self;
-    mmvc.showExistingMatches = YES;
+    mmvc.showExistingMatches = showMatches;
     
-    [presentingViewController presentModalViewController:mmvc
-                                                animated:YES];
+    [presentingViewController presentViewController:mmvc
+                                           animated:YES
+                                         completion:nil];
+    //wait 1 second before the segue so it doesnt transition immediately and then load the GC menu
+    //CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1.0, false);
+    //[presentingViewController performSegueWithIdentifier: @"homeToGameMenuSegue" sender: presentingViewController];
 }
+
+
 
 
 #pragma mark GKTurnBasedMatchmakerViewControllerDelegate
@@ -111,8 +125,12 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 -(void)turnBasedMatchmakerViewController:
 (GKTurnBasedMatchmakerViewController *)viewController
                             didFindMatch:(GKTurnBasedMatch *)match {
+    
+    
     [presentingViewController
      dismissModalViewControllerAnimated:YES];
+    
+    
     self.currentMatch = match;
     
     GKTurnBasedParticipant *firstParticipant =
@@ -121,9 +139,15 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         // It's a new game!
         [delegate enterNewGame:match];
     } else {
+        if([presentingViewController isKindOfClass:[HomePageVC class]]){
+            NSLog(@"performing direct segue");
+            [presentingViewController performSegueWithIdentifier:@"directCoinFlip" sender:presentingViewController];
+        }
+        
         if ([match.currentParticipant.playerID
              isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
             // It's your turn!
+            NSLog(@"take turn called");
             [delegate takeTurn:match];
         } else {
             // It's not your turn, just display the game state.
@@ -132,6 +156,16 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     }
     
 }
+
+- (void) handleTurnEventForMatch:(GKTurnBasedMatch *)match
+{
+    NSLog(@"Turn has happened");
+    if ([match.matchID isEqualToString:currentMatch.matchID])
+    {
+        self.currentMatch = match; // <-- renew your instance!
+    }
+}
+
 
 -(void)turnBasedMatchmakerViewControllerWasCancelled:
 (GKTurnBasedMatchmakerViewController *)viewController {
