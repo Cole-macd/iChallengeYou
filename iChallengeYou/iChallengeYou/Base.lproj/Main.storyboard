@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8O4-93-wA4">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <scenes>
+        <!--LoginVC-->
+        <scene sceneID="D3E-ez-o9R">
+            <objects>
+                <viewController title="LoginVC" id="EKu-kt-aXT" customClass="LoginVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n5k-uf-ZrV"/>
+                        <viewControllerLayoutGuide type="bottom" id="z78-Fk-wOK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tmz-bq-nBJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Waiting for Game Center authentication...." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxn-eP-1W0">
+                                <rect key="frame" x="75" y="189" width="206" height="102"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5U-vs-jRv">
+                                <rect key="frame" x="130" y="280" width="46" height="30"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="DXh-1X-qw6" kind="push" id="9nh-2d-RiU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jbl-A8-gT8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EgD-DU-dFH" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="584" y="523"/>
+        </scene>
+        <!--HomePageVC-->
+        <scene sceneID="S2Z-G0-FFI">
+            <objects>
+                <viewController title="HomePageVC" id="DXh-1X-qw6" customClass="HomePageVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Tn-Uw-uez"/>
+                        <viewControllerLayoutGuide type="bottom" id="hlx-03-Mde"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DqA-To-g3y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyv-BQ-wWd">
+                                <rect key="frame" x="73" y="181" width="155" height="30"/>
+                                <state key="normal" title="Select New Game">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openGCMenu:" destination="EKu-kt-aXT" eventType="touchUpInside" id="FP6-3V-CoD"/>
+                                    <action selector="selectNewGame:" destination="DXh-1X-qw6" eventType="touchUpInside" id="NY5-rN-M3B"/>
+                                    <segue destination="hSb-Ku-j3a" kind="push" id="MZ3-R8-o45"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCF-c2-N7x">
+                                <rect key="frame" x="56" y="215" width="189" height="30"/>
+                                <state key="normal" title="Current Matches">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="viewCurrentMatches:" destination="DXh-1X-qw6" eventType="touchUpInside" id="jq6-Se-BTL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEV-4p-LAR">
+                                <rect key="frame" x="91" y="253" width="118" height="30"/>
+                                <state key="normal" title="Achievements">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bht-a1-pTy">
+                                <rect key="frame" x="95" y="291" width="110" height="30"/>
+                                <state key="normal" title="Leaderboards">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qKy-yI-3Z1"/>
+                    <connections>
+                        <segue destination="Q4Z-wg-B2r" kind="push" identifier="directCoinFlip" id="vC2-ue-e5y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KjO-Mk-lz5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="520"/>
+        </scene>
+        <!--GameMenuVC-->
+        <scene sceneID="JET-fi-nSu">
+            <objects>
+                <viewController title="GameMenuVC" id="hSb-Ku-j3a" customClass="GameMenuVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mZ4-7x-Uda"/>
+                        <viewControllerLayoutGuide type="bottom" id="T1V-VM-BU0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MjO-wb-gAe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74i-Cj-ejU">
+                                <rect key="frame" x="109" y="168" width="102" height="30"/>
+                                <state key="normal" title="Flip A Coin">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="XSc-rh-flp" kind="push" id="rpg-jG-XZb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BYp-LU-2Ss">
+                                <rect key="frame" x="85" y="225" width="150" height="30"/>
+                                <state key="normal" title="Rock Paper Scissors">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-9i-6m4">
+                                <rect key="frame" x="90" y="287" width="140" height="30"/>
+                                <state key="normal" title="Tic Tac Toe">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="s2X-j4-hcp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dl9-Vo-DJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444" y="520"/>
+        </scene>
+        <!--Second View-->
+        <scene sceneID="eLl-fO-JCe">
+            <objects>
+                <viewController storyboardIdentifier="Second View" title="Second View" id="Hdb-Rx-sjp" customClass="SecondViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dkz-2V-wjz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ikz-a1-GRu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JcQ-qw-q97">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bhx-JL-eFi">
+                                <rect key="frame" x="185" y="240" width="30" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="redButton"/>
+                                <state key="normal" title="Red">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.023573720190000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="redButtonPressed:" destination="Hdb-Rx-sjp" eventType="touchUpInside" id="83Z-yH-pUZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4T-4k-jHP">
+                                <rect key="frame" x="385" y="240" width="31" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="blueButton"/>
+                                <state key="normal" title="Blue">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="blueButtonPressed:" destination="Hdb-Rx-sjp" eventType="touchUpInside" id="FZB-LJ-sEa"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chosen:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9n-yY-R6l">
+                                <rect key="frame" x="268" y="290" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's your turn." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgS-ur-CzA">
+                                <rect key="frame" x="249" y="220" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLt-hT-RuA">
+                                <rect key="frame" x="71" y="270" width="192" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="kgS-ur-CzA" secondAttribute="centerX" id="0gK-la-GwP"/>
+                            <constraint firstAttribute="centerX" secondItem="kgS-ur-CzA" secondAttribute="centerX" id="4Cp-LK-cu7"/>
+                            <constraint firstAttribute="centerX" secondItem="e9n-yY-R6l" secondAttribute="centerX" id="FMb-ai-Kt2"/>
+                            <constraint firstAttribute="centerX" secondItem="vLt-hT-RuA" secondAttribute="centerX" id="G8F-Fq-dtN"/>
+                            <constraint firstAttribute="centerX" secondItem="c4T-4k-jHP" secondAttribute="centerX" constant="-100" id="GH0-ej-mlS"/>
+                            <constraint firstAttribute="centerY" secondItem="c4T-4k-jHP" secondAttribute="centerY" constant="45" id="Nvg-qv-ucm"/>
+                            <constraint firstAttribute="centerX" secondItem="Bhx-JL-eFi" secondAttribute="centerX" constant="100" id="SKB-KC-3Wm"/>
+                            <constraint firstAttribute="centerY" secondItem="vLt-hT-RuA" secondAttribute="centerY" constant="-40" id="d6g-NW-1S2"/>
+                            <constraint firstAttribute="centerY" secondItem="kgS-ur-CzA" secondAttribute="centerY" constant="70" id="fHg-9a-yQ7"/>
+                            <constraint firstAttribute="centerY" secondItem="Bhx-JL-eFi" secondAttribute="centerY" constant="45" id="mdD-T7-gjP"/>
+                            <constraint firstAttribute="centerY" secondItem="e9n-yY-R6l" secondAttribute="centerY" id="zq5-Do-CIJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Jhr-sy-Zq2"/>
+                    <connections>
+                        <outlet property="blueButton" destination="c4T-4k-jHP" id="Zpt-AA-gMS"/>
+                        <outlet property="colourChoiceLabel" destination="e9n-yY-R6l" id="8Dt-GA-NgQ"/>
+                        <outlet property="redButton" destination="Bhx-JL-eFi" id="2Ju-nU-ezJ"/>
+                        <outlet property="resultLabel" destination="vLt-hT-RuA" id="fN3-af-p5E"/>
+                        <outlet property="turnLabel" destination="kgS-ur-CzA" id="CCu-Hl-K4p"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zNU-aO-piB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="898" y="-511"/>
+        </scene>
+        <!--Coin Flip - Choose Number of Rounds-->
+        <scene sceneID="wK9-Zq-DJy">
+            <objects>
+                <viewController title="Coin Flip - Choose Number of Rounds" id="XSc-rh-flp" customClass="CoinFlipRoundChoiceVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rpk-GD-8Qb"/>
+                        <viewControllerLayoutGuide type="bottom" id="opL-vV-Iza"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CLg-gU-5bW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose how many times the coin will be flipped" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygo-J4-CeN">
+                                <rect key="frame" x="67" y="64" width="210" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEr-e1-wbU">
+                                <rect key="frame" x="131" y="250" width="46" height="30"/>
+                                <state key="normal" title="3 Flips">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="threeRoundsChosen:" destination="XSc-rh-flp" eventType="touchUpInside" id="HTI-zy-Cec"/>
+                                    <segue destination="Q4Z-wg-B2r" kind="push" identifier="CF3Rounds" id="1WI-iX-QyB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4V-Nj-nVC">
+                                <rect key="frame" x="131" y="318" width="46" height="30"/>
+                                <state key="normal" title="5 Flips">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fiveRoundsChosen:" destination="XSc-rh-flp" eventType="touchUpInside" id="gB2-K3-Nm4"/>
+                                    <segue destination="Q4Z-wg-B2r" kind="push" identifier="CF5Rounds" id="lPt-gV-veL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ra-5M-NzV">
+                                <rect key="frame" x="131" y="186" width="46" height="30"/>
+                                <state key="normal" title="1 Flip">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="oneRoundChosen:" destination="XSc-rh-flp" eventType="touchUpInside" id="sCq-jC-clz"/>
+                                    <segue destination="Q4Z-wg-B2r" kind="push" identifier="CF1Round" id="FaZ-bf-JcG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rmC-HC-wkG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F3G-Rd-FdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1866" y="-13"/>
+        </scene>
+        <!--Flip A Coin-->
+        <scene sceneID="Vhj-0X-OlZ">
+            <objects>
+                <viewController title="Flip A Coin" id="Q4Z-wg-B2r" customClass="CoinFlipVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OFF-tR-Eat"/>
+                        <viewControllerLayoutGuide type="bottom" id="KVM-sC-zrY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iYM-wh-txp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAH-KO-A3L">
+                                <rect key="frame" x="90" y="178" width="46" height="30"/>
+                                <state key="normal" title="Heads">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="headPressed:" destination="Q4Z-wg-B2r" eventType="touchUpInside" id="DyM-De-Vbr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NE4-yR-Ug8">
+                                <rect key="frame" x="165" y="251" width="46" height="30"/>
+                                <state key="normal" title="Tails">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tailsPressed:" destination="Q4Z-wg-B2r" eventType="touchUpInside" id="o0A-3l-7PW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r9b-TV-I9M">
+                                <rect key="frame" x="81" y="88" width="170" height="82"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jox-3f-gHl">
+                                <rect key="frame" x="70" y="394" width="193" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycf-md-ri0">
+                                <rect key="frame" x="58" y="322" width="205" height="53"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLd-Am-k1F">
+                                <rect key="frame" x="104" y="289" width="102" height="30"/>
+                                <state key="normal" title="Next Round">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextRoundPressed:" destination="Q4Z-wg-B2r" eventType="touchUpInside" id="9W8-P1-yew"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="oP5-4C-Qxb"/>
+                    <connections>
+                        <outlet property="gameStateLabel" destination="Ycf-md-ri0" id="bmB-aQ-Dqy"/>
+                        <outlet property="headsButton" destination="oAH-KO-A3L" id="gUi-LO-27T"/>
+                        <outlet property="nextRoundButton" destination="PLd-Am-k1F" id="XJ0-71-K9U"/>
+                        <outlet property="roundLabel" destination="Jox-3f-gHl" id="B6V-pP-2DA"/>
+                        <outlet property="tailsButton" destination="NE4-yR-Ug8" id="gkT-ou-Ltq"/>
+                        <outlet property="turnLabel" destination="r9b-TV-I9M" id="G1P-No-U6V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9bR-bw-gdl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1866" y="-591"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="x6Y-Bj-bEM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8O4-93-wA4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2fw-nS-jxw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EKu-kt-aXT" kind="relationship" relationship="rootViewController" id="MBV-tO-Qe6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kgi-2U-dBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="74" y="523"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vC2-ue-e5y"/>
+    </inferredMetricsTieBreakers>
+</document>
