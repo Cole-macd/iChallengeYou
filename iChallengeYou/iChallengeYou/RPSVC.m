@@ -16,6 +16,8 @@
 
 @synthesize numberOfRounds;
 @synthesize currentRound;
+
+int currentPlayerIndex = 0;
 enum playerRole playerStatus = observing;
 
 - (void)viewDidLoad {
@@ -39,30 +41,39 @@ enum playerRole playerStatus = observing;
 
 
 -(void)enterNewGame:(GKTurnBasedMatch *)match{
+    currentPlayerIndex = 0;
 }
 
 -(void)takeTurn:(GKTurnBasedMatch *)match {
+    //since takeTurn was called, this players index is the index of the player whose turn it is
+    currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
 }
 
 -(void)layoutMatch:(GKTurnBasedMatch *)match {
+    int otherPlayersIndex = [match.participants indexOfObject:match.currentParticipant];
+    currentPlayerIndex = 1 - otherPlayersIndex;
+    
 }
-
 
 
 -(void)displayTurnAvailable{
     turnStateLabel.text = @"Your turn";
+    [self enablePlayingObjects];
 }
 
 -(void)displayObservingStatus{
     turnStateLabel.text = @"Not your turn. Please wait";
+    [self disablePlayingObjects];
 }
 
 -(void)displayRoundOver{
     turnStateLabel.text = @"Round over";
+    [self disablePlayingObjects];
 }
 
 -(void)displayGameOver{
-    turnStateLabel.text = @"Game over;
+    turnStateLabel.text = @"Game over";
+    [self disablePlayingObjects];
 }
 
 

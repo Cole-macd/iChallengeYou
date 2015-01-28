@@ -323,34 +323,6 @@ enum playerRole playerStatus = observing;
     [self displayGameOver];
     turnLabel.text = @"Game has ended";
 }
-/*
--(void) endGame:(int)winningPlayerIndex{
-    GKTurnBasedMatch *currentMatch = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
-    NSString *incomingData =[NSString stringWithUTF8String:[currentMatch.matchData bytes]];
-    NSData *outgoingData = [incomingData dataUsingEncoding:NSUTF8StringEncoding ];
-    
-    
-    
-    GKTurnBasedParticipant *playerZero = [currentMatch.participants objectAtIndex: 0];
-    GKTurnBasedParticipant *playerOne = [currentMatch.participants objectAtIndex: 1];
-    
-    if(winningPlayerIndex == 0){
-        playerZero.matchOutcome = GKTurnBasedMatchOutcomeWon;
-        playerOne.matchOutcome = GKTurnBasedMatchOutcomeLost;
-        NSLog(@"player zero wins");
-    }else{
-        playerZero.matchOutcome = GKTurnBasedMatchOutcomeLost;
-        playerOne.matchOutcome = GKTurnBasedMatchOutcomeWon;
-        NSLog(@"player one wins");
-    }
-    
-    [currentMatch endMatchInTurnWithMatchData:outgoingData
-                            completionHandler:^(NSError *error) {
-                                if (error) {
-                                    NSLog(@"%@", error);
-                                }
-                            }];
-}*/
 
 
 -(void)displayRoundResult:(NSString *)playerChoice

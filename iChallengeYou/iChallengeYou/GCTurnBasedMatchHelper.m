@@ -95,7 +95,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     
     if (!gameCenterAvailable) return;
     
-    playerCount++;
+    //playerCount++;
     presentingViewController = viewController;
     
     GKMatchRequest *request = [[GKMatchRequest alloc] init];
