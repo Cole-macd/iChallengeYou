@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59818C301A7876B00058F3E3 /* RPSRoundChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */; };
+		59818C331A78788F0058F3E3 /* RPSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C321A78788F0058F3E3 /* RPSVC.m */; };
 		AF8DE48D1A6EEACB0035C944 /* FunctionLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE48C1A6EEACB0035C944 /* FunctionLibrary.m */; };
 		AF8DE4901A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE48F1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.m */; };
 		AF8DE4931A6EEAFB0035C944 /* CoinFlipVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE4921A6EEAFB0035C944 /* CoinFlipVC.m */; };
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		59818C2E1A7876B00058F3E3 /* RPSRoundChoiceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSRoundChoiceVC.h; sourceTree = "<group>"; };
+		59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSRoundChoiceVC.m; sourceTree = "<group>"; };
+		59818C311A78788F0058F3E3 /* RPSVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSVC.h; sourceTree = "<group>"; };
+		59818C321A78788F0058F3E3 /* RPSVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSVC.m; sourceTree = "<group>"; };
 		AF8DE48B1A6EEACB0035C944 /* FunctionLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionLibrary.h; sourceTree = "<group>"; };
 		AF8DE48C1A6EEACB0035C944 /* FunctionLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionLibrary.m; sourceTree = "<group>"; };
 		AF8DE48E1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinFlipRoundChoiceVC.h; sourceTree = "<group>"; };
@@ -106,6 +112,10 @@
 		AFDC22301A6EDA6A00BCCACC /* iChallengeYou */ = {
 			isa = PBXGroup;
 			children = (
+				59818C311A78788F0058F3E3 /* RPSVC.h */,
+				59818C321A78788F0058F3E3 /* RPSVC.m */,
+				59818C2E1A7876B00058F3E3 /* RPSRoundChoiceVC.h */,
+				59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */,
 				AFDC22351A6EDA6A00BCCACC /* AppDelegate.h */,
 				AFDC22361A6EDA6A00BCCACC /* AppDelegate.m */,
 				AF8DE48E1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.h */,
@@ -264,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59818C331A78788F0058F3E3 /* RPSVC.m in Sources */,
 				AFDC225F1A6EDCA400BCCACC /* SecondViewController.m in Sources */,
 				AF8DE48D1A6EEACB0035C944 /* FunctionLibrary.m in Sources */,
 				AF8DE49C1A6EEB210035C944 /* LoginVC.m in Sources */,
@@ -274,6 +285,7 @@
 				AF8DE4901A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.m in Sources */,
 				AFDC22341A6EDA6A00BCCACC /* main.m in Sources */,
 				AF8DE4961A6EEB040035C944 /* GameMenuVC.m in Sources */,
+				59818C301A7876B00058F3E3 /* RPSRoundChoiceVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

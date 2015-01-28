@@ -57,7 +57,6 @@
         CoinFlipVC *controller = (CoinFlipVC *)segue.destinationViewController;
         controller.numberOfRounds = 5;
     }
-    
 }
 
 /*

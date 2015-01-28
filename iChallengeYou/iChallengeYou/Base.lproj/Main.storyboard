@@ -123,6 +123,9 @@
                                 <state key="normal" title="Rock Paper Scissors">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="IDF-yE-CYN" kind="push" id="T9t-ps-ulV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-9i-6m4">
                                 <rect key="frame" x="90" y="287" width="140" height="30"/>
@@ -279,7 +282,7 @@
         <!--RPS - Choose Number Of Rounds-->
         <scene sceneID="tHN-Gi-dbf">
             <objects>
-                <viewController title="RPS - Choose Number Of Rounds" id="IDF-yE-CYN" sceneMemberID="viewController">
+                <viewController title="RPS - Choose Number Of Rounds" id="IDF-yE-CYN" customClass="RPSRoundChoiceVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6mP-i2-r0c"/>
                         <viewControllerLayoutGuide type="bottom" id="zns-CS-H6n"/>
@@ -288,17 +291,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agv-s3-oDw">
-                                <rect key="frame" x="82" y="153" width="94" height="30"/>
-                                <state key="normal" title="1 Round">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJ0-Vn-UkB">
-                                <rect key="frame" x="94" y="235" width="70" height="30"/>
+                                <rect key="frame" x="94" y="213" width="70" height="30"/>
                                 <state key="normal" title="3 Rounds">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="threeRoundChosen:" destination="IDF-yE-CYN" eventType="touchUpInside" id="nHt-oj-iiy"/>
+                                    <segue destination="5Ns-sb-a8i" kind="show" identifier="RPS3Rounds" id="Yj0-7J-kFS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJ9-t0-LlC">
+                                <rect key="frame" x="94" y="280" width="70" height="30"/>
+                                <state key="normal" title="5 Rounds">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="fiveRoundsChosen:" destination="IDF-yE-CYN" eventType="touchUpInside" id="5nl-GH-LYm"/>
+                                    <segue destination="5Ns-sb-a8i" kind="show" identifier="RPS5Rounds" id="EkV-aq-Of6"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose how many rounds of Rock Paper Scissors will be played." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZT3-K1-0ge">
                                 <rect key="frame" x="35" y="63" width="266" height="72"/>
@@ -306,19 +317,74 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJ9-t0-LlC">
-                                <rect key="frame" x="94" y="314" width="70" height="30"/>
-                                <state key="normal" title="5 Rounds">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agv-s3-oDw">
+                                <rect key="frame" x="82" y="153" width="94" height="30"/>
+                                <state key="normal" title="1 Round">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="oneRoundChosen:" destination="IDF-yE-CYN" eventType="touchUpInside" id="RfS-Y9-T5H"/>
+                                    <segue destination="5Ns-sb-a8i" kind="show" identifier="RPS1Round" id="tk1-iv-5is"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Fhk-KM-Puh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S59-Bp-3gw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3586" y="523"/>
+        </scene>
+        <!--RPSVC-->
+        <scene sceneID="3ZH-bH-4U4">
+            <objects>
+                <viewController id="5Ns-sb-a8i" customClass="RPSVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7aI-Wv-pH2"/>
+                        <viewControllerLayoutGuide type="bottom" id="G0a-oh-oCJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4bA-SX-T0h">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M22-Ml-yJh">
+                                <rect key="frame" x="51" y="123" width="236" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvs-zr-v4n">
+                                <rect key="frame" x="67" y="263" width="46" height="30"/>
+                                <state key="normal" title="Paper">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kb-pd-9lb">
+                                <rect key="frame" x="34" y="322" width="113" height="30"/>
+                                <state key="normal" title="Scissors">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebk-TH-PCg">
+                                <rect key="frame" x="67" y="205" width="46" height="30"/>
+                                <state key="normal" title="Rock">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="paperButton" destination="fvs-zr-v4n" id="4wR-AJ-TSd"/>
+                        <outlet property="rockButton" destination="ebk-TH-PCg" id="zbz-VG-CzP"/>
+                        <outlet property="scissorsButton" destination="8kb-pd-9lb" id="Ue4-sq-8gN"/>
+                        <outlet property="turnStateLabel" destination="M22-Ml-yJh" id="UdX-cz-Ztw"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S59-Bp-3gw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rCq-M3-MBA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2866" y="574"/>
+            <point key="canvasLocation" x="4234" y="523"/>
         </scene>
         <!--Flip A Coin-->
         <scene sceneID="Vhj-0X-OlZ">
@@ -415,5 +481,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="1WI-iX-QyB"/>
+        <segue reference="EkV-aq-Of6"/>
     </inferredMetricsTieBreakers>
 </document>
