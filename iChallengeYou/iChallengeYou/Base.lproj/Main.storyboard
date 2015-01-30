@@ -291,16 +291,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJ0-Vn-UkB">
-                                <rect key="frame" x="94" y="213" width="70" height="30"/>
-                                <state key="normal" title="3 Rounds">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="threeRoundChosen:" destination="IDF-yE-CYN" eventType="touchUpInside" id="nHt-oj-iiy"/>
-                                    <segue destination="5Ns-sb-a8i" kind="show" identifier="RPS3Rounds" id="Yj0-7J-kFS"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJ9-t0-LlC">
                                 <rect key="frame" x="94" y="280" width="70" height="30"/>
                                 <state key="normal" title="5 Rounds">
@@ -325,6 +315,16 @@
                                 <connections>
                                     <action selector="oneRoundChosen:" destination="IDF-yE-CYN" eventType="touchUpInside" id="RfS-Y9-T5H"/>
                                     <segue destination="5Ns-sb-a8i" kind="show" identifier="RPS1Round" id="tk1-iv-5is"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZE-XN-b92">
+                                <rect key="frame" x="106" y="212" width="66" height="30"/>
+                                <state key="normal" title="3 Rounds">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="threeRoundsChosen:" destination="IDF-yE-CYN" eventType="touchUpInside" id="fME-H1-303"/>
+                                    <segue destination="5Ns-sb-a8i" kind="show" identifier="RPS3Rounds" id="UGM-ec-6g3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -354,31 +354,40 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvs-zr-v4n">
-                                <rect key="frame" x="67" y="263" width="46" height="30"/>
-                                <state key="normal" title="Paper">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8kb-pd-9lb">
-                                <rect key="frame" x="34" y="322" width="113" height="30"/>
-                                <state key="normal" title="Scissors">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebk-TH-PCg">
-                                <rect key="frame" x="67" y="205" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9Z-cf-yHv">
+                                <rect key="frame" x="58" y="174" width="36" height="30"/>
                                 <state key="normal" title="Rock">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="rockPressed:" destination="5Ns-sb-a8i" eventType="touchUpInside" id="zGi-1D-JUn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yx-eg-9vd">
+                                <rect key="frame" x="51" y="236" width="41" height="30"/>
+                                <state key="normal" title="Paper">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="paperPressed:" destination="5Ns-sb-a8i" eventType="touchUpInside" id="YSq-fR-n1H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLs-Mc-r2H">
+                                <rect key="frame" x="51" y="298" width="59" height="30"/>
+                                <state key="normal" title="Scissors">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scissorsPressed:" destination="5Ns-sb-a8i" eventType="touchUpInside" id="bjW-Os-jwX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="paperButton" destination="fvs-zr-v4n" id="4wR-AJ-TSd"/>
-                        <outlet property="rockButton" destination="ebk-TH-PCg" id="zbz-VG-CzP"/>
-                        <outlet property="scissorsButton" destination="8kb-pd-9lb" id="Ue4-sq-8gN"/>
+                        <outlet property="paperButton" destination="8yx-eg-9vd" id="pBS-Wv-z0u"/>
+                        <outlet property="rockButton" destination="D9Z-cf-yHv" id="1Lm-ic-LEf"/>
+                        <outlet property="scissorsButton" destination="KLs-Mc-r2H" id="8HO-eZ-eEv"/>
                         <outlet property="turnStateLabel" destination="M22-Ml-yJh" id="UdX-cz-Ztw"/>
                     </connections>
                 </viewController>
@@ -480,7 +489,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="UGM-ec-6g3"/>
         <segue reference="1WI-iX-QyB"/>
-        <segue reference="EkV-aq-Of6"/>
     </inferredMetricsTieBreakers>
 </document>

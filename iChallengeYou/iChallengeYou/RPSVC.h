@@ -12,12 +12,13 @@
 
 @interface RPSVC : UIViewController <GCTurnBasedMatchHelperDelegate> {
     
-    __weak IBOutlet UILabel *turnStateLabel;
-    __weak IBOutlet UIButton *rockButton;
-    __weak IBOutlet UIButton *paperButton;
-    __weak IBOutlet UIButton *scissorsButton;
+    IBOutlet UILabel *turnStateLabel;
+
+    IBOutlet UIButton *rockButton;
+    IBOutlet UIButton *scissorsButton;
+    IBOutlet UIButton *paperButton;
     
-    enum playerRole{takingTurn, observing, roundOver, gameOver};
+    enum playerRoleRPS{takingTurn, observing, roundOver, gameOver};
 }
 
 @property(nonatomic) int numberOfRounds;

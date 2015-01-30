@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5917ED871A79DAC800F2E3E1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDC22631A6EDEE500BCCACC /* GameKit.framework */; };
 		59818C301A7876B00058F3E3 /* RPSRoundChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */; };
 		59818C331A78788F0058F3E3 /* RPSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C321A78788F0058F3E3 /* RPSVC.m */; };
 		AF8DE48D1A6EEACB0035C944 /* FunctionLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE48C1A6EEACB0035C944 /* FunctionLibrary.m */; };
@@ -23,7 +24,6 @@
 		AFDC224E1A6EDA6A00BCCACC /* iChallengeYouTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC224D1A6EDA6A00BCCACC /* iChallengeYouTests.m */; };
 		AFDC225F1A6EDCA400BCCACC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC225E1A6EDCA400BCCACC /* SecondViewController.m */; };
 		AFDC22621A6EDCED00BCCACC /* GCTurnBasedMatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC22611A6EDCED00BCCACC /* GCTurnBasedMatchHelper.m */; };
-		AFDC22641A6EDEE500BCCACC /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDC22631A6EDEE500BCCACC /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFDC22641A6EDEE500BCCACC /* GameKit.framework in Frameworks */,
+				5917ED871A79DAC800F2E3E1 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

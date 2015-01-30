@@ -7,6 +7,9 @@
 //
 
 #import "RPSVC.h"
+#import "GCTurnBasedMatchHelper.h"
+#import "FunctionLibrary.h"
+#include <stdlib.h>
 
 @interface RPSVC ()
 
@@ -18,16 +21,16 @@
 @synthesize currentRound;
 
 int currentPlayerIndex = 0;
-enum playerRole playerStatus = observing;
+enum playerRoleRPS playerStatusRPS = observing;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if(playerStatus == takingTurn){
+    if(playerStatusRPS == takingTurn){
         [self displayTurnAvailable];
-    }else if (playerStatus == observing){
+    }else if (playerStatusRPS == observing){
         [self displayObservingStatus];
-    }else if(playerStatus == roundOver){
+    }else if(playerStatusRPS == roundOver){
         [self displayRoundOver];
     }else{
         [self displayGameOver];
@@ -39,9 +42,44 @@ enum playerRole playerStatus = observing;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)performTurn:(NSString *)playerChoice{
+    NSLog(@"perform turn pressed");
+    GKTurnBasedMatch *currentMatch = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
+    
+    NSUInteger currentIndex = [currentMatch.participants indexOfObject:currentMatch.currentParticipant];
+    currentPlayerIndex = currentIndex;
+    GKTurnBasedParticipant *nextParticipant;
+    
+    if(currentIndex == 0){
+        nextParticipant = [currentMatch.participants objectAtIndex: 1];
+    }else{
+        //currentIndex = 1
+        nextParticipant = [currentMatch.participants objectAtIndex: 0];
+    }
+    NSString *matchMessage;
+    
+    if ([currentMatch.matchData bytes]) {
+        NSLog(@"game already going");
+    }else{
+        matchMessage = [NSString stringWithFormat:@"%@,null,0,0,1,%u", playerChoice, numberOfRounds];
+    }
+    
+    NSData *data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
+    
+    [currentMatch endTurnWithNextParticipant:nextParticipant
+                                   matchData:data completionHandler:^(NSError *error) {
+                                       if (error) {
+                                           NSLog(@"%@", error);
+                                       }
+                                   }];
+    NSLog(@"sent:%@", matchMessage);
+
+}
+
 
 -(void)enterNewGame:(GKTurnBasedMatch *)match{
     currentPlayerIndex = 0;
+    playerStatusRPS = takingTurn;
 }
 
 -(void)takeTurn:(GKTurnBasedMatch *)match {
@@ -55,6 +93,18 @@ enum playerRole playerStatus = observing;
     
 }
 
+-(void)recieveEndGame:(GKTurnBasedMatch *)match {
+    NSLog(@"GAME END");
+    playerStatusRPS = gameOver;
+}
+- (IBAction)paperPressed:(id)sender {
+}
+
+- (IBAction)scissorsPressed:(id)sender {
+}
+
+- (IBAction)rockPressed:(id)sender {
+}
 
 -(void)displayTurnAvailable{
     turnStateLabel.text = @"Your turn";
