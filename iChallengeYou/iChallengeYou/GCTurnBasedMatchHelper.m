@@ -137,20 +137,24 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     [match.participants objectAtIndex:0];
     if (firstParticipant.lastTurnDate == NULL) {
         // It's a new game!
+        NSLog(@"GC here 1");
         [delegate enterNewGame:match];
     } else {
         if([presentingViewController isKindOfClass:[HomePageVC class]]){
             NSLog(@"performing direct segue");
             [presentingViewController performSegueWithIdentifier:@"directCoinFlip" sender:presentingViewController];
+            NSLog(@"GC here 2");
         }
         
         if ([match.currentParticipant.playerID
              isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
             // It's your turn!
             NSLog(@"take turn called");
+            NSLog(@"GC here 3");
             [delegate takeTurn:match];
         } else {
             // It's not your turn, just display the game state.
+            NSLog(@"GC here 4");
             [delegate layoutMatch:match];
         }
     }

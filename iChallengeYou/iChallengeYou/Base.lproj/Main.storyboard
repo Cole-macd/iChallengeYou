@@ -381,10 +381,20 @@
                                     <action selector="scissorsPressed:" destination="5Ns-sb-a8i" eventType="touchUpInside" id="bjW-Os-jwX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvm-JV-jkv">
+                                <rect key="frame" x="57" y="355" width="82" height="30"/>
+                                <state key="normal" title="Next Round">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextRoundPressed:" destination="5Ns-sb-a8i" eventType="touchUpInside" id="Zc4-1H-Uho"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="nextRoundButton" destination="Kvm-JV-jkv" id="XlX-am-RjC"/>
                         <outlet property="paperButton" destination="8yx-eg-9vd" id="pBS-Wv-z0u"/>
                         <outlet property="rockButton" destination="D9Z-cf-yHv" id="1Lm-ic-LEf"/>
                         <outlet property="scissorsButton" destination="KLs-Mc-r2H" id="8HO-eZ-eEv"/>

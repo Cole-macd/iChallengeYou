@@ -18,6 +18,8 @@
     IBOutlet UIButton *scissorsButton;
     IBOutlet UIButton *paperButton;
     
+    IBOutlet UIButton *nextRoundButton;
+    
     enum playerRoleRPS{takingTurn, observing, roundOver, gameOver};
 }
 
