@@ -142,7 +142,16 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     } else {
         if([presentingViewController isKindOfClass:[HomePageVC class]]){
             NSLog(@"performing direct segue");
-            [presentingViewController performSegueWithIdentifier:@"directCoinFlip" sender:presentingViewController];
+            
+            NSString *matchData = [NSString stringWithUTF8String:[match.matchData bytes]];
+            NSArray *dataItems = [matchData componentsSeparatedByString:@","];
+            NSString *gameType = dataItems[0];
+            if([gameType isEqualToString:@"CF"]){
+                [presentingViewController performSegueWithIdentifier:@"directCoinFlip" sender:presentingViewController];
+            }else if ([gameType isEqualToString:@"RPS"]){
+                [presentingViewController performSegueWithIdentifier:@"directRPS" sender:presentingViewController];
+            }
+            NSLog(@"gametype is %@", gameType);
             NSLog(@"GC here 2");
         }
         

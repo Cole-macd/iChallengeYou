@@ -22,10 +22,13 @@
 
 int currentPlayerIndex = 0;
 enum playerRoleRPS playerStatusRPS;
+int playerZeroScore = 0;
+int playerOneScore = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self disablePlayingObjects];
+    [GCTurnBasedMatchHelper sharedInstance].delegate = self;
     // Do any additional setup after loading the view.
     if(playerStatusRPS == takingTurn){
         NSLog(@"player status is takingTurn");
@@ -64,45 +67,90 @@ enum playerRoleRPS playerStatusRPS;
     }
     NSString *matchMessage;
     bool endOfRound = false;
+    NSString *p0Move;
+    NSString *p1Move;
     
     if ([currentMatch.matchData bytes]) {
         
         NSString *incomingData = [NSString stringWithUTF8String:[currentMatch.matchData bytes]];
         NSArray *dataItems = [incomingData componentsSeparatedByString:@","];
-        NSString *p0Move = dataItems[0];
-        NSString *p1Move = dataItems[1];
-        int p0Score = [dataItems[2] intValue];
-        int p1Score = [dataItems[3] intValue];
-        currentRound = [dataItems[4] intValue];
+        p0Move = dataItems[1];
+        p1Move = dataItems[2];
+        playerZeroScore = [dataItems[3] intValue];
+        playerOneScore = [dataItems[4] intValue];
+        currentRound = [dataItems[5] intValue];
 
         if (currentPlayerIndex == 0){
             if([p0Move isEqualToString:@"null"] && ![p1Move isEqualToString:@"null"]){
                 //other player has made his move, now this round is over
                 NSLog(@"round is ova");
                 endOfRound = true;
+                p0Move = playerChoice;
+                matchMessage = [NSString stringWithFormat:@"RPS,%@,%@,%u,%u,%u,%u", p0Move, p1Move, playerZeroScore, playerOneScore, currentRound, numberOfRounds];
             }else{
                 //other player has not made a move, current player is making the first move
                 NSLog(@"first part of round is ova, player %u has made a move", currentPlayerIndex);
-                matchMessage = [NSString stringWithFormat:@"%@,null,%u,%u,%u,%u", playerChoice, p0Score, p1Score, currentRound, numberOfRounds];
+                matchMessage = [NSString stringWithFormat:@"RPS,%@,null,%u,%u,%u,%u", playerChoice, playerZeroScore, playerOneScore, currentRound, numberOfRounds];
             }
         }else{
             //currentPlayerIndex = 1
             if([p1Move isEqualToString:@"null"] && ![p0Move isEqualToString:@"null"]){
                 //other player has made his move, now this round is over
                 endOfRound = true;
+                p1Move = playerChoice;
                 NSLog(@"round is ova");
+                matchMessage = [NSString stringWithFormat:@"RPS,%@,%@,%u,%u,%u,%u", p0Move, p1Move, playerZeroScore, playerOneScore, currentRound, numberOfRounds];
             }else{
                 //other player has not made a move, current player is making the first move
-                matchMessage = [NSString stringWithFormat:@"null,%@,%u,%u,%u,%u", playerChoice, p0Score, p1Score, currentRound, numberOfRounds];
+                matchMessage = [NSString stringWithFormat:@"RPS,null,%@,%u,%u,%u,%u", playerChoice, playerZeroScore, playerOneScore, currentRound, numberOfRounds];
                 NSLog(@"first part of round is ova, player %u has made a move", currentPlayerIndex);
             }
         }
     }else{
-        matchMessage = [NSString stringWithFormat:@"%@,null,0,0,1,%u", playerChoice, numberOfRounds];
+        matchMessage = [NSString stringWithFormat:@"RPS,%@,null,0,0,1,%u", playerChoice, numberOfRounds];
     }
     
     if(endOfRound){
-        [self displayRoundOver];
+        NSLog(@"Round is over");
+        int winningIndex = [self getRPSWinner:p0Move p1Move:p1Move];
+        bool didTie = false;
+        
+        if(winningIndex == 0){
+            playerZeroScore = playerZeroScore + 1;
+        }else if (winningIndex == 1){
+            playerOneScore = playerOneScore + 1;
+        }else{
+            didTie = true;
+        }
+        
+        GKTurnBasedParticipant *playerZero = [currentMatch.participants objectAtIndex: 0];
+        GKTurnBasedParticipant *playerOne = [currentMatch.participants objectAtIndex: 1];
+        
+        bool gameIsOver = [self isGameOver:playerZeroScore p1Score:playerOneScore];
+        if(gameIsOver){
+            NSLog(@"GAME IS NOW OVER");
+            if(playerZeroScore > playerOneScore){
+                playerZero.matchOutcome = GKTurnBasedMatchOutcomeWon;
+                playerOne.matchOutcome = GKTurnBasedMatchOutcomeLost;
+            }else{
+                playerZero.matchOutcome = GKTurnBasedMatchOutcomeLost;
+                playerOne.matchOutcome = GKTurnBasedMatchOutcomeWon;
+            }
+            
+            [self displayGameOver];
+            NSData *data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
+            [currentMatch endMatchInTurnWithMatchData:data
+                                    completionHandler:^(NSError *error) {
+                                        if (error) {
+                                            NSLog(@"%@", error);
+                                        }
+                                    }];
+            
+            
+        }else{
+            currentRound = currentRound + 1;
+            [self displayRoundOver];
+        }
     }else{
         NSData *data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
         [currentMatch endTurnWithNextParticipant:nextParticipant
@@ -125,21 +173,26 @@ enum playerRoleRPS playerStatusRPS;
 }
 
 -(void)takeTurn:(GKTurnBasedMatch *)match {
+    NSLog(@"takeTurn called");
     //since takeTurn was called, this players index is the index of the player whose turn it is
     currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
     playerStatusRPS = takingTurn;
+    [self displayTurnAvailable];
 }
 
 -(void)layoutMatch:(GKTurnBasedMatch *)match {
+    NSLog(@"layoutMatch called");
     int otherPlayersIndex = [match.participants indexOfObject:match.currentParticipant];
     currentPlayerIndex = 1 - otherPlayersIndex;
     playerStatusRPS = observing;        //temporary, will change
+    [self displayObservingStatus];
     
 }
 
 -(void)recieveEndGame:(GKTurnBasedMatch *)match {
     NSLog(@"GAME END");
     playerStatusRPS = gameOver;
+    
 }
 - (IBAction)paperPressed:(id)sender {
     [self performTurn:@"paper"];
@@ -207,6 +260,63 @@ enum playerRoleRPS playerStatusRPS;
     [scissorsButton setTitleColor: [UIColor blueColor] forState:UIControlStateNormal];
 }
 
+-(bool) isGameOver:(int)p0Score
+           p1Score:(int)p1Score{
+    if(numberOfRounds == 1){
+        return true;
+    }else if(numberOfRounds == 3){
+        if((p0Score >= 2) || (p1Score >= 2)){
+            return true;
+        }
+    }else{
+        if((p0Score >= 3) || (p1Score >= 3)){
+            return true;
+        }
+    }
+    return false;
+}
+
+-(int) getRPSWinner:(NSString *)p0Move
+             p1Move:(NSString *)p1Move{
+    if([p0Move isEqualToString:@"rock"]){
+        if([p1Move isEqualToString:@"rock"]){
+            //tie
+            return -1;
+        }else if([p1Move isEqualToString:@"paper"]){
+            //p1 wins
+            return 1;
+        }else{
+            //p1 played scissors, p0 wins
+            return 0;
+        }
+            
+    }else if([p0Move isEqualToString:@"paper"]){
+        if([p1Move isEqualToString:@"rock"]){
+            //p0 wins
+            return 0;
+        }else if([p1Move isEqualToString:@"paper"]){
+            //tie
+            return -1;
+        }else{
+            //p1 played scissors, p1 wins
+            return 1;
+        }
+    }else{
+        //p0 played scissors
+        if([p1Move isEqualToString:@"rock"]){
+            //p1 wins
+            return 1;
+        }else if([p1Move isEqualToString:@"paper"]){
+            //p0 wins
+            return 0;
+        }else{
+            //p1 played scissors, tie
+            return -1;
+        }
+    }
+    //should never get here
+    return -1;
+}
 
 /*
 #pragma mark - Navigation
