@@ -7,7 +7,8 @@
 //
 
 #import "GCTurnBasedMatchHelper.h"
-#import "CoinFlipVC.h"
+//#import "CoinFlipVC.h"
+#import "RPSVC.h"
 #import "HomePageVC.h"
 
 @implementation GCTurnBasedMatchHelper
@@ -15,6 +16,8 @@
 @synthesize gameCenterAvailable;
 @synthesize currentMatch;
 @synthesize delegate;
+@synthesize numberOfRounds;
+
 int playerCount = 0;
 bool bothPlayersJoined = false;
 
@@ -138,8 +141,20 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     if (firstParticipant.lastTurnDate == NULL) {
         // It's a new game!
         NSLog(@"GC here 1");
-        [delegate enterNewGame:match];
+        [delegate enterNewGame:match numRounds:numberOfRounds];
     } else {
+        if ([match.currentParticipant.playerID
+             isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
+            // It's your turn!
+            NSLog(@"GC here 3");
+            [delegate takeTurn:match];
+        } else {
+            // It's not your turn, just display the game state.
+            NSLog(@"GC here 4");
+            [delegate layoutMatch:match];
+        }
+        
+        //navigate to the correct game vc
         if([presentingViewController isKindOfClass:[HomePageVC class]]){
             NSLog(@"performing direct segue");
             
@@ -154,18 +169,9 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             NSLog(@"gametype is %@", gameType);
             NSLog(@"GC here 2");
         }
+
         
-        if ([match.currentParticipant.playerID
-             isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
-            // It's your turn!
-            NSLog(@"take turn called");
-            NSLog(@"GC here 3");
-            [delegate takeTurn:match];
-        } else {
-            // It's not your turn, just display the game state.
-            NSLog(@"GC here 4");
-            [delegate layoutMatch:match];
-        }
+        
     }
     
 }

@@ -11,14 +11,18 @@
 
 
 @interface RPSVC : UIViewController <GCTurnBasedMatchHelperDelegate> {
-    
-    IBOutlet UILabel *turnStateLabel;
 
     IBOutlet UIButton *rockButton;
     IBOutlet UIButton *scissorsButton;
     IBOutlet UIButton *paperButton;
     
     IBOutlet UIButton *nextRoundButton;
+    
+    IBOutlet UILabel *turnStateLabel;
+    IBOutlet UILabel *buttonPressResultLabel;
+    IBOutlet UILabel *roundLabel;
+    IBOutlet UILabel *p0ScoreLabel;
+    IBOutlet UILabel *p1ScoreLabel;
     
     enum playerRoleRPS{takingTurn, observing, roundOver, gameOver};
 }

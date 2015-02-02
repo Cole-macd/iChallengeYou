@@ -28,6 +28,7 @@
 }
 - (IBAction)oneRoundChosen:(id)sender {
     unsigned int pType = [FunctionLibrary calculatePlayerGroup:RPS numRounds:1];
+    [GCTurnBasedMatchHelper sharedInstance].numberOfRounds = 1;
     NSLog(@"ptype is %u", pType);
     [[GCTurnBasedMatchHelper sharedInstance]
      findMatchWithMinPlayers:2 maxPlayers:2 viewController:self showMatches:false playerGroup:pType];
@@ -35,21 +36,24 @@
 
 - (IBAction)threeRoundsChosen:(id)sender {
     unsigned int pType = [FunctionLibrary calculatePlayerGroup:RPS numRounds:3];
+    [GCTurnBasedMatchHelper sharedInstance].numberOfRounds = 3;
     NSLog(@"ptype is %u", pType);
     [[GCTurnBasedMatchHelper sharedInstance]
      findMatchWithMinPlayers:2 maxPlayers:2 viewController:self showMatches:false playerGroup:pType];
+    
 }
 
 
 - (IBAction)fiveRoundsChosen:(id)sender {
     unsigned int pType = [FunctionLibrary calculatePlayerGroup:RPS numRounds:5];
+    [GCTurnBasedMatchHelper sharedInstance].numberOfRounds = 5;
     NSLog(@"ptype is %u", pType);
     [[GCTurnBasedMatchHelper sharedInstance]
      findMatchWithMinPlayers:2 maxPlayers:2 viewController:self showMatches:false playerGroup:pType];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"segue method running");
+    /*NSLog(@"segue method running");
     if([segue.identifier isEqualToString:@"RPS1Round"]){
         RPSVC *controller = (RPSVC *)segue.destinationViewController;
         controller.numberOfRounds = 1;
@@ -59,7 +63,7 @@
     }else if([segue.identifier isEqualToString:@"RPS5Rounds"]){
         RPSVC *controller = (RPSVC *)segue.destinationViewController;
         controller.numberOfRounds = 5;
-    }
+    }*/
 }
 
 /*

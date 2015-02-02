@@ -11,7 +11,7 @@
 
 
 @protocol GCTurnBasedMatchHelperDelegate
-- (void)enterNewGame:(GKTurnBasedMatch *)match;
+- (void)enterNewGame:(GKTurnBasedMatch *)match numRounds:(int)numRounds;
 - (void)layoutMatch:(GKTurnBasedMatch *)match;
 - (void)takeTurn:(GKTurnBasedMatch *)match;
 - (void)recieveEndGame:(GKTurnBasedMatch *)match;
@@ -34,6 +34,7 @@
 @property (retain) GKTurnBasedMatch * currentMatch;
 @property (assign, readonly) BOOL gameCenterAvailable;
 @property (nonatomic, retain)id <GCTurnBasedMatchHelperDelegate> delegate;
+@property (nonatomic) int numberOfRounds;
 
 
 + (GCTurnBasedMatchHelper *)sharedInstance;
