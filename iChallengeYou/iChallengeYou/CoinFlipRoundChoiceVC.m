@@ -28,25 +28,28 @@
 }
 
 - (IBAction)oneRoundChosen:(id)sender {
+    [GCTurnBasedMatchHelper sharedInstance].numberOfRounds = 1;
     unsigned int pType = [FunctionLibrary calculatePlayerGroup:CF numRounds:1];
     [[GCTurnBasedMatchHelper sharedInstance]
      findMatchWithMinPlayers:2 maxPlayers:2 viewController:self showMatches:false playerGroup:pType];
 }
 
 - (IBAction)threeRoundsChosen:(id)sender {
+    [GCTurnBasedMatchHelper sharedInstance].numberOfRounds = 3;
     unsigned int pType = [FunctionLibrary calculatePlayerGroup:CF numRounds:3];
     [[GCTurnBasedMatchHelper sharedInstance]
      findMatchWithMinPlayers:2 maxPlayers:2 viewController:self showMatches:false playerGroup:pType];
 }
 
 - (IBAction)fiveRoundsChosen:(id)sender {
+    [GCTurnBasedMatchHelper sharedInstance].numberOfRounds = 5;
     unsigned int pType = [FunctionLibrary calculatePlayerGroup:CF numRounds:5];
     [[GCTurnBasedMatchHelper sharedInstance]
      findMatchWithMinPlayers:2 maxPlayers:2 viewController:self showMatches:false playerGroup:pType];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"segue method running");
+    /*NSLog(@"segue method running");
     if([segue.identifier isEqualToString:@"CF1Round"]){
         CoinFlipVC *controller = (CoinFlipVC *)segue.destinationViewController;
         controller.numberOfRounds = 1;
@@ -56,7 +59,7 @@
     }else if([segue.identifier isEqualToString:@"CF5Rounds"]){
         CoinFlipVC *controller = (CoinFlipVC *)segue.destinationViewController;
         controller.numberOfRounds = 5;
-    }
+    }*/
 }
 
 /*

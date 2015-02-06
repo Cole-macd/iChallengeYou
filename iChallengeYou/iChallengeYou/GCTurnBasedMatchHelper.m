@@ -7,8 +7,8 @@
 //
 
 #import "GCTurnBasedMatchHelper.h"
-//#import "CoinFlipVC.h"
-#import "RPSVC.h"
+#import "CoinFlipVC.h"
+//#import "RPSVC.h"
 #import "HomePageVC.h"
 
 @implementation GCTurnBasedMatchHelper

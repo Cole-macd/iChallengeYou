@@ -66,18 +66,17 @@ NSString *playerOneMove;
 }
 
 -(void)updatePlayerStatus:(GKTurnBasedMatch *)match{
-    GKTurnBasedMatch *currentMatch = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
-    GKPlayer *turnHolder = currentMatch.currentParticipant.player;
+    GKPlayer *turnHolder = match.currentParticipant.player;
     GKPlayer *localPlayer = [GKLocalPlayer localPlayer];
         
     if([turnHolder isEqual:localPlayer]){
         NSLog(@"current player has the turn");
         playerStatusRPS = takingTurn;
-        currentPlayerIndex = [currentMatch.participants indexOfObject:currentMatch.currentParticipant];
+        currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
     }else{
         NSLog(@"Other player has the turn");
         playerStatusRPS = observing;
-        currentPlayerIndex = 1 - [currentMatch.participants indexOfObject:currentMatch.currentParticipant];
+        currentPlayerIndex = 1 - [match.participants indexOfObject:match.currentParticipant];
     }
     
 
@@ -276,9 +275,8 @@ NSString *playerOneMove;
 }
 
 -(void)updateGameVariables:(GKTurnBasedMatch *)match {
-    GKTurnBasedMatch *currentMatch = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
-    if ([currentMatch.matchData bytes]) {
-        NSString *incomingData = [NSString stringWithUTF8String:[currentMatch.matchData bytes]];
+    if ([match.matchData bytes]) {
+        NSString *incomingData = [NSString stringWithUTF8String:[match.matchData bytes]];
         NSArray *dataItems = [incomingData componentsSeparatedByString:@","];
         playerZeroMove = dataItems[1];
         playerOneMove = dataItems[2];

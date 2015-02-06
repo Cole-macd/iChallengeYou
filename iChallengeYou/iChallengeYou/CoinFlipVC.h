@@ -13,12 +13,14 @@
     IBOutlet UILabel *turnLabel;
     IBOutlet UILabel *gameStateLabel;
     IBOutlet UILabel *roundLabel;
+    IBOutlet UILabel *playerZeroScoreLabel;
+    IBOutlet UILabel *playerOneScoreLabel;
     
     IBOutlet UIButton *tailsButton;
     IBOutlet UIButton *headsButton;
     IBOutlet UIButton *nextRoundButton;
     
-    enum playerRole{calling, observing, roundEnd, gameOver};
+    enum playerRoleCF{calling, observing, roundEnd, gameOver};
 }
 
 @property(nonatomic) int numberOfRounds;
