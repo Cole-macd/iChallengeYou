@@ -79,18 +79,22 @@ enum playerRoleCF playerStatusCF = observing;
         playerZeroScoreCF = [dataItems[6] intValue];
         playerOneScoreCF = [dataItems[7] intValue];
         mostRecentPlayerIndex = [dataItems[8] intValue];
+        
+        //most recent change moving this if statement inside if(matchData)
+        if(![dataItems[1] isEqualToString:@"gameOver"]){
+            GKPlayer *turnHolder = match.currentParticipant.player;
+            GKPlayer *localPlayer = [GKLocalPlayer localPlayer];
+            if([turnHolder isEqual:localPlayer]){
+                currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
+            }else{
+                currentPlayerIndex = 1 - [match.participants indexOfObject:match.currentParticipant];
+            }
+        }
     }else{
         playerZeroScoreCF = 0;
         playerOneScoreCF = 0;
         currentRound = 1;
-    }
-    
-    GKPlayer *turnHolder = match.currentParticipant.player;
-    GKPlayer *localPlayer = [GKLocalPlayer localPlayer];
-    if([turnHolder isEqual:localPlayer]){
-        currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
-    }else{
-        currentPlayerIndex = 1 - [match.participants indexOfObject:match.currentParticipant];
+        currentPlayerIndex = 0;
     }
 }
 
