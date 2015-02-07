@@ -19,7 +19,7 @@
 NSString *colourPressed;
 NSString *previousColourPressed;
 BOOL firstTurn = false;
-BOOL gameOver = false;
+//BOOL gameOver = false;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,14 +53,14 @@ BOOL gameOver = false;
             resultLabel.text = @"CORRECT!";
             curr.matchOutcome = GKTurnBasedMatchOutcomeWon;
             next.matchOutcome = GKTurnBasedMatchOutcomeLost;
-            gameOver = true;
+            //gameOver = true;
             
         }else{
             NSLog(@"You did not guess the correct colour");
             resultLabel.text = @"WRONG!";
             curr.matchOutcome = GKTurnBasedMatchOutcomeLost;
             next.matchOutcome = GKTurnBasedMatchOutcomeWon;
-            gameOver = true;
+            //gameOver = true;
         }
         
     }

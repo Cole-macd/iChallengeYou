@@ -21,15 +21,16 @@
 @synthesize currentRound;
 
 int currentPlayerIndex = 0;
-enum playerRoleRPS playerStatusRPS = observing;
+enum playerRole playerStatusRPS = observing;
 int playerZeroScore = 0;
 int playerOneScore = 0;
 NSString *playerZeroMove;
 NSString *playerOneMove;
 
+/*
 +(void)initialize{
     [GCTurnBasedMatchHelper sharedInstance].delegate = self;
-}
+}*/
 
 - (void)viewDidLoad {
     [super viewDidLoad];

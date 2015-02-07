@@ -29,6 +29,8 @@
     
     GKTurnBasedMatch *currentMatch;
     
+    enum playerRole{takingTurn, observing, roundOver, gameOver};
+    
 }
 
 @property (retain) GKTurnBasedMatch * currentMatch;

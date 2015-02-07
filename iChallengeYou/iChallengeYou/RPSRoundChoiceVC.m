@@ -53,6 +53,9 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    [GCTurnBasedMatchHelper sharedInstance].delegate = (RPSVC *)segue.destinationViewController;
+    
     /*NSLog(@"segue method running");
     if([segue.identifier isEqualToString:@"RPS1Round"]){
         RPSVC *controller = (RPSVC *)segue.destinationViewController;

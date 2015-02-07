@@ -8,7 +8,7 @@
 
 #import "GCTurnBasedMatchHelper.h"
 #import "CoinFlipVC.h"
-//#import "RPSVC.h"
+#import "RPSVC.h"
 #import "HomePageVC.h"
 
 @implementation GCTurnBasedMatchHelper
@@ -98,6 +98,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     
     if (!gameCenterAvailable) return;
     
+    self.currentMatch = nil;
+    
     //playerCount++;
     presentingViewController = viewController;
     
@@ -143,6 +145,22 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         NSLog(@"GC here 1");
         [delegate enterNewGame:match numRounds:numberOfRounds];
     } else {
+        
+        if([presentingViewController isKindOfClass:[HomePageVC class]]){
+            NSLog(@"performing direct segue");
+            
+            NSString *matchData = [NSString stringWithUTF8String:[match.matchData bytes]];
+            NSArray *dataItems = [matchData componentsSeparatedByString:@","];
+            NSString *gameType = dataItems[0];
+            if([gameType isEqualToString:@"CF"]){
+                CoinFlipVC *newDel;
+                delegate = newDel;
+            }else if ([gameType isEqualToString:@"RPS"]){
+                RPSVC *newDel;
+                delegate = newDel;
+            }
+        }
+
         if ([match.currentParticipant.playerID
              isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
             // It's your turn!

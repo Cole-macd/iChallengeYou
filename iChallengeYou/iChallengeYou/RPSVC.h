@@ -24,7 +24,7 @@
     IBOutlet UILabel *p0ScoreLabel;
     IBOutlet UILabel *p1ScoreLabel;
     
-    enum playerRoleRPS{takingTurn, observing, roundOver, gameOver};
+    //enum playerRoleRPS{takingTurn, observing, roundOver, gameOver};
 }
 
 @property(nonatomic) int numberOfRounds;

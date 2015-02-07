@@ -26,7 +26,7 @@ int playerZeroScoreCF = 0;
 int playerOneScoreCF = 0;
 NSString *mostRecentPlayerMove;
 NSString *coinResult;
-enum playerRoleCF playerStatusCF = observing;
+enum playerRole playerStatusCF = observing;
 
 
 - (void)viewDidLoad {
@@ -42,10 +42,10 @@ enum playerRoleCF playerStatusCF = observing;
     if (playerStatusCF == observing){
         NSLog(@"player status is observing");
         [self displayObservingStatus];
-    }else if(playerStatusCF == calling){
+    }else if(playerStatusCF == takingTurn){
         [self displayCallingStatus];
         NSLog(@"player status is calling");
-    }else if(playerStatusCF == roundEnd){
+    }else if(playerStatusCF == roundOver){
         if(currentPlayerIndex == mostRecentPlayerIndex){
             [self displayRoundResult:true];
             nextRoundButton.hidden = false;
@@ -69,6 +69,8 @@ enum playerRoleCF playerStatusCF = observing;
 
 
 -(void)updateGameVariables:(GKTurnBasedMatch *)match{
+    //NSString *incomingData = [NSString stringWithUTF8String:[match.matchData bytes]];
+    //NSLog(@"match data is %@", incomingData);
     if ([match.matchData bytes]) {
         NSString *incomingData = [NSString stringWithUTF8String:[match.matchData bytes]];
         NSArray *dataItems = [incomingData componentsSeparatedByString:@","];
@@ -121,10 +123,10 @@ enum playerRoleCF playerStatusCF = observing;
                 GKTurnBasedParticipant *thisParticipant = [match.participants objectAtIndex:1];
                 if (thisParticipant.lastTurnDate == NULL) {
                     //the first "call" of the game
-                    playerStatusCF = calling;
+                    playerStatusCF = takingTurn;
                 }else{
                     //this players turn to call, must display previous round results first
-                    playerStatusCF = roundEnd;
+                    playerStatusCF = roundOver;
                 }
                 NSLog(@"current player has the turn");
                 currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
@@ -135,7 +137,7 @@ enum playerRoleCF playerStatusCF = observing;
             }
         }
     }else{
-        playerStatusCF = calling;
+        playerStatusCF = takingTurn;
         currentPlayerIndex = 0;
     }
     
@@ -289,7 +291,7 @@ enum playerRoleCF playerStatusCF = observing;
     }
     
     //format is "playerRole,playerCoinCall,coinCallResult,currentRound,numberOfRounds,playerAtIndexZeroScore,playerAtIndexOneScore,callingPlayerIndex"
-    NSString *matchMessage = [NSString stringWithFormat:@"CF,call,none,none,%u,%u,0,0,1",currentRound, numberOfRounds];
+    NSString *matchMessage = [NSString stringWithFormat:@"CF,call,none,none,%u,%u,0,0,1,0",currentRound, numberOfRounds];
     
     NSData *data =
     [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
@@ -321,11 +323,11 @@ enum playerRoleCF playerStatusCF = observing;
         if (thisParticipant.lastTurnDate == NULL) {
             //the first "call" of the game. after this call, every
             NSLog(@"here2");
-            playerStatusCF = calling;
+            playerStatusCF = takingTurn;
             [self displayCallingStatus];
         }else{
             //this players turn to call, must display previous round results first
-            playerStatusCF = roundEnd;
+            playerStatusCF = roundOver;
             if(currentPlayerIndex == mostRecentPlayerIndex){
                 [self displayRoundResult:true];
             }else{
@@ -354,7 +356,7 @@ enum playerRoleCF playerStatusCF = observing;
     
     GKTurnBasedMatch *currentMatch = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
     if(currentPlayerIndex == [currentMatch.participants indexOfObject:currentMatch.currentParticipant]){
-        playerStatusCF = calling;
+        playerStatusCF = takingTurn;
         [self displayCallingStatus];
     }else{
         playerStatusCF = observing;

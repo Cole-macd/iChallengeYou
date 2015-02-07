@@ -49,10 +49,18 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    /*NSLog(@"segue method running");
-    if([segue.identifier isEqualToString:@"CF1Round"]){
+    NSLog(@"segue method running");
+    
+    [GCTurnBasedMatchHelper sharedInstance].delegate = (CoinFlipVC *)segue.destinationViewController;
+    
+    /*if([segue.identifier isEqualToString:@"CF1Round"]){
         CoinFlipVC *controller = (CoinFlipVC *)segue.destinationViewController;
         controller.numberOfRounds = 1;
+        
+        //[(CoinFlipVC *)segue.destinationViewController CoinFlipRoundChoiceVC] = self;
+        
+        
+        
     }else if([segue.identifier isEqualToString:@"CF3Rounds"]){
         CoinFlipVC *controller = (CoinFlipVC *)segue.destinationViewController;
         controller.numberOfRounds = 3;

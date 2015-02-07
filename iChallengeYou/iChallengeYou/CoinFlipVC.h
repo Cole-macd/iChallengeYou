@@ -20,7 +20,7 @@
     IBOutlet UIButton *headsButton;
     IBOutlet UIButton *nextRoundButton;
     
-    enum playerRoleCF{calling, observing, roundEnd, gameOver};
+    //enum playerRoleCF{calling, observing, roundEnd, gameOver};
 }
 
 @property(nonatomic) int numberOfRounds;
