@@ -14,10 +14,12 @@
 
 @interface CoinFlipVC ()
 //@property (weak, nonatomic) IBOutlet UILabel *turnLabel;
-
 @end
 
 @implementation CoinFlipVC
+
+@synthesize coinView;
+//view1, view2, flipBtn;
 
 int activePlayer;
 @synthesize numberOfRounds;
@@ -28,14 +30,20 @@ enum playerRole playerStatus = observing;
 
 //GKTurnBasedMatch *currentMatch;
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"View did load");
     [GCTurnBasedMatchHelper sharedInstance].delegate = self;
     GKTurnBasedMatch *currentMatch = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
     nextRoundButton.hidden = true;
+    
+    UIImageView *tailView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollartail.png"]];
+    
+    UIImageView *profileView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollarhead.png"]];
+    
+    [coinView setPrimaryView: profileView];
+    [coinView setSecondaryView: tailView];
+    [coinView setSpinTime:0.2];
     
     if (playerStatus == observing){
         NSLog(@"player status is observing");

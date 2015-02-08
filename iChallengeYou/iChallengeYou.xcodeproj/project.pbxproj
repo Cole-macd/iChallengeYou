@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3ECC99551A88181E0021D1AE /* dollarhead.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECC99531A88181E0021D1AE /* dollarhead.png */; };
+		3ECC99561A88181E0021D1AE /* dollartail.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ECC99541A88181E0021D1AE /* dollartail.png */; };
+		3ED775641A880A8A00F0EBFF /* CoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED775631A880A8A00F0EBFF /* CoinView.m */; };
+		3ED775661A880F5100F0EBFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFDC223B1A6EDA6A00BCCACC /* Main.storyboard */; };
+		3ED775671A880F6900F0EBFF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFDC22321A6EDA6A00BCCACC /* Info.plist */; };
 		5917ED871A79DAC800F2E3E1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDC22631A6EDEE500BCCACC /* GameKit.framework */; };
 		59818C301A7876B00058F3E3 /* RPSRoundChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */; };
 		59818C331A78788F0058F3E3 /* RPSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C321A78788F0058F3E3 /* RPSVC.m */; };
@@ -18,7 +23,6 @@
 		AF8DE49C1A6EEB210035C944 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE49B1A6EEB210035C944 /* LoginVC.m */; };
 		AFDC22341A6EDA6A00BCCACC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC22331A6EDA6A00BCCACC /* main.m */; };
 		AFDC22371A6EDA6A00BCCACC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC22361A6EDA6A00BCCACC /* AppDelegate.m */; };
-		AFDC223D1A6EDA6A00BCCACC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFDC223B1A6EDA6A00BCCACC /* Main.storyboard */; };
 		AFDC223F1A6EDA6A00BCCACC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFDC223E1A6EDA6A00BCCACC /* Images.xcassets */; };
 		AFDC22421A6EDA6A00BCCACC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AFDC22401A6EDA6A00BCCACC /* LaunchScreen.xib */; };
 		AFDC224E1A6EDA6A00BCCACC /* iChallengeYouTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC224D1A6EDA6A00BCCACC /* iChallengeYouTests.m */; };
@@ -37,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3ECC99531A88181E0021D1AE /* dollarhead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dollarhead.png; sourceTree = "<group>"; };
+		3ECC99541A88181E0021D1AE /* dollartail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dollartail.png; sourceTree = "<group>"; };
+		3ED775631A880A8A00F0EBFF /* CoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinView.m; sourceTree = "<group>"; };
+		3ED775651A880A9D00F0EBFF /* CoinView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoinView.h; sourceTree = "<group>"; };
 		59818C2E1A7876B00058F3E3 /* RPSRoundChoiceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSRoundChoiceVC.h; sourceTree = "<group>"; };
 		59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSRoundChoiceVC.m; sourceTree = "<group>"; };
 		59818C311A78788F0058F3E3 /* RPSVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSVC.h; sourceTree = "<group>"; };
@@ -90,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3ED775621A8808B200F0EBFF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				3ECC99531A88181E0021D1AE /* dollarhead.png */,
+				3ECC99541A88181E0021D1AE /* dollartail.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		AFDC22251A6EDA6A00BCCACC = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +129,7 @@
 		AFDC22301A6EDA6A00BCCACC /* iChallengeYou */ = {
 			isa = PBXGroup;
 			children = (
+				3ED775621A8808B200F0EBFF /* Assets */,
 				59818C311A78788F0058F3E3 /* RPSVC.h */,
 				59818C321A78788F0058F3E3 /* RPSVC.m */,
 				59818C2E1A7876B00058F3E3 /* RPSRoundChoiceVC.h */,
@@ -124,6 +142,8 @@
 				AF8DE48B1A6EEACB0035C944 /* FunctionLibrary.h */,
 				AF8DE4911A6EEAFB0035C944 /* CoinFlipVC.h */,
 				AF8DE4921A6EEAFB0035C944 /* CoinFlipVC.m */,
+				3ED775631A880A8A00F0EBFF /* CoinView.m */,
+				3ED775651A880A9D00F0EBFF /* CoinView.h */,
 				AF8DE4941A6EEB040035C944 /* GameMenuVC.h */,
 				AF8DE4951A6EEB040035C944 /* GameMenuVC.m */,
 				AF8DE4971A6EEB130035C944 /* HomePageVC.h */,
@@ -254,7 +274,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFDC223D1A6EDA6A00BCCACC /* Main.storyboard in Resources */,
+				3ECC99551A88181E0021D1AE /* dollarhead.png in Resources */,
+				3ECC99561A88181E0021D1AE /* dollartail.png in Resources */,
+				3ED775671A880F6900F0EBFF /* Info.plist in Resources */,
+				3ED775661A880F5100F0EBFF /* Main.storyboard in Resources */,
 				AFDC22421A6EDA6A00BCCACC /* LaunchScreen.xib in Resources */,
 				AFDC223F1A6EDA6A00BCCACC /* Images.xcassets in Resources */,
 			);
@@ -283,6 +306,7 @@
 				AFDC22621A6EDCED00BCCACC /* GCTurnBasedMatchHelper.m in Sources */,
 				AF8DE4991A6EEB130035C944 /* HomePageVC.m in Sources */,
 				AF8DE4901A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.m in Sources */,
+				3ED775641A880A8A00F0EBFF /* CoinView.m in Sources */,
 				AFDC22341A6EDA6A00BCCACC /* main.m in Sources */,
 				AF8DE4961A6EEB040035C944 /* GameMenuVC.m in Sources */,
 				59818C301A7876B00058F3E3 /* RPSRoundChoiceVC.m in Sources */,
