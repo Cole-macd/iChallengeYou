@@ -11,6 +11,7 @@
 @interface CoinView : UIView
 
 - (id) initWithPrimaryView: (UIView *) view1 andSecondaryView: (UIView *) view2 inFrame: (CGRect) frame;
+- (void)flipCoin:(int)repeat;
 
 @property (nonatomic, retain) UIView *primaryView;
 @property (nonatomic, retain) UIView *secondaryView;

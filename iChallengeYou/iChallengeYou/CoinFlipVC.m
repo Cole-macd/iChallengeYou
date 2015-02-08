@@ -43,7 +43,7 @@ enum playerRole playerStatus = observing;
     
     [coinView setPrimaryView: profileView];
     [coinView setSecondaryView: tailView];
-    [coinView setSpinTime:0.2];
+    [coinView setSpinTime:0.1];
     
     if (playerStatus == observing){
         NSLog(@"player status is observing");
@@ -96,6 +96,10 @@ enum playerRole playerStatus = observing;
     
     //check if player's call was correct
     int coinResultInt = arc4random_uniform(2);
+    
+    [coinView flipCoin: coinResultInt+8];
+    
+    
     NSString *coinResult;
     if (coinResultInt == 0){
         coinResult = @"heads";
