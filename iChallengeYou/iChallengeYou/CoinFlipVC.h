@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GCTurnBasedMatchHelper.h"
+#import "CoinView.h"
 
 @interface CoinFlipVC : UIViewController <GCTurnBasedMatchHelperDelegate> {
     IBOutlet UILabel *turnLabel;
@@ -25,5 +26,6 @@
 
 @property(nonatomic) int numberOfRounds;
 @property(nonatomic) int currentRound;
+@property (nonatomic, retain) IBOutlet CoinView *coinView;
 
 @end

@@ -11,12 +11,15 @@
 #import "GCTurnBasedMatchHelper.h"
 #import "FunctionLibrary.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 @interface CoinFlipVC ()
 
 @end
 
 @implementation CoinFlipVC
+
+@synthesize coinView;
 
 @synthesize numberOfRounds;
 @synthesize currentRound;
@@ -35,6 +38,14 @@ enum playerRole playerStatusCF = observing;
     [GCTurnBasedMatchHelper sharedInstance].delegate = self;
     GKTurnBasedMatch *currentMatch = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
     nextRoundButton.hidden = true;
+    
+    UIImageView *tailView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollartail.png"]];
+    
+    UIImageView *profileView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollarhead.png"]];
+    
+    [coinView setPrimaryView: profileView];
+    [coinView setSecondaryView: tailView];
+    [coinView setSpinTime:0.1];
     
     [self updateGameVariables:currentMatch];
     [self updatePlayerStatus:currentMatch];
@@ -167,6 +178,9 @@ enum playerRole playerStatusCF = observing;
     //check if player's call was correct
     mostRecentPlayerMove = playerChoice;
     int coinResultInt = arc4random_uniform(2);
+    
+    [coinView flipCoin: 4+coinResultInt];
+    
     if (coinResultInt == 0){
         coinResult = @"heads";
     }else{
@@ -240,7 +254,8 @@ enum playerRole playerStatusCF = observing;
         playerStatusCF = gameOver;
         
         //display the result of this player's call immediately
-        [self displayRoundResult:true];
+        [self performSelector:@selector(displayRoundResultTrue) withObject:nil afterDelay:1];
+
 
         
     }else{
@@ -250,7 +265,9 @@ enum playerRole playerStatusCF = observing;
         playerStatusCF = observing;
         
         //display the result of this player's call immediately
-        [self displayRoundResult:true];
+        
+        [self performSelector:@selector(displayRoundResultTrue) withObject:nil afterDelay:1];
+        
         nextRoundButton.hidden = false;
         
         [currentMatch endTurnWithNextParticipant:nextParticipant
@@ -412,7 +429,7 @@ enum playerRole playerStatusCF = observing;
 }
 
 
--(void)displayRoundResult:(bool)justSent{
+-(void)displayRoundResult:(BOOL)justSent{
     NSLog(@"player status is endRound");
     //nextRoundButton.hidden = false;
     [self disablePlayingObjects];
@@ -423,6 +440,24 @@ enum playerRole playerStatusCF = observing;
     }else{
         [gameStateLabel setText:[NSString stringWithFormat:@"Opponent called %@, result was %@", mostRecentPlayerMove, coinResult]];
     }
+
+    if([self checkForEndGame:playerZeroScoreCF p1Score:playerOneScoreCF]){
+        //game is over
+        [roundLabel setText:[NSString stringWithFormat:@"GAME OVER"]];
+    }else{
+        //displaying the results of the previous round.
+        int tempRound = currentRound - 1;
+        [roundLabel setText:[NSString stringWithFormat:@"%u of %u", tempRound,numberOfRounds]];
+    }
+}
+
+-(void)displayRoundResultTrue{
+    NSLog(@"player status is endRound");
+    //nextRoundButton.hidden = false;
+    [self disablePlayingObjects];
+    [self displayPlayerScores];
+    
+    [gameStateLabel setText:[NSString stringWithFormat:@"You called %@, result was %@", mostRecentPlayerMove, coinResult]];
 
     if([self checkForEndGame:playerZeroScoreCF p1Score:playerOneScoreCF]){
         //game is over
