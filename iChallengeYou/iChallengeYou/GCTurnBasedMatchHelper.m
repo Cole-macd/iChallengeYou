@@ -114,6 +114,9 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     mmvc.turnBasedMatchmakerDelegate = self;
     mmvc.showExistingMatches = showMatches;
     
+    /*SOLUTION AT THIS SITE HAS STUFF WE MAY NEED FOR PLAYER INVITES
+     http://stackoverflow.com/questions/14275255/how-to-present-gkmatchmakerviewcontroller-to-presented-view-controller*/
+    
     [presentingViewController presentViewController:mmvc
                                            animated:YES
                                          completion:nil];
