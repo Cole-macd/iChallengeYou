@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DBCE2E75-00E9-46D8-8FD0-20200A51C260</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iChallengeYou</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D97F367993D85718E44472C55FBE5020E3265C7D</key>
+		<string>https://github.com/Cole-macd/iChallengeYou.git</string>
+		<key>b2a92732-ce44-c945-0dca-ce57b7db7bff++3943</key>
+		<string>https://github.com/Cole-macd/iChallengeYou/branches/Graphics</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iChallengeYou/iChallengeYou.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D97F367993D85718E44472C55FBE5020E3265C7D</key>
+		<string>../../..</string>
+		<key>b2a92732-ce44-c945-0dca-ce57b7db7bff++3943</key>
+		<string>../../../../Downloads/iChallengeYou</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>b2a92732-ce44-c945-0dca-ce57b7db7bff++3943</key>
+		<string>https://github.com/Cole-macd/iChallengeYou</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Cole-macd/iChallengeYou.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D97F367993D85718E44472C55FBE5020E3265C7D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D97F367993D85718E44472C55FBE5020E3265C7D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iChallengeYou</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>b2a92732-ce44-c945-0dca-ce57b7db7bff++3943</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iChallengeYou</string>
+		</dict>
+	</array>
+</dict>
+</plist>
