@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8O4-93-wA4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8O4-93-wA4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -92,6 +92,7 @@
                     <connections>
                         <segue destination="Q4Z-wg-B2r" kind="push" identifier="directCoinFlip" id="vC2-ue-e5y"/>
                         <segue destination="5Ns-sb-a8i" kind="show" identifier="directRPS" id="ZOf-l6-p4j"/>
+                        <segue destination="hSb-Ku-j3a" kind="show" identifier="newGameSegue" id="FMz-IO-EBC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KjO-Mk-lz5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -528,7 +529,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3m-ol-NyO">
-                                <rect key="frame" x="64" y="298" width="229" height="53"/>
+                                <rect key="frame" x="64" y="298" width="229" height="63"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -582,6 +583,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="FMz-IO-EBC"/>
         <segue reference="vC2-ue-e5y"/>
         <segue reference="ZOf-l6-p4j"/>
     </inferredMetricsTieBreakers>

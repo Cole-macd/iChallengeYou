@@ -97,11 +97,9 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                     playerGroup:(unsigned int)playerGroup{
     
     if (!gameCenterAvailable) return;
+    presentingViewController = viewController;
     
     self.currentMatch = nil;
-    
-    //playerCount++;
-    presentingViewController = viewController;
     
     GKMatchRequest *request = [[GKMatchRequest alloc] init];
     request.minPlayers = minPlayers;
@@ -113,6 +111,9 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
      initWithMatchRequest:request];
     mmvc.turnBasedMatchmakerDelegate = self;
     mmvc.showExistingMatches = showMatches;
+    
+    /*SOLUTION AT THIS SITE HAS STUFF WE MAY NEED FOR PLAYER INVITES
+     http://stackoverflow.com/questions/14275255/how-to-present-gkmatchmakerviewcontroller-to-presented-view-controller*/
     
     [presentingViewController presentViewController:mmvc
                                            animated:YES
@@ -132,10 +133,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                             didFindMatch:(GKTurnBasedMatch *)match {
     
     
-    [presentingViewController
-     dismissModalViewControllerAnimated:YES];
-    
-    
     self.currentMatch = match;
     
     GKTurnBasedParticipant *firstParticipant =
@@ -143,11 +140,26 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     if (firstParticipant.lastTurnDate == NULL) {
         // It's a new game!
         NSLog(@"GC here 1");
-        [delegate enterNewGame:match numRounds:numberOfRounds];
-    } else {
         
         if([presentingViewController isKindOfClass:[HomePageVC class]]){
-            NSLog(@"performing direct segue");
+            [presentingViewController performSegueWithIdentifier:@"newGameSegue" sender:presentingViewController];
+            [presentingViewController
+             dismissModalViewControllerAnimated:YES];
+            [match removeWithCompletionHandler:^(NSError *error) {
+                                               if (error) {
+                                                   NSLog(@"%@", error);
+                                               }
+                                           }];
+        }else{
+            [presentingViewController
+             dismissModalViewControllerAnimated:YES];
+            [delegate enterNewGame:match numRounds:numberOfRounds];
+        }
+    } else {
+        [presentingViewController
+         dismissModalViewControllerAnimated:YES];
+        
+        if([presentingViewController isKindOfClass:[HomePageVC class]]){
             
             NSString *matchData = [NSString stringWithUTF8String:[match.matchData bytes]];
             NSArray *dataItems = [matchData componentsSeparatedByString:@","];
@@ -185,11 +197,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                 [presentingViewController performSegueWithIdentifier:@"directRPS" sender:presentingViewController];
             }
             NSLog(@"gametype is %@", gameType);
-            NSLog(@"GC here 2");
+            NSLog(@"Match Data from GC is %@", matchData);
         }
-
-        
-        
     }
     
 }
@@ -227,7 +236,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 }
 
 -(void)handleMatchEnded:(GKTurnBasedMatch *)match {
-    NSLog(@"Game has ended");
+    NSLog(@"Game has endededed");
+    self.currentMatch = match;
     if ([match.matchID isEqualToString:currentMatch.matchID]) {
         [delegate recieveEndGame:match];
     } else {
