@@ -92,6 +92,7 @@
                     <connections>
                         <segue destination="Q4Z-wg-B2r" kind="push" identifier="directCoinFlip" id="vC2-ue-e5y"/>
                         <segue destination="5Ns-sb-a8i" kind="show" identifier="directRPS" id="ZOf-l6-p4j"/>
+                        <segue destination="hSb-Ku-j3a" kind="show" identifier="newGameSegue" id="FMz-IO-EBC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KjO-Mk-lz5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -582,6 +583,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="FMz-IO-EBC"/>
         <segue reference="vC2-ue-e5y"/>
         <segue reference="ZOf-l6-p4j"/>
     </inferredMetricsTieBreakers>

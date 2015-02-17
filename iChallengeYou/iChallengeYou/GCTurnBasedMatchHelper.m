@@ -97,11 +97,9 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                     playerGroup:(unsigned int)playerGroup{
     
     if (!gameCenterAvailable) return;
+    presentingViewController = viewController;
     
     self.currentMatch = nil;
-    
-    //playerCount++;
-    presentingViewController = viewController;
     
     GKMatchRequest *request = [[GKMatchRequest alloc] init];
     request.minPlayers = minPlayers;
@@ -135,10 +133,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                             didFindMatch:(GKTurnBasedMatch *)match {
     
     
-    [presentingViewController
-     dismissModalViewControllerAnimated:YES];
-    
-    
     self.currentMatch = match;
     
     GKTurnBasedParticipant *firstParticipant =
@@ -146,8 +140,24 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     if (firstParticipant.lastTurnDate == NULL) {
         // It's a new game!
         NSLog(@"GC here 1");
-        [delegate enterNewGame:match numRounds:numberOfRounds];
+        
+        if([presentingViewController isKindOfClass:[HomePageVC class]]){
+            [presentingViewController performSegueWithIdentifier:@"newGameSegue" sender:presentingViewController];
+            [presentingViewController
+             dismissModalViewControllerAnimated:YES];
+            [match removeWithCompletionHandler:^(NSError *error) {
+                                               if (error) {
+                                                   NSLog(@"%@", error);
+                                               }
+                                           }];
+        }else{
+            [presentingViewController
+             dismissModalViewControllerAnimated:YES];
+            [delegate enterNewGame:match numRounds:numberOfRounds];
+        }
     } else {
+        [presentingViewController
+         dismissModalViewControllerAnimated:YES];
         
         if([presentingViewController isKindOfClass:[HomePageVC class]]){
             
@@ -187,12 +197,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                 [presentingViewController performSegueWithIdentifier:@"directRPS" sender:presentingViewController];
             }
             NSLog(@"gametype is %@", gameType);
-            NSLog(@"NULL MATCH DATA IS %@", matchData);
-            NSLog(@"GC here 2");
+            NSLog(@"Match Data from GC is %@", matchData);
         }
-
-        
-        
     }
     
 }
