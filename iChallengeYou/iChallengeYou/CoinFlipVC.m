@@ -40,9 +40,9 @@ enum playerRole playerStatusCF = observing;
     nextRoundButton.hidden = true;
     
     //UNCOMMENT, JUST FOR TESTING
-    UIImageView *tailView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"Assets/dollartail.png"]];
+    UIImageView *tailView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollartail.png"]];
     
-    UIImageView *profileView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"Assets/dollarhead.png"]];
+    UIImageView *profileView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollarhead.png"]];
     
     [coinView setPrimaryView: profileView];
     [coinView setSecondaryView: tailView];
