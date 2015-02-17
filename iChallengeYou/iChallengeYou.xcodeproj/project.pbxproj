@@ -16,6 +16,8 @@
 		AF8DE4961A6EEB040035C944 /* GameMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE4951A6EEB040035C944 /* GameMenuVC.m */; };
 		AF8DE4991A6EEB130035C944 /* HomePageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE4981A6EEB130035C944 /* HomePageVC.m */; };
 		AF8DE49C1A6EEB210035C944 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE49B1A6EEB210035C944 /* LoginVC.m */; };
+		AFB32EFD1A93ED410094EAEF /* dollarhead.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB32EFB1A93ED410094EAEF /* dollarhead.png */; };
+		AFB32EFE1A93ED410094EAEF /* dollartail.png in Resources */ = {isa = PBXBuildFile; fileRef = AFB32EFC1A93ED410094EAEF /* dollartail.png */; };
 		AFDC22341A6EDA6A00BCCACC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC22331A6EDA6A00BCCACC /* main.m */; };
 		AFDC22371A6EDA6A00BCCACC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC22361A6EDA6A00BCCACC /* AppDelegate.m */; };
 		AFDC223D1A6EDA6A00BCCACC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFDC223B1A6EDA6A00BCCACC /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 		AF8DE4981A6EEB130035C944 /* HomePageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageVC.m; sourceTree = "<group>"; };
 		AF8DE49A1A6EEB210035C944 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		AF8DE49B1A6EEB210035C944 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		AFB32EFB1A93ED410094EAEF /* dollarhead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dollarhead.png; sourceTree = "<group>"; };
+		AFB32EFC1A93ED410094EAEF /* dollartail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dollartail.png; sourceTree = "<group>"; };
 		AFDC222E1A6EDA6A00BCCACC /* iChallengeYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChallengeYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFDC22321A6EDA6A00BCCACC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AFDC22331A6EDA6A00BCCACC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,8 +74,8 @@
 		AFDC22601A6EDCED00BCCACC /* GCTurnBasedMatchHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTurnBasedMatchHelper.h; sourceTree = "<group>"; };
 		AFDC22611A6EDCED00BCCACC /* GCTurnBasedMatchHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTurnBasedMatchHelper.m; sourceTree = "<group>"; };
 		AFDC22631A6EDEE500BCCACC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		AFFC1F621A881E1000C945A8 /* CoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoinView.m; path = ../CoinView.m; sourceTree = "<group>"; };
-		AFFC1F641A881E1C00C945A8 /* CoinView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoinView.h; sourceTree = "<group>"; };
+		AFFC1F621A881E1000C945A8 /* CoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoinView.m; path = iChallengeYou/CoinView.m; sourceTree = SOURCE_ROOT; };
+		AFFC1F641A881E1C00C945A8 /* CoinView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoinView.h; path = iChallengeYou/CoinView.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AFB32EFF1A93ED4D0094EAEF /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				AFB32EFC1A93ED410094EAEF /* dollartail.png */,
+				AFB32EFB1A93ED410094EAEF /* dollarhead.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		AFDC22251A6EDA6A00BCCACC = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +138,8 @@
 				AFDC22361A6EDA6A00BCCACC /* AppDelegate.m */,
 				AF8DE48E1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.h */,
 				AF8DE48F1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.m */,
-				AFFC1F6B1A88206E00C945A8 /* Assets */,
 				AFDC225D1A6EDCA400BCCACC /* SecondViewController.h */,
+				AFB32EFF1A93ED4D0094EAEF /* Assets */,
 				AF8DE48B1A6EEACB0035C944 /* FunctionLibrary.h */,
 				AF8DE4911A6EEAFB0035C944 /* CoinFlipVC.h */,
 				AF8DE4921A6EEAFB0035C944 /* CoinFlipVC.m */,
@@ -172,13 +185,6 @@
 				AFDC224C1A6EDA6A00BCCACC /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		AFFC1F6B1A88206E00C945A8 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +274,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFDC223D1A6EDA6A00BCCACC /* Main.storyboard in Resources */,
+				AFB32EFD1A93ED410094EAEF /* dollarhead.png in Resources */,
+				AFB32EFE1A93ED410094EAEF /* dollartail.png in Resources */,
 				AFDC22421A6EDA6A00BCCACC /* LaunchScreen.xib in Resources */,
 				AFDC223F1A6EDA6A00BCCACC /* Images.xcassets in Resources */,
 			);
