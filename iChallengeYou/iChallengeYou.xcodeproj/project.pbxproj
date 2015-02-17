@@ -25,8 +25,6 @@
 		AFDC225F1A6EDCA400BCCACC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC225E1A6EDCA400BCCACC /* SecondViewController.m */; };
 		AFDC22621A6EDCED00BCCACC /* GCTurnBasedMatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AFDC22611A6EDCED00BCCACC /* GCTurnBasedMatchHelper.m */; };
 		AFFC1F631A881E1000C945A8 /* CoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = AFFC1F621A881E1000C945A8 /* CoinView.m */; };
-		AFFC1F691A88206500C945A8 /* dollartail.png in Resources */ = {isa = PBXBuildFile; fileRef = AFFC1F671A88206500C945A8 /* dollartail.png */; };
-		AFFC1F6A1A88206500C945A8 /* dollarhead.png in Resources */ = {isa = PBXBuildFile; fileRef = AFFC1F681A88206500C945A8 /* dollarhead.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,8 +72,6 @@
 		AFDC22631A6EDEE500BCCACC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		AFFC1F621A881E1000C945A8 /* CoinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoinView.m; path = ../CoinView.m; sourceTree = "<group>"; };
 		AFFC1F641A881E1C00C945A8 /* CoinView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoinView.h; sourceTree = "<group>"; };
-		AFFC1F671A88206500C945A8 /* dollartail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dollartail.png; path = ../../../../../Downloads/iChallengeYou/iChallengeYou/iChallengeYou/dollartail.png; sourceTree = "<group>"; };
-		AFFC1F681A88206500C945A8 /* dollarhead.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dollarhead.png; path = ../../../../../Downloads/iChallengeYou/iChallengeYou/iChallengeYou/dollarhead.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,9 +125,7 @@
 				AFDC22361A6EDA6A00BCCACC /* AppDelegate.m */,
 				AF8DE48E1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.h */,
 				AF8DE48F1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.m */,
-				AFFC1F671A88206500C945A8 /* dollartail.png */,
 				AFFC1F6B1A88206E00C945A8 /* Assets */,
-				AFFC1F681A88206500C945A8 /* dollarhead.png */,
 				AFDC225D1A6EDCA400BCCACC /* SecondViewController.h */,
 				AF8DE48B1A6EEACB0035C944 /* FunctionLibrary.h */,
 				AF8DE4911A6EEAFB0035C944 /* CoinFlipVC.h */,
@@ -273,9 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFFC1F6A1A88206500C945A8 /* dollarhead.png in Resources */,
 				AFDC223D1A6EDA6A00BCCACC /* Main.storyboard in Resources */,
-				AFFC1F691A88206500C945A8 /* dollartail.png in Resources */,
 				AFDC22421A6EDA6A00BCCACC /* LaunchScreen.xib in Resources */,
 				AFDC223F1A6EDA6A00BCCACC /* Images.xcassets in Resources */,
 			);

@@ -150,7 +150,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     } else {
         
         if([presentingViewController isKindOfClass:[HomePageVC class]]){
-            NSLog(@"performing direct segue");
             
             NSString *matchData = [NSString stringWithUTF8String:[match.matchData bytes]];
             NSArray *dataItems = [matchData componentsSeparatedByString:@","];
@@ -188,6 +187,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                 [presentingViewController performSegueWithIdentifier:@"directRPS" sender:presentingViewController];
             }
             NSLog(@"gametype is %@", gameType);
+            NSLog(@"NULL MATCH DATA IS %@", matchData);
             NSLog(@"GC here 2");
         }
 
@@ -230,7 +230,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 }
 
 -(void)handleMatchEnded:(GKTurnBasedMatch *)match {
-    NSLog(@"Game has ended");
+    NSLog(@"Game has endededed");
+    self.currentMatch = match;
     if ([match.matchID isEqualToString:currentMatch.matchID]) {
         [delegate recieveEndGame:match];
     } else {

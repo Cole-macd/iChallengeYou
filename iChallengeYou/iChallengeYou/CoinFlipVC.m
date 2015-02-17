@@ -39,13 +39,14 @@ enum playerRole playerStatusCF = observing;
     GKTurnBasedMatch *currentMatch = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
     nextRoundButton.hidden = true;
     
-    UIImageView *tailView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollartail.png"]];
+    //UNCOMMENT, JUST FOR TESTING
+    /*UIImageView *tailView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollartail.png"]];
     
     UIImageView *profileView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollarhead.png"]];
     
     [coinView setPrimaryView: profileView];
     [coinView setSecondaryView: tailView];
-    [coinView setSpinTime:0.1];
+    [coinView setSpinTime:0.1];*/
     
     [self updateGameVariables:currentMatch];
     [self updatePlayerStatus:currentMatch];
