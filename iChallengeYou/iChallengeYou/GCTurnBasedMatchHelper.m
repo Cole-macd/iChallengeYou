@@ -142,6 +142,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         NSLog(@"GC here 1");
         
         if([presentingViewController isKindOfClass:[HomePageVC class]]){
+            //plus button was pressed
             [presentingViewController performSegueWithIdentifier:@"newGameSegue" sender:presentingViewController];
             [presentingViewController
              dismissModalViewControllerAnimated:YES];
@@ -150,7 +151,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                                    NSLog(@"%@", error);
                                                }
                                            }];
-        }else{
+        }else{*/
             [presentingViewController
              dismissModalViewControllerAnimated:YES];
             [delegate enterNewGame:match numRounds:numberOfRounds];
