@@ -40,13 +40,13 @@ enum playerRole playerStatusCF = observing;
     nextRoundButton.hidden = true;
     
     //UNCOMMENT, JUST FOR TESTING
-    /*UIImageView *tailView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollartail.png"]];
+    UIImageView *tailView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollartail.png"]];
     
     UIImageView *profileView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollarhead.png"]];
     
     [coinView setPrimaryView: profileView];
     [coinView setSecondaryView: tailView];
-    [coinView setSpinTime:0.1];*/
+    [coinView setSpinTime:0.1];
     
     [self updateGameVariables:currentMatch];
     [self updatePlayerStatus:currentMatch];
