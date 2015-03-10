@@ -151,7 +151,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                                    NSLog(@"%@", error);
                                                }
                                            }];
-        }else{*/
+        }else{
             [presentingViewController
              dismissModalViewControllerAnimated:YES];
             [delegate enterNewGame:match numRounds:numberOfRounds];
