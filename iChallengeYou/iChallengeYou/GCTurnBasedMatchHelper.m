@@ -177,11 +177,11 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         if ([match.currentParticipant.playerID
              isEqualToString:[GKLocalPlayer localPlayer].playerID]) {
             // It's your turn!
-            NSLog(@"GC here 3");
+            NSLog(@"GC calling takeTurn()");
             [delegate takeTurn:match];
         } else {
             // It's not your turn, just display the game state.
-            NSLog(@"GC here 4");
+            NSLog(@"GC calling layoutMatch()");
             [delegate layoutMatch:match];
         }
         
