@@ -179,10 +179,14 @@ bool currentPlayerHasTurn = false;
                     currentRound = currentRound + 1;
                 }
                 
+                playerZeroPreviousMove = playerZeroMove;
+                playerOnePreviousMove = playerOneMove;
+                previousWinningIndex = winningIndex;
+                
                 matchMessage = [NSString stringWithFormat:@"RPS,%@,%@,%u,%u,%u,%u,running,%@,%@,true,false,%d,", playerZeroMove, playerOneMove, playerZeroScore, playerOneScore, currentRound, numberOfRounds,playerZeroMove,playerOneMove,winningIndex];
             }else{
                 //other player has not made a move, current player is making the first move
-                playerZeroPreviousMove = playerZeroMove;
+                //playerZeroPreviousMove = playerZeroMove;
                 playerZeroMove = playerChoice;
                 matchMessage = [NSString stringWithFormat:@"RPS,%@,null,%u,%u,%u,%u,running,%@,%@,true,false,%d,", playerZeroMove, playerZeroScore, playerOneScore, currentRound, numberOfRounds,playerZeroPreviousMove, playerOnePreviousMove,previousWinningIndex];
                 NSLog(@"matchMessage2");
@@ -200,12 +204,16 @@ bool currentPlayerHasTurn = false;
                     currentRound = currentRound + 1;
                 }
                 
+                playerZeroPreviousMove = playerZeroMove;
+                playerOnePreviousMove = playerOneMove;
+                previousWinningIndex = winningIndex;
+                
                 NSLog(@"matchMessage3");
                 //format is RPS, p0CurrentMove, p1CurrentMove, m0Score, p1Score, currentRound, numberOfRounds, gameStatus, p0PreviousMove, p1PreviousMove, p0SeenResult, p1SeenResult
                 matchMessage = [NSString stringWithFormat:@"RPS,%@,%@,%u,%u,%u,%u,running,%@,%@,false,true,%d,", playerZeroMove, playerOneMove, playerZeroScore, playerOneScore, currentRound, numberOfRounds,playerZeroMove,playerOneMove, winningIndex];
             }else{
                 //other player has not made a move, current player is making the first move
-                playerOnePreviousMove = playerOneMove;
+                //playerOnePreviousMove = playerOneMove;
                 playerOneMove = playerChoice;
                 
                 matchMessage = [NSString stringWithFormat:@"RPS,null,%@,%u,%u,%u,%u,running,%@,%@,false,true,%d,", playerOneMove, playerZeroScore, playerOneScore, currentRound, numberOfRounds,playerZeroPreviousMove,playerOnePreviousMove,previousWinningIndex];
@@ -292,6 +300,8 @@ bool currentPlayerHasTurn = false;
     
     playerZeroMove = @"null";
     playerOneMove = @"null";
+    playerZeroPreviousMove = @"null";
+    playerOnePreviousMove = @"null";
     playerZeroScore = 0;
     playerOneScore = 0;
     currentRound = 1;
