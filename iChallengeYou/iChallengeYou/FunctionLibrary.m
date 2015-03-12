@@ -48,18 +48,8 @@
             }
             break;
         case (2):
-            //2 is TTT
-            switch(numRounds){
-                case (1):
-                    result = 7;
-                    break;
-                case (3):
-                    result = 8;
-                    break;
-                case(5):
-                    result = 9;
-                    break;
-            }
+            //2 is WATO, will there be multiple rounds?
+            result = 7;
             break;
     }
     return result;

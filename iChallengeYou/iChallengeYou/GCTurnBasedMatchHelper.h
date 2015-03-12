@@ -11,7 +11,8 @@
 
 
 @protocol GCTurnBasedMatchHelperDelegate
-- (void)enterNewGame:(GKTurnBasedMatch *)match numRounds:(int)numRounds;
+- (void)enterNewGame:(GKTurnBasedMatch *)match numRounds:(int)numRounds;    //for round based games
+- (void)enterNewGame:(GKTurnBasedMatch *)match msg:(NSString*)msg;          //for WATO
 - (void)layoutMatch:(GKTurnBasedMatch *)match;
 - (void)takeTurn:(GKTurnBasedMatch *)match;
 - (void)recieveEndGame:(GKTurnBasedMatch *)match;
@@ -37,6 +38,7 @@
 @property (assign, readonly) BOOL gameCenterAvailable;
 @property (nonatomic, retain)id <GCTurnBasedMatchHelperDelegate> delegate;
 @property (nonatomic) int numberOfRounds;
+@property (nonatomic) NSString* WATObetMessage;
 
 
 + (GCTurnBasedMatchHelper *)sharedInstance;

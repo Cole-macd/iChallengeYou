@@ -10,6 +10,8 @@
 #import "CoinFlipVC.h"
 #import "RPSVC.h"
 #import "HomePageVC.h"
+#import "WATOMainVC.h"
+#import "WATOTextVC.h"
 
 @implementation GCTurnBasedMatchHelper
 
@@ -17,6 +19,7 @@
 @synthesize currentMatch;
 @synthesize delegate;
 @synthesize numberOfRounds;
+@synthesize WATObetMessage;
 
 int playerCount = 0;
 bool bothPlayersJoined = false;
@@ -151,6 +154,10 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                                    NSLog(@"%@", error);
                                                }
                                            }];
+        }else if([presentingViewController isKindOfClass:[WATOTextVC class]]){
+            [presentingViewController
+             dismissModalViewControllerAnimated:YES];
+            [delegate enterNewGame:match msg:WATObetMessage];
         }else{
             [presentingViewController
              dismissModalViewControllerAnimated:YES];
@@ -161,7 +168,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
          dismissModalViewControllerAnimated:YES];
         
         if([presentingViewController isKindOfClass:[HomePageVC class]]){
-            
+            //current matches pressed
             NSString *matchData = [NSString stringWithUTF8String:[match.matchData bytes]];
             NSArray *dataItems = [matchData componentsSeparatedByString:@","];
             NSString *gameType = dataItems[0];
@@ -170,6 +177,9 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                 delegate = newDel;
             }else if ([gameType isEqualToString:@"RPS"]){
                 RPSVC *newDel;
+                delegate = newDel;
+            }else if ([gameType isEqualToString:@"WATO"]){
+                WATOMainVC *newDel;
                 delegate = newDel;
             }
         }
@@ -196,6 +206,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                 [presentingViewController performSegueWithIdentifier:@"directCoinFlip" sender:presentingViewController];
             }else if ([gameType isEqualToString:@"RPS"]){
                 [presentingViewController performSegueWithIdentifier:@"directRPS" sender:presentingViewController];
+            }else if ([gameType isEqualToString:@"WATO"]){
+                [presentingViewController performSegueWithIdentifier:@"directWATO" sender:presentingViewController];
             }
             NSLog(@"gametype is %@", gameType);
             NSLog(@"Match Data from GC is %@", matchData);

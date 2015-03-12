@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5917ED871A79DAC800F2E3E1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDC22631A6EDEE500BCCACC /* GameKit.framework */; };
+		593BFF671AB0F6E20077AA90 /* WATOMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 593BFF661AB0F6E20077AA90 /* WATOMainVC.m */; };
+		596C3D6D1AB0ED1D000763F9 /* WATOTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 596C3D6C1AB0ED1D000763F9 /* WATOTextVC.m */; };
 		59818C301A7876B00058F3E3 /* RPSRoundChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */; };
 		59818C331A78788F0058F3E3 /* RPSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C321A78788F0058F3E3 /* RPSVC.m */; };
 		AF8DE48D1A6EEACB0035C944 /* FunctionLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE48C1A6EEACB0035C944 /* FunctionLibrary.m */; };
@@ -40,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		593BFF651AB0F6E20077AA90 /* WATOMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATOMainVC.h; sourceTree = "<group>"; };
+		593BFF661AB0F6E20077AA90 /* WATOMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WATOMainVC.m; sourceTree = "<group>"; };
+		596C3D6B1AB0ED1D000763F9 /* WATOTextVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATOTextVC.h; sourceTree = "<group>"; };
+		596C3D6C1AB0ED1D000763F9 /* WATOTextVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WATOTextVC.m; sourceTree = "<group>"; };
 		59818C2E1A7876B00058F3E3 /* RPSRoundChoiceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSRoundChoiceVC.h; sourceTree = "<group>"; };
 		59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSRoundChoiceVC.m; sourceTree = "<group>"; };
 		59818C311A78788F0058F3E3 /* RPSVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSVC.h; sourceTree = "<group>"; };
@@ -128,6 +134,10 @@
 		AFDC22301A6EDA6A00BCCACC /* iChallengeYou */ = {
 			isa = PBXGroup;
 			children = (
+				593BFF651AB0F6E20077AA90 /* WATOMainVC.h */,
+				593BFF661AB0F6E20077AA90 /* WATOMainVC.m */,
+				596C3D6B1AB0ED1D000763F9 /* WATOTextVC.h */,
+				596C3D6C1AB0ED1D000763F9 /* WATOTextVC.m */,
 				59818C311A78788F0058F3E3 /* RPSVC.h */,
 				59818C321A78788F0058F3E3 /* RPSVC.m */,
 				59818C2E1A7876B00058F3E3 /* RPSRoundChoiceVC.h */,
@@ -141,6 +151,7 @@
 				AFDC225D1A6EDCA400BCCACC /* SecondViewController.h */,
 				AFB32EFF1A93ED4D0094EAEF /* Assets */,
 				AF8DE48B1A6EEACB0035C944 /* FunctionLibrary.h */,
+				AF8DE48C1A6EEACB0035C944 /* FunctionLibrary.m */,
 				AF8DE4911A6EEAFB0035C944 /* CoinFlipVC.h */,
 				AF8DE4921A6EEAFB0035C944 /* CoinFlipVC.m */,
 				AF8DE4941A6EEB040035C944 /* GameMenuVC.h */,
@@ -149,7 +160,6 @@
 				AF8DE4981A6EEB130035C944 /* HomePageVC.m */,
 				AF8DE49A1A6EEB210035C944 /* LoginVC.h */,
 				AF8DE49B1A6EEB210035C944 /* LoginVC.m */,
-				AF8DE48C1A6EEACB0035C944 /* FunctionLibrary.m */,
 				AFDC225E1A6EDCA400BCCACC /* SecondViewController.m */,
 				AFDC22601A6EDCED00BCCACC /* GCTurnBasedMatchHelper.h */,
 				AFDC22611A6EDCED00BCCACC /* GCTurnBasedMatchHelper.m */,
@@ -300,6 +310,8 @@
 				AF8DE48D1A6EEACB0035C944 /* FunctionLibrary.m in Sources */,
 				AF8DE49C1A6EEB210035C944 /* LoginVC.m in Sources */,
 				AFDC22371A6EDA6A00BCCACC /* AppDelegate.m in Sources */,
+				596C3D6D1AB0ED1D000763F9 /* WATOTextVC.m in Sources */,
+				593BFF671AB0F6E20077AA90 /* WATOMainVC.m in Sources */,
 				AF8DE4931A6EEAFB0035C944 /* CoinFlipVC.m in Sources */,
 				AFDC22621A6EDCED00BCCACC /* GCTurnBasedMatchHelper.m in Sources */,
 				AF8DE4991A6EEB130035C944 /* HomePageVC.m in Sources */,

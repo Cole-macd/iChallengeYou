@@ -93,6 +93,7 @@
                         <segue destination="Q4Z-wg-B2r" kind="push" identifier="directCoinFlip" id="vC2-ue-e5y"/>
                         <segue destination="5Ns-sb-a8i" kind="show" identifier="directRPS" id="ZOf-l6-p4j"/>
                         <segue destination="hSb-Ku-j3a" kind="show" identifier="newGameSegue" id="FMz-IO-EBC"/>
+                        <segue destination="LSv-Is-Dpj" kind="show" identifier="directWATO" id="lE7-A5-APl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KjO-Mk-lz5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -130,10 +131,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-9i-6m4">
-                                <rect key="frame" x="90" y="287" width="140" height="30"/>
-                                <state key="normal" title="Tic Tac Toe">
+                                <rect key="frame" x="90" y="287" width="143" height="30"/>
+                                <state key="normal" title="What Are The Odds?">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="wNm-3w-2yq" kind="show" id="KZw-Yn-iNS"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -143,6 +147,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dl9-Vo-DJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2004" y="523"/>
+        </scene>
+        <!--What Are The Odds Text Page-->
+        <scene sceneID="ZoP-hG-mq2">
+            <objects>
+                <viewController title="What Are The Odds Text Page" id="wNm-3w-2yq" customClass="WATOTextVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HX4-dM-Ntm"/>
+                        <viewControllerLayoutGuide type="bottom" id="Brz-Hr-FSR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gI2-NV-v14">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What are the odds of.." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yY8-RH-fFV">
+                                <rect key="frame" x="38" y="265" width="171" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Yy-7k-0V3">
+                                <rect key="frame" x="73" y="337" width="103" height="30"/>
+                                <state key="normal" title="Send Invitation">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendInvitationPressed:" destination="wNm-3w-2yq" eventType="touchUpInside" id="QoR-ag-pfT"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MZb-EI-Bvk">
+                                <rect key="frame" x="31" y="294" width="186" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="betTextBox" destination="MZb-EI-Bvk" id="EJv-or-TVK"/>
+                        <segue destination="LSv-Is-Dpj" kind="show" identifier="WATOTextToNumberSegue" id="jvb-k6-hjw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uzv-88-nov" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2650" y="1067"/>
+        </scene>
+        <!--What Are The Odds Number Page-->
+        <scene sceneID="bE1-Tr-RgB">
+            <objects>
+                <viewController title="What Are The Odds Number Page" id="LSv-Is-Dpj" customClass="WATOMainVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Na8-Qa-HCd"/>
+                        <viewControllerLayoutGuide type="bottom" id="d9U-nk-1K7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="71j-F0-xbd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAZ-Ea-GNS">
+                                <rect key="frame" x="51" y="150" width="236" height="52"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What are the odds of" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeI-yE-dcz">
+                                <rect key="frame" x="51" y="121" width="200" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="betMessageLabel" destination="bAZ-Ea-GNS" id="BuQ-UG-WLj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kCM-hV-mgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1903" y="1635"/>
         </scene>
         <!--Second View-->
         <scene sceneID="eLl-fO-JCe">
@@ -583,8 +666,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FMz-IO-EBC"/>
+        <segue reference="lE7-A5-APl"/>
         <segue reference="vC2-ue-e5y"/>
         <segue reference="ZOf-l6-p4j"/>
+        <segue reference="FMz-IO-EBC"/>
     </inferredMetricsTieBreakers>
 </document>

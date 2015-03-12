@@ -10,7 +10,7 @@
 
 @interface FunctionLibrary : NSObject {}
 
-enum GameTypes{CF, RPS, TTT};
+enum GameTypes{CF, RPS, WATO};
 
 +(unsigned int)calculatePlayerGroup:(enum GameTypes)gameType
                           numRounds:(int)numRounds;
