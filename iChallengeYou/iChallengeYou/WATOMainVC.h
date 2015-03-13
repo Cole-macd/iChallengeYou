@@ -9,11 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "GCTurnBasedMatchHelper.h"
 
-@interface WATOMainVC : UIViewController <GCTurnBasedMatchHelperDelegate> {
+@interface WATOMainVC : UIViewController <GCTurnBasedMatchHelperDelegate>{
     //NSString* betMessage;
 }
 @property(nonatomic) NSString* betMessage;
-
 @property (weak, nonatomic) IBOutlet UILabel *betMessageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *guessMessageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *turnLabel;
+
+@property (weak, nonatomic) IBOutlet UISlider *rangeSlider;
+@property (weak, nonatomic) IBOutlet UILabel *rangeSliderLabel;
+@property (weak, nonatomic) IBOutlet UIButton *submitRangeButton;
+
+
+@property (weak, nonatomic) IBOutlet UISlider *guessSlider;
+@property (weak, nonatomic) IBOutlet UILabel *guessSliderLabel;
+@property (weak, nonatomic) IBOutlet UIButton *submitGuessButton;
+
+enum playerRoleWATO{settingRange, settingGuess, observingGame, gameIsOver};
 
 @end

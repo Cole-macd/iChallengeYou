@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5917ED871A79DAC800F2E3E1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDC22631A6EDEE500BCCACC /* GameKit.framework */; };
+		5937BD8C1AB37D9400ACD1EA /* chooseWATOType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937BD8B1AB37D9400ACD1EA /* chooseWATOType.m */; };
 		593BFF671AB0F6E20077AA90 /* WATOMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 593BFF661AB0F6E20077AA90 /* WATOMainVC.m */; };
 		596C3D6D1AB0ED1D000763F9 /* WATOTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 596C3D6C1AB0ED1D000763F9 /* WATOTextVC.m */; };
 		59818C301A7876B00058F3E3 /* RPSRoundChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5937BD8A1AB37D9400ACD1EA /* chooseWATOType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chooseWATOType.h; sourceTree = "<group>"; };
+		5937BD8B1AB37D9400ACD1EA /* chooseWATOType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chooseWATOType.m; sourceTree = "<group>"; };
 		593BFF651AB0F6E20077AA90 /* WATOMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATOMainVC.h; sourceTree = "<group>"; };
 		593BFF661AB0F6E20077AA90 /* WATOMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WATOMainVC.m; sourceTree = "<group>"; };
 		596C3D6B1AB0ED1D000763F9 /* WATOTextVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATOTextVC.h; sourceTree = "<group>"; };
@@ -138,20 +141,16 @@
 				593BFF661AB0F6E20077AA90 /* WATOMainVC.m */,
 				596C3D6B1AB0ED1D000763F9 /* WATOTextVC.h */,
 				596C3D6C1AB0ED1D000763F9 /* WATOTextVC.m */,
+				5937BD8A1AB37D9400ACD1EA /* chooseWATOType.h */,
+				5937BD8B1AB37D9400ACD1EA /* chooseWATOType.m */,
 				59818C311A78788F0058F3E3 /* RPSVC.h */,
 				59818C321A78788F0058F3E3 /* RPSVC.m */,
 				59818C2E1A7876B00058F3E3 /* RPSRoundChoiceVC.h */,
 				59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */,
 				AFFC1F621A881E1000C945A8 /* CoinView.m */,
-				AFDC22351A6EDA6A00BCCACC /* AppDelegate.h */,
 				AFFC1F641A881E1C00C945A8 /* CoinView.h */,
-				AFDC22361A6EDA6A00BCCACC /* AppDelegate.m */,
 				AF8DE48E1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.h */,
 				AF8DE48F1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.m */,
-				AFDC225D1A6EDCA400BCCACC /* SecondViewController.h */,
-				AFB32EFF1A93ED4D0094EAEF /* Assets */,
-				AF8DE48B1A6EEACB0035C944 /* FunctionLibrary.h */,
-				AF8DE48C1A6EEACB0035C944 /* FunctionLibrary.m */,
 				AF8DE4911A6EEAFB0035C944 /* CoinFlipVC.h */,
 				AF8DE4921A6EEAFB0035C944 /* CoinFlipVC.m */,
 				AF8DE4941A6EEB040035C944 /* GameMenuVC.h */,
@@ -160,12 +159,18 @@
 				AF8DE4981A6EEB130035C944 /* HomePageVC.m */,
 				AF8DE49A1A6EEB210035C944 /* LoginVC.h */,
 				AF8DE49B1A6EEB210035C944 /* LoginVC.m */,
-				AFDC225E1A6EDCA400BCCACC /* SecondViewController.m */,
 				AFDC22601A6EDCED00BCCACC /* GCTurnBasedMatchHelper.h */,
 				AFDC22611A6EDCED00BCCACC /* GCTurnBasedMatchHelper.m */,
+				AFDC22351A6EDA6A00BCCACC /* AppDelegate.h */,
+				AFDC22361A6EDA6A00BCCACC /* AppDelegate.m */,
+				AF8DE48B1A6EEACB0035C944 /* FunctionLibrary.h */,
+				AF8DE48C1A6EEACB0035C944 /* FunctionLibrary.m */,
+				AFDC225D1A6EDCA400BCCACC /* SecondViewController.h */,
+				AFDC225E1A6EDCA400BCCACC /* SecondViewController.m */,
 				AFDC223B1A6EDA6A00BCCACC /* Main.storyboard */,
 				AFDC223E1A6EDA6A00BCCACC /* Images.xcassets */,
 				AFDC22401A6EDA6A00BCCACC /* LaunchScreen.xib */,
+				AFB32EFF1A93ED4D0094EAEF /* Assets */,
 				AFDC22311A6EDA6A00BCCACC /* Supporting Files */,
 			);
 			path = iChallengeYou;
@@ -314,6 +319,7 @@
 				593BFF671AB0F6E20077AA90 /* WATOMainVC.m in Sources */,
 				AF8DE4931A6EEAFB0035C944 /* CoinFlipVC.m in Sources */,
 				AFDC22621A6EDCED00BCCACC /* GCTurnBasedMatchHelper.m in Sources */,
+				5937BD8C1AB37D9400ACD1EA /* chooseWATOType.m in Sources */,
 				AF8DE4991A6EEB130035C944 /* HomePageVC.m in Sources */,
 				AF8DE4901A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.m in Sources */,
 				AFFC1F631A881E1000C945A8 /* CoinView.m in Sources */,

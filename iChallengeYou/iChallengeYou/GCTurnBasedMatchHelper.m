@@ -12,6 +12,7 @@
 #import "HomePageVC.h"
 #import "WATOMainVC.h"
 #import "WATOTextVC.h"
+#import "chooseWATOType.h"
 
 @implementation GCTurnBasedMatchHelper
 
@@ -145,7 +146,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         NSLog(@"GC here 1");
         
         if([presentingViewController isKindOfClass:[HomePageVC class]]){
-            //plus button was pressed
+            //plus button was pressed from current match menu
             [presentingViewController performSegueWithIdentifier:@"newGameSegue" sender:presentingViewController];
             [presentingViewController
              dismissModalViewControllerAnimated:YES];
@@ -155,10 +156,31 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                                }
                                            }];
         }else if([presentingViewController isKindOfClass:[WATOTextVC class]]){
+            //wato new game pressed
             [presentingViewController
              dismissModalViewControllerAnimated:YES];
             [delegate enterNewGame:match msg:WATObetMessage];
+        }else if([presentingViewController isKindOfClass:[chooseWATOType class]]){
+            //wato join existing game pressed, shouldn't create a new game, delete the newly created match
+            NSLog(@"I AM NOW HERE WHAT");
+            [presentingViewController dismissModalViewControllerAnimated:YES];
+            [match removeWithCompletionHandler:^(NSError *error) {
+                if (error) {
+                    NSLog(@"%@", error);
+                }
+            }];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No games found"
+                                                            message:@"No existing What Are The Odds? games found"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            
+            [presentingViewController performSegueWithIdentifier:@"WATONewGameSegue" sender:presentingViewController];
+
         }else{
+            //coin flip and RPS
             [presentingViewController
              dismissModalViewControllerAnimated:YES];
             [delegate enterNewGame:match numRounds:numberOfRounds];

@@ -27,6 +27,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)joinExistingPressed:(id)sender {
+    unsigned int pType = [FunctionLibrary calculatePlayerGroup:WATO numRounds:1];
+    [[GCTurnBasedMatchHelper sharedInstance]
+     findMatchWithMinPlayers:2 maxPlayers:2 viewController:self showMatches:false playerGroup:pType];
+}
 
 - (IBAction)sendInvitationPressed:(id)sender {
     if(![_betTextBox.text  isEqual: @""]){
@@ -36,6 +41,7 @@
         [[GCTurnBasedMatchHelper sharedInstance]
          findMatchWithMinPlayers:2 maxPlayers:2 viewController:self showMatches:false playerGroup:pType];
         [self performSegueWithIdentifier:@"WATOTextToNumberSegue" sender:self];
+
 
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Bet"
