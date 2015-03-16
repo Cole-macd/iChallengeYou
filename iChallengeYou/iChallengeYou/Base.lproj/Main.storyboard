@@ -84,6 +84,9 @@
                                 <state key="normal" title="Leaderboards">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="showLeaderboards:" destination="DXh-1X-qw6" eventType="touchUpInside" id="ybB-BJ-fZw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -761,9 +764,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jvb-k6-hjw"/>
-        <segue reference="FMz-IO-EBC"/>
+        <segue reference="lE7-A5-APl"/>
         <segue reference="ZOf-l6-p4j"/>
         <segue reference="vC2-ue-e5y"/>
+        <segue reference="FMz-IO-EBC"/>
     </inferredMetricsTieBreakers>
 </document>

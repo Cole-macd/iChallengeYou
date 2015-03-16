@@ -246,6 +246,9 @@ enum playerRole playerStatusCF = observing;
         matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
         data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
         
+        NSLog(@"sending score");
+        [[GCTurnBasedMatchHelper sharedInstance] reportScore:3];
+        
         [currentMatch endMatchInTurnWithMatchData:data
                             completionHandler:^(NSError *error) {
                                 if (error) {

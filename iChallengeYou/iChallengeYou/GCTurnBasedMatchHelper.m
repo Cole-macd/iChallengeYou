@@ -90,6 +90,17 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     } else {
         NSLog(@"Already authenticated!");
     }
+    // Get the default leaderboard identifier.
+    [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
+        
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        else{
+            NSLog(@"Got the leaderboard");
+            _leaderboardIdentifier = leaderboardIdentifier;
+        }
+    }];
     NSLog(@"Authentication complete");
     
 }
@@ -238,6 +249,31 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     
 }
 
+//report scores to leaderboard
+-(void)reportScore:(int)gameScore{
+    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
+    score.value = gameScore;
+    
+    //reportscores takes in an array
+    [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
+}
+
+-(void)showLeaderboard:(UIViewController *)vc{
+    GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] init];
+    
+    gcViewController.gameCenterDelegate = vc;
+    gcViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
+    gcViewController.leaderboardIdentifier = _leaderboardIdentifier;
+    //[self presentViewController:gcViewController animated:YES completion:nil];
+    [vc presentViewController:gcViewController
+                                           animated:YES
+                                         completion:nil];
+}
+
 - (void) handleTurnEventForMatch:(GKTurnBasedMatch *)match
 {
     NSLog(@"Turn has happened");
@@ -245,6 +281,12 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     {
         self.currentMatch = match; // <-- renew your instance!
     }
+}
+
+-(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    NSLog(@"HAR1");
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 

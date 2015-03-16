@@ -8,8 +8,9 @@
 
 
 #import <UIKit/UIKit.h>
+#import "GCTurnBasedMatchHelper.h"
 
-@interface HomePageVC : UIViewController
+@interface HomePageVC: UIViewController<GKGameCenterControllerDelegate>;
 
 - (IBAction)selectNewGame:(UIButton *)sender;
 @end

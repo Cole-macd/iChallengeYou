@@ -39,6 +39,7 @@
 @property (nonatomic, retain)id <GCTurnBasedMatchHelperDelegate> delegate;
 @property (nonatomic) int numberOfRounds;
 @property (nonatomic) NSString* WATObetMessage;
+@property (nonatomic, strong) NSString *leaderboardIdentifier;
 
 
 + (GCTurnBasedMatchHelper *)sharedInstance;
@@ -48,5 +49,7 @@
                  viewController:(UIViewController *)viewController
                     showMatches:(bool)showMatches
                     playerGroup:(unsigned int)playerGroup;
+-(void)reportScore:(int)gameScore;
+-(void)showLeaderboard:(UIViewController *)vc;
 
 @end

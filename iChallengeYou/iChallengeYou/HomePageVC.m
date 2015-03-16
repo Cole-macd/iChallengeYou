@@ -39,6 +39,9 @@
     [[GCTurnBasedMatchHelper sharedInstance]
      findMatchWithMinPlayers:2 maxPlayers:2 viewController:self showMatches:true playerGroup:0];
 }
+- (IBAction)showLeaderboards:(id)sender {
+    [[GCTurnBasedMatchHelper sharedInstance] showLeaderboard:self];
+}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"directCoinFlip"]){
@@ -47,6 +50,12 @@
         [GCTurnBasedMatchHelper sharedInstance].delegate = gameVC;
         //gameVC.match = (GKTurnBasedMatch*) sender;
     }
+}
+
+-(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    NSLog(@"HAR2");
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
 }
 /*
  #pragma mark - Navigation
