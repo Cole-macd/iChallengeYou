@@ -48,11 +48,81 @@
             }
             break;
         case (2):
-            //2 is WATO, will there be multiple rounds?
+            //2 is WATO
             result = 7;
             break;
     }
     return result;
+}
+
++(NSArray *)getLeaderboardNameAndID:(enum GameTypes)gameType
+                          numRounds:(int)numRounds
+                              lType:(NSString *)lType{
+    NSString* lName = @"Empty";
+    NSString* lID = @"Empty";
+    
+    switch(gameType){
+        case (0):
+            //0 is coin flip
+            if([lType isEqualToString:@"roundWins"]){
+                lName = @"Coin Flip Total Rounds Won";
+                lID = @"CoinFlipTotalRoundsWon";
+                break;
+            }else{
+                switch(numRounds){
+                    case (1):
+                        lName = @"Coin Flip Total Wins 1 Round";
+                        lID = @"CoinFlip1RoundTotalWins";
+                        break;
+                    case (3):
+                        lName = @"Coin Flip Total Wins 3 Rounds";
+                        lID = @"CoinFlip3RoundsTotalWins";
+                        break;
+                    case(5):
+                        lName = @"Coin Flip Total Wins 5 Rounds";
+                        lID = @"CoinFlip5RoundsTotalWins";
+                        break;
+                    case(-1):
+                        lName = @"Coin Flip Total Wins";
+                        lID =@"CoinFlipTotalWins";
+                }
+                break;
+            }
+        case (1):
+            if([lType isEqualToString:@"roundWins"]){
+                lName = @"Rock Paper Scissors Total Rounds Won";
+                lID = @"RPSTotalRoundsWon";
+                break;
+            }else{
+                switch(numRounds){
+                    case (1):
+                        lName = @"Rock Paper Scissors Total Wins 1 Round";
+                        lID = @"RPS1RoundTotalWins";
+                        break;
+                    case (3):
+                        lName = @"Rock Paper Scissors Total Wins 3 Rounds";
+                        lID = @"RPS3RoundsTotalWins";
+                        break;
+                    case(5):
+                        lName = @"Rock Paper Scissors Total Wins 5 Rounds";
+                        lID = @"RPS5RoundsTotalWins";
+                        break;
+                    case(-1):
+                        lName = @"Rock Paper Scissors Total Wins";
+                        lID = @"RPSTotalWins";
+                        break;
+                }
+                break;
+            }
+        case (2):
+            //2 is WATO
+            lName = @"What Are The Odds Total Wins";
+            lID = @"WATOTotalWins";
+            break;
+    }
+
+    NSArray *retArray = [NSArray arrayWithObjects:lName,lID,nil];
+    return retArray;
 }
 
 @end

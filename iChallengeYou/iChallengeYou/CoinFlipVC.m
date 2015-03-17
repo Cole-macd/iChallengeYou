@@ -247,7 +247,15 @@ enum playerRole playerStatusCF = observing;
         data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
         
         NSLog(@"sending score");
-        [[GCTurnBasedMatchHelper sharedInstance] reportScore:3];
+        //[[GCTurnBasedMatchHelper sharedInstance] reportScore:1 leaderboardName:@"CoinFlip1RoundTotalWins"];
+        //[[GCTurnBasedMatchHelper sharedInstance] reportScore:10 leaderboardName:@"CoinFlip3RoundsTotalWins"];
+        //[[GCTurnBasedMatchHelper sharedInstance] reportScore:3 leaderboardName:@"CoinFlip5RoundsTotalWins"];
+        //[[GCTurnBasedMatchHelper sharedInstance] reportScore:10 leaderboardName:@"CoinFlipTotalWins"];
+        
+        NSArray* lbInfo = [FunctionLibrary getLeaderboardNameAndID:CF numRounds:numberOfRounds lType:@"totalWins"];
+        NSLog(@"lName is %@, lID is %@", [lbInfo objectAtIndex:0], [lbInfo objectAtIndex:1]);
+        [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo objectAtIndex:0] leaderboardID:[lbInfo objectAtIndex:1]];
+
         
         [currentMatch endMatchInTurnWithMatchData:data
                             completionHandler:^(NSError *error) {

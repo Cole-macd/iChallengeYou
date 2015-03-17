@@ -49,7 +49,11 @@
                  viewController:(UIViewController *)viewController
                     showMatches:(bool)showMatches
                     playerGroup:(unsigned int)playerGroup;
--(void)reportScore:(int)gameScore;
+-(void)reportScore:(int)gameScore
+   leaderboardName:(NSString*)leaderboardName;      //dont need public
 -(void)showLeaderboard:(UIViewController *)vc;
+-(int)getCurrentPlayerScore:(NSString*) leaderboardName;        //dont need public
+-(void)incrementLeaderboardScore:(NSString*)leaderboardName
+                   leaderboardID:(NSString*)leaderboardID;
 
 @end

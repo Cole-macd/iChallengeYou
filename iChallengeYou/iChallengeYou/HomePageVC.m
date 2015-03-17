@@ -9,6 +9,7 @@
 #import "HomePageVC.h"
 #import "GCTurnBasedMatchHelper.h"
 #import "CoinFlipVC.h"
+#import "FunctionLibrary.h" //just for test
 
 
 
@@ -51,10 +52,18 @@
         //gameVC.match = (GKTurnBasedMatch*) sender;
     }
 }
+- (IBAction)showAchievements:(id)sender {
+    //[[GCTurnBasedMatchHelper sharedInstance] reportScore:70 leaderboardName:@"CoinFlip3RoundsTotalWins"];
+    //[[GCTurnBasedMatchHelper sharedInstance] reportScore:10 leaderboardName:@"CoinFlipTotalWins"];
+    
+    NSArray* lbInfo = [FunctionLibrary getLeaderboardNameAndID:CF numRounds:3 lType:@"totalWins"];
+    NSLog(@"lName is %@, lID is %@", [lbInfo objectAtIndex:0], [lbInfo objectAtIndex:1]);
+    [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo objectAtIndex:0] leaderboardID:[lbInfo objectAtIndex:1]];
+}
 
 -(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
 {
-    NSLog(@"HAR2");
+    NSLog(@"HAR2s");
     [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
 }
 /*

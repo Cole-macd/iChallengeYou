@@ -14,5 +14,8 @@ enum GameTypes{CF, RPS, WATO};
 
 +(unsigned int)calculatePlayerGroup:(enum GameTypes)gameType
                           numRounds:(int)numRounds;
++(NSArray *)getLeaderboardNameAndID:(enum GameTypes)gameType
+                          numRounds:(int)numRounds
+                              lType:(NSString *)lType;
 
 @end

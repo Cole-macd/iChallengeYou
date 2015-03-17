@@ -90,6 +90,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     } else {
         NSLog(@"Already authenticated!");
     }
+    
     // Get the default leaderboard identifier.
     [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
         
@@ -101,6 +102,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             _leaderboardIdentifier = leaderboardIdentifier;
         }
     }];
+    
     NSLog(@"Authentication complete");
     
 }
@@ -173,7 +175,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             [delegate enterNewGame:match msg:WATObetMessage];
         }else if([presentingViewController isKindOfClass:[chooseWATOType class]]){
             //wato join existing game pressed, shouldn't create a new game, delete the newly created match
-            NSLog(@"I AM NOW HERE WHAT");
             [presentingViewController dismissModalViewControllerAnimated:YES];
             [match removeWithCompletionHandler:^(NSError *error) {
                 if (error) {
@@ -250,14 +251,25 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 }
 
 //report scores to leaderboard
--(void)reportScore:(int)gameScore{
-    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
+-(void)reportScore:(int)gameScore
+   leaderboardName:(NSString*)leaderboardName{
+    NSLog(@"attempting to save %d in %@", gameScore, leaderboardName);
+    /*if([leaderboardName isEqualToString:_leaderboardIdentifier]){
+        NSLog(@"THEY ARE EQUAL WTF");
+    }else{
+        NSLog(@"leaderboardName:%@;", leaderboardName);
+        NSLog(@"leaderboardIdentifier:%@;", _leaderboardIdentifier);
+    }*/
+    
+    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:leaderboardName];
     score.value = gameScore;
     
     //reportscores takes in an array
     [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
         if (error != nil) {
             NSLog(@"%@", [error localizedDescription]);
+        }else{
+            NSLog(@"score submitted successfully");
         }
     }];
 }
@@ -274,6 +286,61 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                          completion:nil];
 }
 
+-(void)incrementLeaderboardScore:(NSString*)leaderboardName
+                   leaderboardID:(NSString*)leaderboardID{
+    //uses leaderboardName
+    int currentScore = [self getCurrentPlayerScore:leaderboardName];
+    NSLog(@"before update, score on %@ was %d", leaderboardName, currentScore);
+    
+    if(currentScore == -1){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid leaderboard"
+                                                        message:@"Leaderboard could not be found"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    currentScore = currentScore + 1;
+    //uses leaderboardID
+    [self reportScore:currentScore leaderboardName:leaderboardID];
+}
+
+- (int) getCurrentPlayerScore:(NSString*) leaderboardName{
+    __block int returnValue = -1;
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    NSTimeInterval checkEveryInterval = 0.05;
+    [GKLeaderboard loadLeaderboardsWithCompletionHandler:^(NSArray *leaderboards, NSError *nsError) {
+        if( nsError != nil )
+        {
+             NSLog(@"%@", [nsError localizedDescription]);
+            return ;
+        }
+
+        for( GKLeaderboard* board in leaderboards )
+        {
+            // fetch score for minimum amt of data, b/c must call `loadScore..` to get MY score.
+            board.playerScope = GKLeaderboardPlayerScopeFriendsOnly ;
+            board.timeScope = GKLeaderboardTimeScopeAllTime ;
+            
+            NSRange range = {.location = 1, .length = 1};
+            board.range = range ;
+            
+            [board loadScoresWithCompletionHandler:^(NSArray *scores, NSError *error) {
+                if([board.title isEqualToString:leaderboardName]){
+                    printf( "YOUR SCORE ON BOARD %s WAS %lld\n", [board.title UTF8String], board.localPlayerScore.value ) ;
+                    returnValue = board.localPlayerScore.value;
+                    dispatch_semaphore_signal(semaphore);
+                }
+            }] ;
+        }
+    }] ;
+    while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:checkEveryInterval]];
+
+    NSLog(@"and now return valie is %d", returnValue);
+    return returnValue;
+}
+
 - (void) handleTurnEventForMatch:(GKTurnBasedMatch *)match
 {
     NSLog(@"Turn has happened");
@@ -282,13 +349,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         self.currentMatch = match; // <-- renew your instance!
     }
 }
-
--(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
-{
-    NSLog(@"HAR1");
-    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
-}
-
 
 -(void)turnBasedMatchmakerViewControllerWasCancelled:
 (GKTurnBasedMatchmakerViewController *)viewController {
