@@ -95,14 +95,35 @@ enum playerRole playerStatusCF = observing;
         mostRecentPlayerIndex = [dataItems[8] intValue];
         
         //most recent change moving this if statement inside if(matchData)
-        if(![dataItems[1] isEqualToString:@"gameOver"]){
-            GKPlayer *turnHolder = match.currentParticipant.player;
-            GKPlayer *localPlayer = [GKLocalPlayer localPlayer];
-            if([turnHolder isEqual:localPlayer]){
-                currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
-            }else{
-                currentPlayerIndex = 1 - [match.participants indexOfObject:match.currentParticipant];
-            }
+        GKPlayer *turnHolder = match.currentParticipant.player;
+        GKPlayer *localPlayer = [GKLocalPlayer localPlayer];
+        if([turnHolder isEqual:localPlayer]){
+            currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
+        }else{
+            currentPlayerIndex = 1 - [match.participants indexOfObject:match.currentParticipant];
+        }
+        
+        //p0 bool is at index 10, p1 bool is at index 11
+        NSLog(@"should report scores??");
+        bool hasReportedGameScore;
+        if(currentPlayerIndex == 0){
+            hasReportedGameScore = [dataItems[10] boolValue];
+        }else{
+            hasReportedGameScore = [dataItems[11] boolValue];
+        }
+        if(!hasReportedGameScore){
+            NSLog(@"I AM HEREEE");
+            //game should not have ended yet, should be able to end the match with new match data
+            [self sendScoreToLeaderboard:@"gameWin"];
+            NSString* matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%d,true,true,",mostRecentPlayerMove, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,[dataItems[9] intValue]];
+            
+            NSData *data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
+            [match endMatchInTurnWithMatchData:data
+                             completionHandler:^(NSError *error) {
+                                 if (error) {
+                                     NSLog(@"%@", error);
+                                 }
+                             }];
         }
     }else{
         playerZeroScoreCF = 0;
@@ -121,6 +142,7 @@ enum playerRole playerStatusCF = observing;
         NSString *incomingData = [NSString stringWithUTF8String:[match.matchData bytes]];
         NSArray *dataItems = [incomingData componentsSeparatedByString:@","];
         if ([dataItems[1] isEqualToString:@"gameOver"]){
+            
             playerStatusCF = gameOver;
             GKPlayer *indexZeroPlayer = [[match.participants objectAtIndex:0] player];
             if([localPlayer isEqual:indexZeroPlayer]){
@@ -230,6 +252,7 @@ enum playerRole playerStatusCF = observing;
         GKTurnBasedParticipant *playerOne = [currentMatch.participants objectAtIndex: 1];
         
         int winningIndex;
+        bool gameResultSent = false;
         
         if(playerZeroScoreCF > playerOneScoreCF){
             playerZero.matchOutcome = GKTurnBasedMatchOutcomeWon;
@@ -239,8 +262,10 @@ enum playerRole playerStatusCF = observing;
             if(currentPlayerIndex == 0){
                 matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
                 [self sendScoreToLeaderboard:@"gameWin"];
+                gameResultSent = true;
             }else{
-                matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,true,false,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
+                //currentPlayerIndex = 1, so p0 needs to report scores later
+                matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,false,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
             }
             
         }else{
@@ -253,18 +278,29 @@ enum playerRole playerStatusCF = observing;
             }else{
                 matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
                 [self sendScoreToLeaderboard:@"gameWin"];
+                gameResultSent = true;
             }
         }
         
         //matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
         data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
         
-        [currentMatch endMatchInTurnWithMatchData:data
-                                completionHandler:^(NSError *error) {
-                                    if (error) {
-                                        NSLog(@"%@", error);
-                                    }
-                                }];
+        if(gameResultSent){
+        
+            [currentMatch endMatchInTurnWithMatchData:data
+                                    completionHandler:^(NSError *error) {
+                                        if (error) {
+                                            NSLog(@"%@", error);
+                                        }
+                                    }];
+        }else{
+            [currentMatch endTurnWithNextParticipant:nextParticipant
+                                           matchData:data completionHandler:^(NSError *error) {
+                                               if (error) {
+                                                   NSLog(@"%@", error);
+                                               }
+                                           }];
+        }
         playerStatusCF = gameOver;
         
         //display the result of this player's call immediately
