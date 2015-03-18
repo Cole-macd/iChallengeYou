@@ -90,25 +90,25 @@
             }
         case (1):
             if([lType isEqualToString:@"roundWins"]){
-                lName = @"Rock Paper Scissors Total Rounds Won";
+                lName = @"RPS Total Rounds Won";
                 lID = @"RPSTotalRoundsWon";
                 break;
             }else{
                 switch(numRounds){
                     case (1):
-                        lName = @"Rock Paper Scissors Total Wins 1 Round";
+                        lName = @"RPS Total Wins 1 Round";
                         lID = @"RPS1RoundTotalWins";
                         break;
                     case (3):
-                        lName = @"Rock Paper Scissors Total Wins 3 Rounds";
+                        lName = @"RPS Total Wins 3 Rounds";
                         lID = @"RPS3RoundsTotalWins";
                         break;
                     case(5):
-                        lName = @"Rock Paper Scissors Total Wins 5 Rounds";
+                        lName = @"RPS Total Wins 5 Rounds";
                         lID = @"RPS5RoundsTotalWins";
                         break;
                     case(-1):
-                        lName = @"Rock Paper Scissors Total Wins";
+                        lName = @"RPS Total Wins";
                         lID = @"RPSTotalWins";
                         break;
                 }
@@ -118,6 +118,11 @@
             //2 is WATO
             lName = @"What Are The Odds Total Wins";
             lID = @"WATOTotalWins";
+            break;
+        case(3):
+            //3 is TOTAL
+            lName = @"Total Game Wins";
+            lID = @"TotalGameWins";
             break;
     }
 
