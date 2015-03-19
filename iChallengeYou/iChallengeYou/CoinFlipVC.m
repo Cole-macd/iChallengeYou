@@ -27,6 +27,7 @@ int currentPlayerIndex;
 int mostRecentPlayerIndex;
 int playerZeroScoreCF = 0;
 int playerOneScoreCF = 0;
+int previousRoundWinningIndex;
 NSString *mostRecentPlayerMove;
 NSString *coinResult;
 enum playerRole playerStatusCF = observing;
@@ -79,6 +80,23 @@ enum playerRole playerStatusCF = observing;
     turnLabel.text = @"";
 }
 
+-(void)updateCurrentPlayerIndex:(GKTurnBasedMatch *)match{
+    GKPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    
+    //if([match.matchData bytes]){
+        GKPlayer *indexZeroPlayer = [[match.participants objectAtIndex:0] player];
+        if([localPlayer isEqual:indexZeroPlayer]){
+            NSLog(@"current player index is 0");
+            currentPlayerIndex = 0;
+        }else{
+            NSLog(@"current player index is 1");
+            currentPlayerIndex = 1;
+        }
+    /*}else{
+        currentPlayerIndex = 0;
+    }*/
+}
+
 
 -(void)updateGameVariables:(GKTurnBasedMatch *)match{
     //NSString *incomingData = [NSString stringWithUTF8String:[match.matchData bytes]];
@@ -93,42 +111,73 @@ enum playerRole playerStatusCF = observing;
         playerZeroScoreCF = [dataItems[6] intValue];
         playerOneScoreCF = [dataItems[7] intValue];
         mostRecentPlayerIndex = [dataItems[8] intValue];
+        previousRoundWinningIndex = [dataItems[9] intValue];
         
         //most recent change moving this if statement inside if(matchData)
         GKPlayer *turnHolder = match.currentParticipant.player;
         GKPlayer *localPlayer = [GKLocalPlayer localPlayer];
-        if([turnHolder isEqual:localPlayer]){
+        NSLog(@"setting1");
+        /*if([turnHolder isEqual:localPlayer]){
             currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
         }else{
             currentPlayerIndex = 1 - [match.participants indexOfObject:match.currentParticipant];
-        }
+        }*/
+        [self updateCurrentPlayerIndex:match];
         
-        //p0 bool is at index 10, p1 bool is at index 11
-        NSLog(@"should report scores??");
-        bool hasReportedGameScore;
-        if(currentPlayerIndex == 0){
-            hasReportedGameScore = [dataItems[10] boolValue];
+        if([dataItems[1] isEqualToString:@"gameOver"]){
+            //p0 bool is at index 10, p1 bool is at index 11
+            bool hasReportedGameScore;
+            if(currentPlayerIndex == 0){
+                hasReportedGameScore = [dataItems[10] boolValue];
+            }else{
+                hasReportedGameScore = [dataItems[11] boolValue];
+            }
+
+            if(!hasReportedGameScore){
+                NSLog(@"I AM ABOUT TO REPORT GAME SCORE");
+                //game should not have ended yet, should be able to end the match with new match data
+                [self sendScoreToLeaderboard:@"gameWin"];
+                NSString* matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%d,true,true,true,true,",mostRecentPlayerMove, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,mostRecentPlayerIndex,previousRoundWinningIndex];
+                
+                NSData *data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
+                [match endMatchInTurnWithMatchData:data
+                                 completionHandler:^(NSError *error) {
+                                     if (error) {
+                                         NSLog(@"%@", error);
+                                     }
+                                 }];
+            }
         }else{
-            hasReportedGameScore = [dataItems[11] boolValue];
-        }
-        if(!hasReportedGameScore){
-            NSLog(@"I AM HEREEE");
-            //game should not have ended yet, should be able to end the match with new match data
-            [self sendScoreToLeaderboard:@"gameWin"];
-            NSString* matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%d,true,true,",mostRecentPlayerMove, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,[dataItems[9] intValue]];
+            NSLog(@"p0reported is:%@,%d, p1reported is:%@,%d", dataItems[12], [dataItems[12] boolValue], dataItems[13], [dataItems[13] boolValue]);
+            bool hasReportedRoundScore;
+            if(currentPlayerIndex == 0){
+                hasReportedRoundScore = [dataItems[12] boolValue];
+            }else{
+                hasReportedRoundScore = [dataItems[13] boolValue];
+            }
             
-            NSData *data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
-            [match endMatchInTurnWithMatchData:data
-                             completionHandler:^(NSError *error) {
-                                 if (error) {
-                                     NSLog(@"%@", error);
-                                 }
-                             }];
+            if(!hasReportedRoundScore){
+                NSLog(@"I AM ABOUT TO REPORT ROUND SCORE");
+                [self sendScoreToLeaderboard:@"roundWin"];
+                NSString* matchMessage = [NSString stringWithFormat:@"CF,%@,%@,%@,%u,%u,%u,%u,%u,%d,true,true,true,true,",dataItems[1], mostRecentPlayerMove, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,mostRecentPlayerIndex,previousRoundWinningIndex];
+                
+                NSData *data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
+                [match endTurnWithNextParticipant:match.currentParticipant
+                                               matchData:data completionHandler:^(NSError *error) {
+                                                   if (error) {
+                                                       NSLog(@"%@", error);
+                                                   }
+                                               }];
+                
+                
+            }
+            
         }
     }else{
         playerZeroScoreCF = 0;
         playerOneScoreCF = 0;
         currentRound = 1;
+        NSLog(@"setting2");
         currentPlayerIndex = 0;
     }
 }
@@ -141,17 +190,19 @@ enum playerRole playerStatusCF = observing;
     if([match.matchData bytes]){
         NSString *incomingData = [NSString stringWithUTF8String:[match.matchData bytes]];
         NSArray *dataItems = [incomingData componentsSeparatedByString:@","];
+        [self updateCurrentPlayerIndex:match];
         if ([dataItems[1] isEqualToString:@"gameOver"]){
             
             playerStatusCF = gameOver;
-            GKPlayer *indexZeroPlayer = [[match.participants objectAtIndex:0] player];
+            /*GKPlayer *indexZeroPlayer = [[match.participants objectAtIndex:0] player];
+            NSLog(@"setting3");
             if([localPlayer isEqual:indexZeroPlayer]){
-                NSLog(@"player index is 0");
+                NSLog(@"current player index is 0");
                 currentPlayerIndex = 0;
             }else{
-                NSLog(@"player index is 1");
+                NSLog(@"current player index is 1");
                 currentPlayerIndex = 1;
-            }
+            }*/
         }else{
             if([turnHolder isEqual:localPlayer]){
                 GKTurnBasedParticipant *thisParticipant = [match.participants objectAtIndex:1];
@@ -163,15 +214,18 @@ enum playerRole playerStatusCF = observing;
                     playerStatusCF = roundOver;
                 }
                 NSLog(@"current player has the turn");
-                currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
+                NSLog(@"setting4");
+                //currentPlayerIndex = [match.participants indexOfObject:match.currentParticipant];
             }else{
                 NSLog(@"Other player has the turn");
+                NSLog(@"setting5");
                 playerStatusCF = observing;
-                currentPlayerIndex = 1 - [match.participants indexOfObject:match.currentParticipant];
+                //currentPlayerIndex = 1 - [match.participants indexOfObject:match.currentParticipant];
             }
         }
     }else{
         playerStatusCF = takingTurn;
+        NSLog(@"setting6");
         currentPlayerIndex = 0;
     }
     
@@ -243,7 +297,7 @@ enum playerRole playerStatusCF = observing;
     
     currentRound = currentRound + 1;
     
-    //format is "CF,playerRole,playerCoinCall,coinCallResult,currentRound,numberOfRounds,playerAtIndexZeroScore,playerAtIndexOneScore,callingPlayerIndex"
+    //format is "CF,playerRole,playerCoinCall,coinCallResult,currentRound,numberOfRounds,playerAtIndexZeroScore,playerAtIndexOneScore,callingPlayerIndex,p0reportedGameScore,p1reportedGameScore,p0reportedRoundScore,p1reportedRoundScore"
     NSString *matchMessage;
     NSData *data;
     
@@ -260,12 +314,12 @@ enum playerRole playerStatusCF = observing;
             winningIndex = 0;
             NSLog(@"player zero wins");
             if(currentPlayerIndex == 0){
-                matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
+                matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,true,true,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
                 [self sendScoreToLeaderboard:@"gameWin"];
                 gameResultSent = true;
             }else{
                 //currentPlayerIndex = 1, so p0 needs to report scores later
-                matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,false,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
+                matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,false,true,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
             }
             
         }else{
@@ -274,9 +328,9 @@ enum playerRole playerStatusCF = observing;
             winningIndex = 1;
             NSLog(@"player one wins");
             if(currentPlayerIndex == 0){
-                matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,true,false,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
+                matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,true,false,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
             }else{
-                matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
+                matchMessage = [NSString stringWithFormat:@"CF,gameOver,%@,%@,%u,%u,%u,%u,%u,%u,true,true,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,winningIndex];
                 [self sendScoreToLeaderboard:@"gameWin"];
                 gameResultSent = true;
             }
@@ -286,7 +340,7 @@ enum playerRole playerStatusCF = observing;
         data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
         
         if(gameResultSent){
-        
+            
             [currentMatch endMatchInTurnWithMatchData:data
                                     completionHandler:^(NSError *error) {
                                         if (error) {
@@ -309,23 +363,42 @@ enum playerRole playerStatusCF = observing;
         
         
     }else{
-        matchMessage = [NSString stringWithFormat:@"CF,call,%@,%@,%u,%u,%u,%u,%u,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex];
+        if(playerChoiceCorrect){
+            matchMessage = [NSString stringWithFormat:@"CF,call,%@,%@,%u,%u,%u,%u,%u,%u,true,true,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,currentPlayerIndex];
+            [self sendScoreToLeaderboard:@"roundWin"];
+        }else{
+            if(currentPlayerIndex == 0){
+                matchMessage = [NSString stringWithFormat:@"CF,call,%@,%@,%u,%u,%u,%u,%u,%u,true,true,true,false,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex,nextPlayerIndex];
+            }else{
+                matchMessage = [NSString stringWithFormat:@"CF,call,%@,%@,%u,%u,%u,%u,%u,%u,true,true,false,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex, nextPlayerIndex];
+            }
+        }
+        
+        //matchMessage = [NSString stringWithFormat:@"CF,call,%@,%@,%u,%u,%u,%u,%u,true,true,",playerChoice, coinResult, currentRound, numberOfRounds,playerZeroScoreCF,playerOneScoreCF,currentPlayerIndex];
         data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
+        
+        NSArray* nextList = [[NSArray alloc] initWithObjects:nextParticipant,nil];
+        
+        //[currentMatch endTurnWithNextParticipant:nextParticipant
+        [currentMatch endTurnWithNextParticipants:nextList turnTimeout:86400
+                                        matchData:data completionHandler:^(NSError *error) {
+                                            if (error) {
+                                                NSLog(@"%@", error);
+                                            }
+                                        }];
+        NSLog(@"round but not game over, sending %@", matchMessage);
+        NSString *ddata = [NSString stringWithUTF8String:[currentMatch.matchData bytes]];
+        NSLog(@"after updating, match data is %@", ddata);
         
         playerStatusCF = observing;
         
         //display the result of this player's call immediately
         
-        [self performSelector:@selector(displayRoundResultTrue) withObject:nil afterDelay:1];
+        [self performSelector:@selector(displayRoundResultFalse) withObject:nil afterDelay:1];
         
-        nextRoundButton.hidden = false;
+        //nextRoundButton.hidden = false;
         
-        [currentMatch endTurnWithNextParticipant:nextParticipant
-                                       matchData:data completionHandler:^(NSError *error) {
-                                           if (error) {
-                                               NSLog(@"%@", error);
-                                           }
-                                       }];
+        
     }
 }
 
@@ -337,7 +410,7 @@ enum playerRole playerStatusCF = observing;
     
     [roundLabel setText:[NSString stringWithFormat:@"1 of %u", numberOfRounds]];
     nextRoundButton.hidden = true;
-    
+    NSLog(@"setting7");
     currentRound = 1;
     currentPlayerIndex = 0;
     playerZeroScoreCF = 0;
@@ -358,7 +431,7 @@ enum playerRole playerStatusCF = observing;
     }
     
     //format is "playerRole,playerCoinCall,coinCallResult,currentRound,numberOfRounds,playerAtIndexZeroScore,playerAtIndexOneScore,callingPlayerIndex"
-    NSString *matchMessage = [NSString stringWithFormat:@"CF,call,none,none,%u,%u,0,0,1,0,true,true",currentRound, numberOfRounds];
+    NSString *matchMessage = [NSString stringWithFormat:@"CF,call,none,none,%u,%u,0,0,1,0,true,true,true,true,",currentRound, numberOfRounds];
     
     NSData *data =
     [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
@@ -403,15 +476,6 @@ enum playerRole playerStatusCF = observing;
             nextRoundButton.hidden = false;
             NSLog(@"here3");
         }
-        /*
-         }else if([dataItems[1]  isEqual: @"observing"]){
-         playerStatusCF = observing;
-         [self displayObservingStatus];
-         NSLog(@"here4");
-         }else{
-         //should never get here
-         NSLog(@"I AM HEREEE");
-         }*/
         NSLog(@"match data is:%@", data);
     }
     
@@ -460,6 +524,7 @@ enum playerRole playerStatusCF = observing;
         }
     }else{
         //no other player in the game yet, still player at index 0
+        NSLog(@"setting8");
         currentPlayerIndex = 0;
         NSLog(@"OTHER PLAYERS TURN");
         playerStatusCF = observing;
@@ -468,26 +533,33 @@ enum playerRole playerStatusCF = observing;
 }
 
 -(void)sendScoreToLeaderboard:(NSString*)scoreType{
-    NSArray* lbInfo;
+    NSArray* lbInfo1;
+    NSArray* lbInfo2;
+    NSArray* lbInfo3;
+    NSArray* lbInfo4;
     NSLog(@"sending game end score for this player");
-    //increment the round based leaderboard
     if([scoreType isEqualToString:@"gameWin"]){
-        //need to increment total games won leaderboard
-        lbInfo = [FunctionLibrary getLeaderboardNameAndID:CF numRounds:numberOfRounds lType:@"totalWins"];
-    }else{
-        //need to increment total rounds won leaderboard
-        lbInfo = [FunctionLibrary getLeaderboardNameAndID:CF numRounds:numberOfRounds lType:@"roundWins"];
+        //increment round based leaderboard, total coin flip leaderboard, and total game wins leaderboard
+        lbInfo1 = [FunctionLibrary getLeaderboardNameAndID:CF numRounds:numberOfRounds lType:@"totalWins"];
+        lbInfo2 = [FunctionLibrary getLeaderboardNameAndID:CF numRounds:-1 lType:@"totalWins"];
+        lbInfo3 = [FunctionLibrary getLeaderboardNameAndID:TOTAL numRounds:-1 lType:@"totalWins"];
+        
+        //NSLog(@"Incrementing leaderboard:%@,", [lbInfo1 objectAtIndex:0]);
+        [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo1 objectAtIndex:0] leaderboardID:[lbInfo1 objectAtIndex:1]];
+        //NSLog(@"Incrementing leaderboard:%@,", [lbInfo2 objectAtIndex:0]);
+        [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo2 objectAtIndex:0] leaderboardID:[lbInfo2 objectAtIndex:1]];
+        //NSLog(@"Incrementing leaderboard:%@,", [lbInfo3 objectAtIndex:0]);
+        [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo3 objectAtIndex:0] leaderboardID:[lbInfo3 objectAtIndex:1]];
     }
-    NSLog(@"lName is %@, lID is %@", [lbInfo objectAtIndex:0], [lbInfo objectAtIndex:1]);
-    [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo objectAtIndex:0] leaderboardID:[lbInfo objectAtIndex:1]];
+    //need to increment total rounds won leaderboard
+    lbInfo1 = [FunctionLibrary getLeaderboardNameAndID:TOTAL numRounds:-1 lType:@"roundWins"];
+    //NSLog(@"Incrementing leaderboard:%@,", [lbInfo1 objectAtIndex:0]);
+    [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo1 objectAtIndex:0] leaderboardID:[lbInfo1 objectAtIndex:1]];
     
-    //increment the total CF games won
-    lbInfo = [FunctionLibrary getLeaderboardNameAndID:CF numRounds:-1 lType:@"totalWins"];
-    [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo objectAtIndex:0] leaderboardID:[lbInfo objectAtIndex:1]];
+    //both round win and game win will increment the round win by 1
+    lbInfo2 = [FunctionLibrary getLeaderboardNameAndID:CF numRounds:-1 lType:@"roundWins"];
+    [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo2 objectAtIndex:0] leaderboardID:[lbInfo2 objectAtIndex:1]];
     
-    //increment the total games won
-    lbInfo = [FunctionLibrary getLeaderboardNameAndID:TOTAL numRounds:-1 lType:@"totalWins"];
-    [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo objectAtIndex:0] leaderboardID:[lbInfo objectAtIndex:1]];
 }
 
 -(void)recieveEndGame:(GKTurnBasedMatch *)match {
@@ -542,6 +614,24 @@ enum playerRole playerStatusCF = observing;
     }
 }
 
+-(void)displayRoundResultFalse{
+    NSLog(@"player status is endRound");
+    nextRoundButton.hidden = false;
+    [self disablePlayingObjects];
+    [self displayPlayerScores];
+    
+    [gameStateLabel setText:[NSString stringWithFormat:@"You called %@, result was %@", mostRecentPlayerMove, coinResult]];
+    
+    if([self checkForEndGame:playerZeroScoreCF p1Score:playerOneScoreCF]){
+        //game is over
+        [roundLabel setText:[NSString stringWithFormat:@"GAME OVER"]];
+    }else{
+        //displaying the results of the previous round.
+        int tempRound = currentRound - 1;
+        [roundLabel setText:[NSString stringWithFormat:@"%u of %u", tempRound,numberOfRounds]];
+    }
+}
+
 -(bool)checkForEndGame:(int)p0Score
                p1Score:(int)p1Score{
     
@@ -565,7 +655,7 @@ enum playerRole playerStatusCF = observing;
     [self disablePlayingObjects];
     turnLabel.text = @"Game is over";
     
-    if(playerZeroScoreCF > playerOneScoreCF){
+    if(previousRoundWinningIndex == 0){
         //player 0 wins
         if(currentPlayerIndex == 0){
             [gameStateLabel setText:[NSString stringWithFormat:@"You beat your opponent %u to %u", playerZeroScoreCF, playerOneScoreCF]];

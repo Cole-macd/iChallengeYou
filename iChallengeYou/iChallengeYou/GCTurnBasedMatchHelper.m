@@ -135,9 +135,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     [presentingViewController presentViewController:mmvc
                                            animated:YES
                                          completion:nil];
-    //wait 1 second before the segue so it doesnt transition immediately and then load the GC menu
-    //CFRunLoopRunInMode(kCFRunLoopDefaultMode, 1.0, false);
-    //[presentingViewController performSegueWithIdentifier: @"homeToGameMenuSegue" sender: presentingViewController];
 }
 
 
@@ -149,7 +146,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 (GKTurnBasedMatchmakerViewController *)viewController
                             didFindMatch:(GKTurnBasedMatch *)match {
     
-    
+    NSLog(@"did find match");
     self.currentMatch = match;
     
     GKTurnBasedParticipant *firstParticipant =
@@ -242,9 +239,20 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                 [presentingViewController performSegueWithIdentifier:@"directRPS" sender:presentingViewController];
             }else if ([gameType isEqualToString:@"WATO"]){
                 [presentingViewController performSegueWithIdentifier:@"directWATO" sender:presentingViewController];
+            }else{
+                //gameType is null
+                NSLog(@"gametype is %@", gameType);
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Not Found"
+                                                                message:@"This game is unavailable at this time."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
             }
-            NSLog(@"gametype is %@", gameType);
+            //NSLog(@"gametype is %@", gameType);
             NSLog(@"Match Data from GC is %@", matchData);
+            
+            
         }
     }
     
@@ -290,7 +298,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                    leaderboardID:(NSString*)leaderboardID{
     //uses leaderboardName
     int currentScore = [self getCurrentPlayerScore:leaderboardName];
-    NSLog(@"before update, score on %@ was %d", leaderboardName, currentScore);
     
     if(currentScore == -1){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid leaderboard"
@@ -327,7 +334,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             
             [board loadScoresWithCompletionHandler:^(NSArray *scores, NSError *error) {
                 if([board.title isEqualToString:leaderboardName]){
-                    printf( "YOUR SCORE ON BOARD %s WAS %lld\n", [board.title UTF8String], board.localPlayerScore.value ) ;
                     returnValue = board.localPlayerScore.value;
                     dispatch_semaphore_signal(semaphore);
                 }
@@ -337,7 +343,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW))
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:checkEveryInterval]];
 
-    NSLog(@"and now return valie is %d", returnValue);
     return returnValue;
 }
 
