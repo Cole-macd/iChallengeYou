@@ -8,6 +8,7 @@
 
 #import "WATOMainVC.h"
 #import "GCTurnBasedMatchHelper.h"
+#import "FunctionLibrary.h"
 #include <stdlib.h>
 
 @interface WATOMainVC ()
@@ -60,6 +61,29 @@ enum playerRoleWATO playerStatusWATO = observingGame;
         }else{
             currentPlayerGuess = [dataItems[4] intValue];
             opponentGuess = [dataItems[3] intValue];
+        }
+        
+        if([gameState isEqualToString:@"gameOver"]){
+            bool hasReportedScore;
+            if(currentPlayerIndex == 0){
+                hasReportedScore = [dataItems[7] boolValue];
+            }else{
+                hasReportedScore = [dataItems[8] boolValue];
+            }
+            if(!hasReportedScore){
+                [self sendScoreToLeaderboard];
+                NSString* matchMessage = [NSString stringWithFormat:@"WATO,%@,%@,%@,%@,%@,%@,true,true,", dataItems[1], dataItems[2], dataItems[3], dataItems[4], dataItems[5], dataItems[6]];
+                
+                NSLog(@"new game over match data is %@", matchMessage);
+                
+                NSData *data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
+                [match endMatchInTurnWithMatchData:data
+                                 completionHandler:^(NSError *error) {
+                                     if (error) {
+                                         NSLog(@"%@", error);
+                                     }
+                                 }];
+            }
         }
     }
 }
@@ -144,7 +168,7 @@ enum playerRoleWATO playerStatusWATO = observingGame;
     [self displaySettingGuess];
     
     //format is WATO,betMessage,betRange,p0Guess,p1Guess,gameState
-    NSString *matchMessage = [NSString stringWithFormat:@"WATO,%@,%d,-1,-1,settingGuess,-1,", betMessage, guessRange];
+    NSString *matchMessage = [NSString stringWithFormat:@"WATO,%@,%d,-1,-1,settingGuess,-1,true,true,", betMessage, guessRange];
     [self sendTurn:matchMessage nextIndex:1];
     gameState = @"settingGuess";
     playerStatusWATO = settingGuess;
@@ -162,39 +186,57 @@ enum playerRoleWATO playerStatusWATO = observingGame;
         
         GKTurnBasedParticipant *playerZero = [match.participants objectAtIndex: 0];
         GKTurnBasedParticipant *playerOne = [match.participants objectAtIndex: 1];
-        
+        NSString* matchMessage;
+        bool gameScoreReported = false;
+        int nextIndex;
         if(currentPlayerGuess == opponentGuess){
             if(currentPlayerIndex == 0){
                 playerZero.matchOutcome = GKTurnBasedMatchOutcomeWon;
                 playerOne.matchOutcome = GKTurnBasedMatchOutcomeLost;
                 winningIndex = 0;
+                matchMessage = [NSString stringWithFormat:@"WATO,%@,%d,%d,%d,gameOver,%d,true,true,", betMessage, guessRange, currentPlayerGuess, opponentGuess, winningIndex];
+                gameScoreReported = true;
+                [self sendScoreToLeaderboard];
+                nextIndex = 1;
             }else{
                 playerZero.matchOutcome = GKTurnBasedMatchOutcomeLost;
                 playerOne.matchOutcome = GKTurnBasedMatchOutcomeWon;
                 winningIndex = 1;
+                matchMessage = [NSString stringWithFormat:@"WATO,%@,%d,%d,%d,gameOver,%d,true,true,", betMessage, guessRange, currentPlayerGuess, opponentGuess, winningIndex];
+                gameScoreReported = true;
+                [self sendScoreToLeaderboard];
+                nextIndex = 0;
             }
         }else{
             if(currentPlayerIndex == 0){
                 playerZero.matchOutcome = GKTurnBasedMatchOutcomeLost;
                 playerOne.matchOutcome = GKTurnBasedMatchOutcomeWon;
                 winningIndex = 1;
+                matchMessage = [NSString stringWithFormat:@"WATO,%@,%d,%d,%d,gameOver,%d,true,false,", betMessage, guessRange, currentPlayerGuess, opponentGuess, winningIndex];
+                nextIndex = 1;
             }else{
                 playerZero.matchOutcome = GKTurnBasedMatchOutcomeWon;
                 playerOne.matchOutcome = GKTurnBasedMatchOutcomeLost;
                 winningIndex = 0;
+                matchMessage = [NSString stringWithFormat:@"WATO,%@,%d,%d,%d,gameOver,%d,false,true,", betMessage, guessRange, currentPlayerGuess, opponentGuess, winningIndex];
+                nextIndex = 0;
             }
         }
         
         //format is WATO,betMessage,betRange,p0Guess,p1Guess,gameState
-        NSString *matchMessage = [NSString stringWithFormat:@"WATO,%@,%d,%d,%d,gameOver,%d,", betMessage, guessRange, currentPlayerGuess, opponentGuess, winningIndex];
+        //NSString *matchMessage = [NSString stringWithFormat:@"WATO,%@,%d,%d,%d,gameOver,%d,", betMessage, guessRange, currentPlayerGuess, opponentGuess, winningIndex];
         NSData *data = [matchMessage dataUsingEncoding:NSUTF8StringEncoding ];
 
-        [match endMatchInTurnWithMatchData:data
-                                completionHandler:^(NSError *error) {
-                                    if (error) {
-                                        NSLog(@"%@", error);
-                                    }
-                                }];
+        if(gameScoreReported){
+            [match endMatchInTurnWithMatchData:data
+                                    completionHandler:^(NSError *error) {
+                                        if (error) {
+                                            NSLog(@"%@", error);
+                                        }
+                                    }];
+        }else{
+            [self sendTurn:matchMessage nextIndex:nextIndex];
+        }
         [self displayGameOver:winningIndex];
     }else{
         //currentPlayerIndex = 1
@@ -202,7 +244,7 @@ enum playerRoleWATO playerStatusWATO = observingGame;
         [self displayObservingStatus];
         
         //format is WATO,betMessage,betRange,p0Guess,p1Guess,gameState
-        NSString *matchMessage = [NSString stringWithFormat:@"WATO,%@,%d,-1,%d,settingGuess,-1,", betMessage, guessRange, currentPlayerGuess];
+        NSString *matchMessage = [NSString stringWithFormat:@"WATO,%@,%d,-1,%d,settingGuess,-1,true,true,", betMessage, guessRange, currentPlayerGuess];
         [self sendTurn:matchMessage nextIndex:0];
     }
     
@@ -216,7 +258,7 @@ enum playerRoleWATO playerStatusWATO = observingGame;
     _betMessageLabel.text = [NSString stringWithFormat:@"The odds of %@ are 1 - %d", betMessage, 50];
     
     //format is WATO,betMessage,betRange,p0Guess,p1Guess,gameState
-    NSString *matchMessage = [NSString stringWithFormat:@"WATO,%@,-1,-1,-1,settingRange,-1,", msg];
+    NSString *matchMessage = [NSString stringWithFormat:@"WATO,%@,-1,-1,-1,settingRange,-1,true,true,", msg];
     [self sendTurn:matchMessage nextIndex:1];
     gameState = @"settingRange";
     playerStatusWATO = settingRange;
@@ -239,6 +281,17 @@ enum playerRoleWATO playerStatusWATO = observingGame;
                             }];
     NSLog(@"sent matchmessage with format WATO,betMessage,betRange,p0Guess,p1Guess,gameState: %@", matchMessage);
 
+}
+
+-(void)sendScoreToLeaderboard{
+    NSArray* lbInfo1 = [FunctionLibrary getLeaderboardNameAndID:WATO numRounds:-1 lType:@"totalWins"];
+    NSArray* lbInfo2 = [FunctionLibrary getLeaderboardNameAndID:TOTAL numRounds:-1 lType:@"totalWins"];
+    NSArray* lbInfo3 = [FunctionLibrary getLeaderboardNameAndID:TOTAL numRounds:-1 lType:@"roundWins"];
+    
+    //NSLog(@"Incrementing leaderboard:%@,", [lbInfo1 objectAtIndex:0]);
+    [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo1 objectAtIndex:0] leaderboardID:[lbInfo1 objectAtIndex:1]];
+    [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo2 objectAtIndex:0] leaderboardID:[lbInfo2 objectAtIndex:1]];
+    [[GCTurnBasedMatchHelper sharedInstance] incrementLeaderboardScore:[lbInfo3 objectAtIndex:0] leaderboardID:[lbInfo3 objectAtIndex:1]];
 }
 
 -(void)takeTurn:(GKTurnBasedMatch *)match {
