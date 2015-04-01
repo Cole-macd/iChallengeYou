@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     NSLog(@"Home Page Loaded");
     // Do any additional setup after loading the view.
 }

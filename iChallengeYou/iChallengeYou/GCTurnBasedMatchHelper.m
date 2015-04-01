@@ -103,9 +103,11 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         }
     }];
     
-    NSLog(@"Authentication complete");
-    
+    NSLog(@"Authentication complete");    
 }
+
+
+
 
 - (void)findMatchWithMinPlayers:(int)minPlayers
                      maxPlayers:(int)maxPlayers
