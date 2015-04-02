@@ -48,10 +48,7 @@
     [self roundView: self.primaryView];
     self.primaryView.userInteractionEnabled = YES;
     [self addSubview: self.primaryView];
-    
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipTouched:)];
-    gesture.numberOfTapsRequired = 1;
-    [self.primaryView addGestureRecognizer:gesture];
+
     [self roundView:self];
 }
 
@@ -63,22 +60,13 @@
     self.secondaryView.userInteractionEnabled = YES;
     [self addSubview: self.secondaryView];
     [self sendSubviewToBack:self.secondaryView];
-    
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(flipTouched:)];
-    gesture.numberOfTapsRequired = 1;
-    [self.secondaryView addGestureRecognizer:gesture];
+
     [self roundView:self];
 }
 
 - (void) roundView: (UIView *) view{
     [view.layer setCornerRadius: (self.frame.size.height/2)];
     [view.layer setMasksToBounds:YES];
-}
-
--(IBAction) flipTouched:(id)sender{
-    int r = arc4random_uniform(10);
-    NSLog(@"%i\n", r);
-    [self flipCoin:8+(r%2)];
 }
 
 - (void)flipCoin:(int)repeat{

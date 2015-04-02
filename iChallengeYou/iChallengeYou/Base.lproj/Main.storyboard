@@ -8,7 +8,6 @@
         <!--LoginVC-->
         <scene sceneID="D3E-ez-o9R">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EgD-DU-dFH" sceneMemberID="firstResponder"/>
                 <viewController title="LoginVC" id="EKu-kt-aXT" customClass="LoginVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n5k-uf-ZrV"/>
@@ -24,6 +23,7 @@
                         <segue destination="DXh-1X-qw6" kind="push" identifier="directHomePage" id="H3a-ZB-2sh"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EgD-DU-dFH" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="292.26666666666665" y="495.10666666666668"/>
         </scene>
@@ -39,11 +39,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyv-BQ-wWd">
-                                <rect key="frame" x="0.0" y="141" width="320" height="26"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="xEz-R0-8S8"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCF-c2-N7x">
+                                <rect key="frame" x="76" y="200" width="183" height="28"/>
+                                <state key="normal" title="Current Matches">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="viewCurrentMatches:" destination="DXh-1X-qw6" eventType="touchUpInside" id="jq6-Se-BTL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyv-BQ-wWd">
+                                <rect key="frame" x="104" y="123" width="127" height="26"/>
                                 <state key="normal" title="Select New Game">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -53,17 +59,8 @@
                                     <segue destination="hSb-Ku-j3a" kind="push" id="MZ3-R8-o45"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCF-c2-N7x">
-                                <rect key="frame" x="0.0" y="215" width="320" height="28"/>
-                                <state key="normal" title="Current Matches">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="viewCurrentMatches:" destination="DXh-1X-qw6" eventType="touchUpInside" id="jq6-Se-BTL"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bht-a1-pTy">
-                                <rect key="frame" x="0.0" y="420" width="320" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bht-a1-pTy">
+                                <rect key="frame" x="88" y="435" width="158" height="30"/>
                                 <state key="normal" title="Leaderboards">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -73,19 +70,8 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="zyv-BQ-wWd" secondAttribute="centerY" constant="130" id="2dZ-cC-v4j"/>
-                            <constraint firstAttribute="centerX" secondItem="DCF-c2-N7x" secondAttribute="centerX" id="Dsk-kl-yjQ"/>
-                            <constraint firstAttribute="centerX" secondItem="Bht-a1-pTy" secondAttribute="centerX" id="IYN-yU-IrG"/>
-                            <constraint firstAttribute="centerY" secondItem="DCF-c2-N7x" secondAttribute="centerY" constant="55" id="Lja-Th-Eqn"/>
-                            <constraint firstAttribute="centerY" secondItem="Bht-a1-pTy" secondAttribute="centerY" constant="-151" id="WCn-wx-dWb"/>
-                            <constraint firstAttribute="centerX" secondItem="zyv-BQ-wWd" secondAttribute="centerX" id="Zs8-zN-Yhr"/>
-                            <constraint firstAttribute="centerX" secondItem="Bht-a1-pTy" secondAttribute="centerX" id="dcv-IS-4rf"/>
-                            <constraint firstAttribute="centerX" secondItem="Bht-a1-pTy" secondAttribute="centerX" id="nc8-OZ-VJC"/>
-                            <constraint firstAttribute="centerX" secondItem="DCF-c2-N7x" secondAttribute="centerX" id="r07-k9-rrE"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="qKy-yI-3Z1"/>
+                    <navigationItem key="navigationItem" title="Main Menu" id="KxX-Cf-wak"/>
                     <connections>
                         <segue destination="Q4Z-wg-B2r" kind="push" identifier="directCoinFlip" id="vC2-ue-e5y"/>
                         <segue destination="5Ns-sb-a8i" kind="push" identifier="directRPS" id="ZOf-l6-p4j"/>
@@ -197,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1oA-Jx-e0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1179.7333333333333" y="1174.8133333333333"/>
+            <point key="canvasLocation" x="1179.7333333333333" y="1174.813333333333"/>
         </scene>
         <!--What Are The Odds Text Page-->
         <scene sceneID="ZoP-hG-mq2">
@@ -250,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzv-88-nov" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562.6666666666667" y="1528.8666666666666"/>
+            <point key="canvasLocation" x="1562.6666666666667" y="1528.8666666666663"/>
         </scene>
         <!--What Are The Odds Number Page-->
         <scene sceneID="bE1-Tr-RgB">
@@ -442,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zNU-aO-piB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="598.39999999999998" y="-480.90666666666664"/>
+            <point key="canvasLocation" x="598.39999999999998" y="-480.90666666666658"/>
         </scene>
         <!--Coin Flip - Choose Number of Rounds-->
         <scene sceneID="wK9-Zq-DJy">
@@ -509,7 +495,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3G-Rd-FdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1424" y="-130.63999999999999"/>
+            <point key="canvasLocation" x="1424" y="-130.63999999999996"/>
         </scene>
         <!--RPS - Choose Number Of Rounds-->
         <scene sceneID="tHN-Gi-dbf">
@@ -867,9 +853,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="NhO-hR-ch6"/>
-        <segue reference="MZ3-R8-o45"/>
+        <segue reference="lE7-A5-APl"/>
         <segue reference="vC2-ue-e5y"/>
-        <segue reference="tk1-iv-5is"/>
+        <segue reference="MZ3-R8-o45"/>
+        <segue reference="ZOf-l6-p4j"/>
     </inferredMetricsTieBreakers>
 </document>
