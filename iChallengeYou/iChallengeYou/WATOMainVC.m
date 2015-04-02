@@ -338,12 +338,12 @@ enum playerRoleWATO playerStatusWATO = observingGame;
     NSLog(@"here3");
     if([gameState isEqualToString:@"settingRange"]){
         NSLog(@"here1");
-        _turnLabel.text = @"Not your turn. Please wait for opponent to set the odds";
+        _turnLabel.text = @"Please wait for opponent to set the odds";
         _betMessageLabel.text = @"";
         _guessMessageLabel.text = @"";
     }else if([gameState isEqualToString:@"settingGuess"]){
         NSLog(@"here2");
-        _turnLabel.text = @"Not your turn. Please wait for opponent to make his move";
+        _turnLabel.text = @"Please wait for opponent to make his move";
         _betMessageLabel.text = [NSString stringWithFormat:@"The odds of %@ are 1 in %d", betMessage, guessRange];
         _guessMessageLabel.text = [NSString stringWithFormat:@"My guess is %d", (int)(currentPlayerGuess)];
     }
