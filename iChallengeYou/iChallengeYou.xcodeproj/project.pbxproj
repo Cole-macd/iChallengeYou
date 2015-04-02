@@ -17,6 +17,9 @@
 		596C3D6D1AB0ED1D000763F9 /* WATOTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 596C3D6C1AB0ED1D000763F9 /* WATOTextVC.m */; };
 		59818C301A7876B00058F3E3 /* RPSRoundChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */; };
 		59818C331A78788F0058F3E3 /* RPSVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 59818C321A78788F0058F3E3 /* RPSVC.m */; };
+		AF2860391ACCD893007CA7E5 /* Leaderboards.png in Resources */ = {isa = PBXBuildFile; fileRef = AF2860381ACCD893007CA7E5 /* Leaderboards.png */; };
+		AF28603B1ACCD897007CA7E5 /* NewGame.png in Resources */ = {isa = PBXBuildFile; fileRef = AF28603A1ACCD897007CA7E5 /* NewGame.png */; };
+		AF28603D1ACCD8A8007CA7E5 /* CurrentMatches.png in Resources */ = {isa = PBXBuildFile; fileRef = AF28603C1ACCD8A8007CA7E5 /* CurrentMatches.png */; };
 		AF8DE48D1A6EEACB0035C944 /* FunctionLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE48C1A6EEACB0035C944 /* FunctionLibrary.m */; };
 		AF8DE4901A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE48F1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.m */; };
 		AF8DE4931A6EEAFB0035C944 /* CoinFlipVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AF8DE4921A6EEAFB0035C944 /* CoinFlipVC.m */; };
@@ -61,6 +64,9 @@
 		59818C2F1A7876B00058F3E3 /* RPSRoundChoiceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSRoundChoiceVC.m; sourceTree = "<group>"; };
 		59818C311A78788F0058F3E3 /* RPSVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSVC.h; sourceTree = "<group>"; };
 		59818C321A78788F0058F3E3 /* RPSVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSVC.m; sourceTree = "<group>"; };
+		AF2860381ACCD893007CA7E5 /* Leaderboards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Leaderboards.png; sourceTree = "<group>"; };
+		AF28603A1ACCD897007CA7E5 /* NewGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewGame.png; sourceTree = "<group>"; };
+		AF28603C1ACCD8A8007CA7E5 /* CurrentMatches.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentMatches.png; sourceTree = "<group>"; };
 		AF8DE48B1A6EEACB0035C944 /* FunctionLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionLibrary.h; sourceTree = "<group>"; };
 		AF8DE48C1A6EEACB0035C944 /* FunctionLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionLibrary.m; sourceTree = "<group>"; };
 		AF8DE48E1A6EEAEC0035C944 /* CoinFlipRoundChoiceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinFlipRoundChoiceVC.h; sourceTree = "<group>"; };
@@ -118,7 +124,10 @@
 			isa = PBXGroup;
 			children = (
 				3E3D28371ACCD62600249A7E /* NextRound.png */,
+				AF2860381ACCD893007CA7E5 /* Leaderboards.png */,
 				3E3D28381ACCD62600249A7E /* Paper.png */,
+				AF28603A1ACCD897007CA7E5 /* NewGame.png */,
+				AF28603C1ACCD8A8007CA7E5 /* CurrentMatches.png */,
 				3E3D28391ACCD62600249A7E /* Rock.png */,
 				3E3D283A1ACCD62600249A7E /* Scissors .png */,
 				AFB32EFC1A93ED410094EAEF /* dollartail.png */,
@@ -301,10 +310,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E3D283E1ACCD62600249A7E /* Scissors .png in Resources */,
+				AF28603D1ACCD8A8007CA7E5 /* CurrentMatches.png in Resources */,
+				AF2860391ACCD893007CA7E5 /* Leaderboards.png in Resources */,
 				AFDC223D1A6EDA6A00BCCACC /* Main.storyboard in Resources */,
 				AFB32EFD1A93ED410094EAEF /* dollarhead.png in Resources */,
 				3E3D283D1ACCD62600249A7E /* Rock.png in Resources */,
 				AFB32EFE1A93ED410094EAEF /* dollartail.png in Resources */,
+				AF28603B1ACCD897007CA7E5 /* NewGame.png in Resources */,
 				3E3D283B1ACCD62600249A7E /* NextRound.png in Resources */,
 				AFDC22421A6EDA6A00BCCACC /* LaunchScreen.xib in Resources */,
 				3E3D283C1ACCD62600249A7E /* Paper.png in Resources */,
