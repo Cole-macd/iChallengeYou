@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E3D283B1ACCD62600249A7E /* NextRound.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E3D28371ACCD62600249A7E /* NextRound.png */; };
+		3E3D283C1ACCD62600249A7E /* Paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E3D28381ACCD62600249A7E /* Paper.png */; };
+		3E3D283D1ACCD62600249A7E /* Rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E3D28391ACCD62600249A7E /* Rock.png */; };
+		3E3D283E1ACCD62600249A7E /* Scissors .png in Resources */ = {isa = PBXBuildFile; fileRef = 3E3D283A1ACCD62600249A7E /* Scissors .png */; };
 		5917ED871A79DAC800F2E3E1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDC22631A6EDEE500BCCACC /* GameKit.framework */; };
 		5937BD8C1AB37D9400ACD1EA /* chooseWATOType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937BD8B1AB37D9400ACD1EA /* chooseWATOType.m */; };
 		593BFF671AB0F6E20077AA90 /* WATOMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 593BFF661AB0F6E20077AA90 /* WATOMainVC.m */; };
@@ -43,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E3D28371ACCD62600249A7E /* NextRound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NextRound.png; sourceTree = "<group>"; };
+		3E3D28381ACCD62600249A7E /* Paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Paper.png; sourceTree = "<group>"; };
+		3E3D28391ACCD62600249A7E /* Rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rock.png; sourceTree = "<group>"; };
+		3E3D283A1ACCD62600249A7E /* Scissors .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Scissors .png"; sourceTree = "<group>"; };
 		5937BD8A1AB37D9400ACD1EA /* chooseWATOType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chooseWATOType.h; sourceTree = "<group>"; };
 		5937BD8B1AB37D9400ACD1EA /* chooseWATOType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chooseWATOType.m; sourceTree = "<group>"; };
 		593BFF651AB0F6E20077AA90 /* WATOMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATOMainVC.h; sourceTree = "<group>"; };
@@ -109,6 +117,10 @@
 		AFB32EFF1A93ED4D0094EAEF /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3E3D28371ACCD62600249A7E /* NextRound.png */,
+				3E3D28381ACCD62600249A7E /* Paper.png */,
+				3E3D28391ACCD62600249A7E /* Rock.png */,
+				3E3D283A1ACCD62600249A7E /* Scissors .png */,
 				AFB32EFC1A93ED410094EAEF /* dollartail.png */,
 				AFB32EFB1A93ED410094EAEF /* dollarhead.png */,
 			);
@@ -288,10 +300,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E3D283E1ACCD62600249A7E /* Scissors .png in Resources */,
 				AFDC223D1A6EDA6A00BCCACC /* Main.storyboard in Resources */,
 				AFB32EFD1A93ED410094EAEF /* dollarhead.png in Resources */,
+				3E3D283D1ACCD62600249A7E /* Rock.png in Resources */,
 				AFB32EFE1A93ED410094EAEF /* dollartail.png in Resources */,
+				3E3D283B1ACCD62600249A7E /* NextRound.png in Resources */,
 				AFDC22421A6EDA6A00BCCACC /* LaunchScreen.xib in Resources */,
+				3E3D283C1ACCD62600249A7E /* Paper.png in Resources */,
 				AFDC223F1A6EDA6A00BCCACC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
