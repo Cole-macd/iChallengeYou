@@ -432,6 +432,7 @@ bool currentPlayerHasTurn = false;
     [self displayTurnAvailable];
     turnStateLabel.text = @"Your turn";
     nextRoundButton.hidden = true;
+    nextRoundGraphic.hidden = true;
     [self enablePlayingObjects];
     [self displayRoundNumber:currentRound];
     
@@ -521,6 +522,7 @@ bool currentPlayerHasTurn = false;
 
 - (IBAction)nextRoundPressed:(id)sender {
     nextRoundButton.hidden = true;
+    nextRoundGraphic.hidden = true;
     buttonPressResultLabel.text = @"";
     
     GKTurnBasedMatch *match = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
@@ -541,6 +543,7 @@ bool currentPlayerHasTurn = false;
 -(void)displayTurnAvailable{
     turnStateLabel.text = @"Your turn";
     nextRoundButton.hidden = true;
+    nextRoundGraphic.hidden = true;
     NSLog(@"displayTurnAvailable() called");
     [self enablePlayingObjects];
     [self displayRoundNumber:currentRound];
@@ -549,6 +552,7 @@ bool currentPlayerHasTurn = false;
 -(void)displayObservingStatus{
     turnStateLabel.text = @"Not your turn. Please wait";
     nextRoundButton.hidden = true;
+    nextRoundGraphic.hidden = true;
     NSLog(@"displayObservingStatus() called");
     [self disablePlayingObjects];
     [self displayRoundNumber:currentRound];
@@ -559,6 +563,7 @@ bool currentPlayerHasTurn = false;
     if(currentPlayerHasTurn){
         //if this player has the turn, update the match data to show that this player has seen the result of the last round
         nextRoundButton.hidden = false;
+        nextRoundGraphic.hidden = false;
         
         NSString *incomingData = [NSString stringWithUTF8String:[match.matchData bytes]];
         NSArray *dataItems = [incomingData componentsSeparatedByString:@","];
@@ -574,6 +579,7 @@ bool currentPlayerHasTurn = false;
          }];
     }else{
         nextRoundButton.hidden = true;
+        nextRoundGraphic.hidden = true;
         turnStateLabel.text = @"Round over, waiting for opponent to play his turn";
     }
 }
@@ -583,6 +589,7 @@ bool currentPlayerHasTurn = false;
     NSLog(@"displayRoundOver() called");
     [self disablePlayingObjects];
     nextRoundButton.hidden = false;
+    nextRoundGraphic.hidden = false;
     
     if(winningPlayerIndex != -1){
         //the current round had already been incremented, display the previous round when showing round results
@@ -635,6 +642,7 @@ bool currentPlayerHasTurn = false;
     [self disablePlayingObjects];
     [self displayRoundNumber:currentRound];
     nextRoundButton.hidden = true;
+    nextRoundGraphic.hidden = true;
 }
 
 -(void)displayRoundNumber: (int)roundNumToDisplay{

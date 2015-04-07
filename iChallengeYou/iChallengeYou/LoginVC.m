@@ -19,6 +19,7 @@
     [super viewDidLoad];
     [[GCTurnBasedMatchHelper sharedInstance] authenticateLocalUser];
     [self performSegueWithIdentifier:@"directHomePage" sender:self];
+    NSLog(@"here"); 
     // Do any additional setup after loading the view, typically from a nib.
     
 }

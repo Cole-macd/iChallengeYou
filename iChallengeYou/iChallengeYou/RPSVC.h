@@ -16,6 +16,7 @@
     IBOutlet UIButton *scissorsButton;
     IBOutlet UIButton *paperButton;
     
+    __weak IBOutlet UIImageView *nextRoundGraphic;
     IBOutlet UIButton *nextRoundButton;
     
     IBOutlet UILabel *turnStateLabel;
