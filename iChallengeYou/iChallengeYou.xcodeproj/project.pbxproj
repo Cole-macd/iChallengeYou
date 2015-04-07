@@ -30,6 +30,7 @@
 		3EE66E201AD4338D00F03A46 /* SendInvitation.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE66E1F1AD4338D00F03A46 /* SendInvitation.png */; };
 		3EE66E231AD4340F00F03A46 /* SubmitGuess.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE66E211AD4340F00F03A46 /* SubmitGuess.png */; };
 		3EE66E241AD4340F00F03A46 /* SubmitOdds.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE66E221AD4340F00F03A46 /* SubmitOdds.png */; };
+		3EE66E261AD45A5500F03A46 /* ContinueToGame.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE66E251AD45A5500F03A46 /* ContinueToGame.png */; };
 		5917ED871A79DAC800F2E3E1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDC22631A6EDEE500BCCACC /* GameKit.framework */; };
 		5937BD8C1AB37D9400ACD1EA /* chooseWATOType.m in Sources */ = {isa = PBXBuildFile; fileRef = 5937BD8B1AB37D9400ACD1EA /* chooseWATOType.m */; };
 		593BFF671AB0F6E20077AA90 /* WATOMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 593BFF661AB0F6E20077AA90 /* WATOMainVC.m */; };
@@ -89,6 +90,7 @@
 		3EE66E1F1AD4338D00F03A46 /* SendInvitation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendInvitation.png; sourceTree = "<group>"; };
 		3EE66E211AD4340F00F03A46 /* SubmitGuess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SubmitGuess.png; sourceTree = "<group>"; };
 		3EE66E221AD4340F00F03A46 /* SubmitOdds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SubmitOdds.png; sourceTree = "<group>"; };
+		3EE66E251AD45A5500F03A46 /* ContinueToGame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContinueToGame.png; sourceTree = "<group>"; };
 		5937BD8A1AB37D9400ACD1EA /* chooseWATOType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chooseWATOType.h; sourceTree = "<group>"; };
 		5937BD8B1AB37D9400ACD1EA /* chooseWATOType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = chooseWATOType.m; sourceTree = "<group>"; };
 		593BFF651AB0F6E20077AA90 /* WATOMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATOMainVC.h; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				3EE66E211AD4340F00F03A46 /* SubmitGuess.png */,
+				3EE66E251AD45A5500F03A46 /* ContinueToGame.png */,
 				3EE66E221AD4340F00F03A46 /* SubmitOdds.png */,
 				3EE66E1F1AD4338D00F03A46 /* SendInvitation.png */,
 				3EE66E1D1AD4335A00F03A46 /* JoinExistingGame.png */,
@@ -380,6 +383,7 @@
 				3EE66E021AD2FC0000F03A46 /* WATO.png in Resources */,
 				3EE66E161AD431ED00F03A46 /* Scissors.png in Resources */,
 				3EE66E001AD2FBA900F03A46 /* RPS.png in Resources */,
+				3EE66E261AD45A5500F03A46 /* ContinueToGame.png in Resources */,
 				AFDC223F1A6EDA6A00BCCACC /* Images.xcassets in Resources */,
 				3EE66E1E1AD4335A00F03A46 /* JoinExistingGame.png in Resources */,
 				3EE66E201AD4338D00F03A46 /* SendInvitation.png in Resources */,

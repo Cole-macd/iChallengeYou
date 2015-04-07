@@ -33,12 +33,21 @@
                                     <segue destination="DXh-1X-qw6" kind="push" id="aMi-EG-JF7"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ContinueToGame.png" translatesAutoresizingMaskIntoConstraints="NO" id="VP3-Co-qhv">
+                                <rect key="frame" x="53" y="248" width="214" height="71"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="214" id="2gh-bI-ne7"/>
+                                    <constraint firstAttribute="height" constant="71" id="Hb3-eu-wj2"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="mCw-qv-fdB" secondAttribute="width" id="CeB-T2-TdO"/>
+                            <constraint firstAttribute="centerX" secondItem="VP3-Co-qhv" secondAttribute="centerX" id="DpC-0P-UQN"/>
                             <constraint firstAttribute="centerY" secondItem="flJ-7K-oag" secondAttribute="centerY" constant="0.5" id="K7f-Tp-7O9"/>
                             <constraint firstAttribute="centerX" secondItem="flJ-7K-oag" secondAttribute="centerX" id="LUZ-Ld-c3g"/>
+                            <constraint firstAttribute="centerY" secondItem="VP3-Co-qhv" secondAttribute="centerY" constant="0.5" id="bRh-Sn-cQl"/>
                             <constraint firstAttribute="centerY" secondItem="mCw-qv-fdB" secondAttribute="centerY" id="dlw-5T-wjU"/>
                             <constraint firstAttribute="height" secondItem="mCw-qv-fdB" secondAttribute="height" id="eiM-aJ-WQ3"/>
                             <constraint firstAttribute="centerX" secondItem="mCw-qv-fdB" secondAttribute="centerX" id="xac-7d-rYi"/>
@@ -1273,6 +1282,7 @@
         <image name="5Flips.png" width="576" height="184"/>
         <image name="5Rounds.png" width="576" height="184"/>
         <image name="Background" width="338" height="600"/>
+        <image name="ContinueToGame.png" width="576" height="184"/>
         <image name="CurrentMatches.png" width="576" height="184"/>
         <image name="FlipaCoin.png" width="576" height="184"/>
         <image name="Heads.png" width="576" height="184"/>
