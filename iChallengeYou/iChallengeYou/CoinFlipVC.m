@@ -39,6 +39,7 @@ enum playerRole playerStatusCF = observing;
     [GCTurnBasedMatchHelper sharedInstance].delegate = self;
     GKTurnBasedMatch *currentMatch = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
     nextRoundButton.hidden = true;
+    nextRoundGraphic.hidden = true;
     
     //UNCOMMENT, JUST FOR TESTING
     UIImageView *tailView = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"dollartail.png"]];
@@ -62,9 +63,11 @@ enum playerRole playerStatusCF = observing;
         if(currentPlayerIndex == mostRecentPlayerIndex){
             [self displayRoundResult:true];
             nextRoundButton.hidden = false;
+            nextRoundGraphic.hidden = false;
         }else{
             [self displayRoundResult:false];
             nextRoundButton.hidden = false;
+            nextRoundGraphic.hidden = false;
         }
     }else if(playerStatusCF == gameOver){
         NSLog(@"player status is game over");
@@ -410,6 +413,7 @@ enum playerRole playerStatusCF = observing;
     
     [roundLabel setText:[NSString stringWithFormat:@"1 of %u", numberOfRounds]];
     nextRoundButton.hidden = true;
+    nextRoundGraphic.hidden = true;
     NSLog(@"setting7");
     currentRound = 1;
     currentPlayerIndex = 0;
@@ -474,6 +478,7 @@ enum playerRole playerStatusCF = observing;
                 [self displayRoundResult:false];
             }
             nextRoundButton.hidden = false;
+            nextRoundGraphic.hidden = false;
             NSLog(@"here3");
         }
         NSLog(@"match data is:%@", data);
@@ -484,6 +489,7 @@ enum playerRole playerStatusCF = observing;
     //next round
     NSLog(@"Next Round button pressed");
     nextRoundButton.hidden = true;
+    nextRoundGraphic.hidden = true;
     
     GKTurnBasedMatch *currentMatch = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
     if(currentPlayerIndex == [currentMatch.participants indexOfObject:currentMatch.currentParticipant]){
@@ -617,6 +623,7 @@ enum playerRole playerStatusCF = observing;
 -(void)displayRoundResultFalse{
     NSLog(@"player status is endRound");
     nextRoundButton.hidden = false;
+    nextRoundGraphic.hidden = false;
     [self disablePlayingObjects];
     [self displayPlayerScores];
     
@@ -688,6 +695,7 @@ enum playerRole playerStatusCF = observing;
     turnLabel.text = @"Please wait, not your turn";
     [gameStateLabel setText:[NSString stringWithFormat:@"You are player %u", currentPlayerIndex]];
     nextRoundButton.hidden = true;
+    nextRoundGraphic.hidden = true;
     [roundLabel setText:[NSString stringWithFormat:@"%u of %u", currentRound,numberOfRounds]];
     [self displayPlayerScores];
 }
@@ -698,6 +706,7 @@ enum playerRole playerStatusCF = observing;
     turnLabel.text = @"Your turn, call the coin";
     [gameStateLabel setText:[NSString stringWithFormat:@"You are player %u", currentPlayerIndex]];
     nextRoundButton.hidden = true;
+    nextRoundGraphic.hidden = true;
     [roundLabel setText:[NSString stringWithFormat:@"%u of %u", currentRound,numberOfRounds]];
     [self displayPlayerScores];
 }

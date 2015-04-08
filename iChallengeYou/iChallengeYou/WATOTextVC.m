@@ -36,7 +36,9 @@
 - (IBAction)sendInvitationPressed:(id)sender {
     if(![_betTextBox.text  isEqual: @""]){
         unsigned int pType = [FunctionLibrary calculatePlayerGroup:WATO numRounds:1];
-        [GCTurnBasedMatchHelper sharedInstance].WATObetMessage = _betTextBox.text;
+        NSString* cleanBetMessage = [_betTextBox.text stringByTrimmingCharactersInSet:
+                                     [NSCharacterSet whitespaceCharacterSet]];
+        [GCTurnBasedMatchHelper sharedInstance].WATObetMessage = cleanBetMessage;
         NSLog(@"ptype is %u", pType);
         [[GCTurnBasedMatchHelper sharedInstance]
          findMatchWithMinPlayers:2 maxPlayers:2 viewController:self showMatches:false playerGroup:pType];

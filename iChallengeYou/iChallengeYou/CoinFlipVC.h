@@ -20,6 +20,7 @@
     IBOutlet UIButton *tailsButton;
     IBOutlet UIButton *headsButton;
     IBOutlet UIButton *nextRoundButton;
+    __weak IBOutlet UIImageView *nextRoundGraphic;
     
     //enum playerRoleCF{calling, observing, roundEnd, gameOver};
 }

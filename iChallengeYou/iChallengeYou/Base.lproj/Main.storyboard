@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8O4-93-wA4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8O4-93-wA4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -452,7 +452,7 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ib-9j-mU3">
-                                <rect key="frame" x="139" y="202" width="42" height="21"/>
+                                <rect key="frame" x="139" y="207" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -478,15 +478,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select Your Odds" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeI-yE-dcz">
-                                <rect key="frame" x="60" y="72" width="200" height="70"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAZ-Ea-GNS">
-                                <rect key="frame" x="5" y="163" width="311" height="45"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAZ-Ea-GNS">
+                                <rect key="frame" x="24" y="150" width="273" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="1jf-Bd-fW6"/>
+                                    <constraint firstAttribute="width" constant="273" id="NAp-8T-C58"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -519,29 +517,39 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Your Odds" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeI-yE-dcz">
+                                <rect key="frame" x="14" y="87" width="293" height="72.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72.5" id="A6o-nE-du9"/>
+                                    <constraint firstAttribute="width" constant="293" id="SKk-GO-M8h"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="bAZ-Ea-GNS" secondAttribute="centerY" constant="98.5" id="1f6-hQ-nFY"/>
-                            <constraint firstAttribute="centerY" secondItem="QeI-yE-dcz" secondAttribute="centerY" constant="177" id="3z5-LF-lPu"/>
                             <constraint firstAttribute="centerY" secondItem="l9j-Bi-UDi" secondAttribute="centerY" constant="-11" id="AsS-qb-wv7"/>
                             <constraint firstAttribute="centerX" secondItem="JB3-JV-UGz" secondAttribute="centerX" id="DMx-ib-8p0"/>
                             <constraint firstAttribute="centerX" secondItem="RBx-6A-tgW" secondAttribute="centerX" id="Dmw-nz-wAe"/>
-                            <constraint firstAttribute="centerX" secondItem="QeI-yE-dcz" secondAttribute="centerX" id="E60-pl-yQW"/>
                             <constraint firstAttribute="centerY" secondItem="lox-mc-4TG" secondAttribute="centerY" constant="-10.5" id="El8-Lg-1gM"/>
                             <constraint firstAttribute="centerX" secondItem="9Ib-9j-mU3" secondAttribute="centerX" id="HvA-AX-dgr"/>
                             <constraint firstAttribute="centerY" secondItem="jRh-is-1xv" secondAttribute="centerY" constant="-82.5" id="Mzk-hM-G1a"/>
                             <constraint firstAttribute="centerY" secondItem="9Ib-9j-mU3" secondAttribute="centerY" constant="71.5" id="NWn-Td-gkR"/>
+                            <constraint firstAttribute="centerY" secondItem="QeI-yE-dcz" secondAttribute="centerY" constant="160.75" id="NhH-f0-9Uv"/>
                             <constraint firstAttribute="centerY" secondItem="KmP-nN-F7T" secondAttribute="centerY" constant="-160.5" id="PLQ-lQ-H9c"/>
                             <constraint firstAttribute="centerX" secondItem="KmP-nN-F7T" secondAttribute="centerX" id="S0z-ZW-0SD"/>
-                            <constraint firstAttribute="centerX" secondItem="bAZ-Ea-GNS" secondAttribute="centerX" constant="-0.5" id="SKA-Sp-GVG"/>
                             <constraint firstAttribute="centerX" secondItem="2fZ-ND-Gi3" secondAttribute="centerX" id="Tgv-gZ-9QL"/>
                             <constraint firstAttribute="centerY" secondItem="2fZ-ND-Gi3" secondAttribute="centerY" constant="27" id="UcO-9h-MT5"/>
                             <constraint firstAttribute="centerX" secondItem="jRh-is-1xv" secondAttribute="centerX" id="Vgi-j2-xaa"/>
                             <constraint firstAttribute="centerX" secondItem="f31-3U-KR0" secondAttribute="centerX" id="aIz-sF-5L4"/>
+                            <constraint firstAttribute="centerX" secondItem="bAZ-Ea-GNS" secondAttribute="centerX" constant="-0.5" id="jkk-s3-8Yv"/>
+                            <constraint firstAttribute="centerX" secondItem="QeI-yE-dcz" secondAttribute="centerX" constant="-0.5" id="mQR-7u-3Hf"/>
                             <constraint firstAttribute="height" secondItem="f31-3U-KR0" secondAttribute="height" id="n46-xX-2c2"/>
                             <constraint firstAttribute="centerX" secondItem="lox-mc-4TG" secondAttribute="centerX" id="oOJ-DX-dbM"/>
                             <constraint firstAttribute="width" secondItem="f31-3U-KR0" secondAttribute="width" id="prG-kA-hmp"/>
+                            <constraint firstAttribute="centerY" secondItem="bAZ-Ea-GNS" secondAttribute="centerY" constant="105.5" id="qrI-jS-QMP"/>
                             <constraint firstAttribute="centerY" secondItem="ROe-o7-NYq" secondAttribute="centerY" constant="-163" id="sz8-ef-7oF"/>
                             <constraint firstAttribute="centerX" secondItem="l9j-Bi-UDi" secondAttribute="centerX" id="tNl-QV-mBI"/>
                             <constraint firstAttribute="centerX" secondItem="ROe-o7-NYq" secondAttribute="centerX" constant="-0.5" id="ter-MC-lL0"/>
@@ -559,7 +567,9 @@
                         <outlet property="rangeSlider" destination="2fZ-ND-Gi3" id="Ug3-lP-tRN"/>
                         <outlet property="rangeSliderLabel" destination="9Ib-9j-mU3" id="YC6-kh-a1t"/>
                         <outlet property="submitGuessButton" destination="ROe-o7-NYq" id="D39-1v-DXJ"/>
+                        <outlet property="submitGuessGraphics" destination="KmP-nN-F7T" id="Cj4-QS-bXW"/>
                         <outlet property="submitRangeButton" destination="l9j-Bi-UDi" id="xKT-mG-oPI"/>
+                        <outlet property="submitRangeGraphics" destination="lox-mc-4TG" id="F9l-F5-lkr"/>
                         <outlet property="turnLabel" destination="QeI-yE-dcz" id="niF-Pb-N4O"/>
                     </connections>
                 </viewController>
@@ -1160,6 +1170,7 @@
                         <outlet property="gameStateLabel" destination="E3m-ol-NyO" id="47L-gI-hAk"/>
                         <outlet property="headsButton" destination="oAH-KO-A3L" id="gUi-LO-27T"/>
                         <outlet property="nextRoundButton" destination="PLd-Am-k1F" id="XJ0-71-K9U"/>
+                        <outlet property="nextRoundGraphic" destination="w25-3G-98n" id="b7T-bi-bzm"/>
                         <outlet property="playerOneScoreLabel" destination="FCP-v0-B6b" id="O8Z-xU-ezI"/>
                         <outlet property="playerZeroScoreLabel" destination="JHK-Uv-83V" id="4Vq-AH-Vm8"/>
                         <outlet property="roundLabel" destination="XQO-HM-7mI" id="4oz-kl-oF7"/>

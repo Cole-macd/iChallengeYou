@@ -178,6 +178,7 @@ enum playerRoleWATO playerStatusWATO = observingGame;
 
 - (IBAction)submitGuessPressed:(id)sender {
     [self hideSliderSet:_guessSlider label:_guessSliderLabel button:_submitGuessButton];
+    _submitGuessGraphics.hidden = true;
     currentPlayerGuess = self.guessSlider.value*(guessRange-1)+1;
     GKTurnBasedMatch *match = [[GCTurnBasedMatchHelper sharedInstance] currentMatch];
     
@@ -319,7 +320,9 @@ enum playerRoleWATO playerStatusWATO = observingGame;
 -(void)displaySettingRange{
     _turnLabel.text = @"Your turn, enter the range of odds";
     [self hideSliderSet:_guessSlider label:_guessSliderLabel button:_submitGuessButton];
+    _submitGuessGraphics.hidden = true;
     [self revealSliderSet:_rangeSlider label:_rangeSliderLabel button:_submitRangeButton];
+    _submitRangeGraphics.hidden = false;
     _betMessageLabel.text = [NSString stringWithFormat:@"The odds of %@ are 1 in %d", betMessage, 50];
 }
 
@@ -327,14 +330,18 @@ enum playerRoleWATO playerStatusWATO = observingGame;
     _turnLabel.text = @"Your turn, enter your guess";
     _guessMessageLabel.text = [NSString stringWithFormat:@"My guess is %d", (int)(guessRange/2)];
     [self hideSliderSet:_rangeSlider label:_rangeSliderLabel button:_submitRangeButton];
+    _submitRangeGraphics.hidden = true;
     [self revealSliderSet:_guessSlider label:_guessSliderLabel button:_submitGuessButton];
+    _submitGuessGraphics.hidden = false;
     _betMessageLabel.text = [NSString stringWithFormat:@"The odds of %@ are 1 in %d", betMessage, guessRange];
     
 }
 
 -(void)displayObservingStatus{
     [self hideSliderSet:_rangeSlider label:_rangeSliderLabel button:_submitRangeButton];
+    _submitRangeGraphics.hidden = true;
     [self hideSliderSet:_guessSlider label:_guessSliderLabel button:_submitGuessButton];
+    _submitGuessGraphics.hidden = true;
     NSLog(@"here3");
     if([gameState isEqualToString:@"settingRange"]){
         NSLog(@"here1");
@@ -351,7 +358,9 @@ enum playerRoleWATO playerStatusWATO = observingGame;
 
 -(void)displayGameOver:(int)winningIndex{
     [self hideSliderSet:_rangeSlider label:_rangeSliderLabel button:_submitRangeButton];
+    _submitRangeGraphics.hidden = true;
     [self hideSliderSet:_guessSlider label:_guessSliderLabel button:_submitGuessButton];
+    _submitGuessGraphics.hidden = true;
     if(winningIndex == 0){
         if(currentPlayerIndex == 0){
             //current player won
