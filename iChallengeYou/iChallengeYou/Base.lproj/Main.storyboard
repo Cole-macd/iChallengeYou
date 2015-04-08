@@ -60,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EgD-DU-dFH" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="292.26666666666665" y="495.10666666666668"/>
+            <point key="canvasLocation" x="260" y="495"/>
         </scene>
         <!--HomePageVC-->
         <scene sceneID="S2Z-G0-FFI">
@@ -173,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KjO-Mk-lz5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="659" y="495"/>
+            <point key="canvasLocation" x="663" y="495"/>
         </scene>
         <!--GameMenuVC-->
         <scene sceneID="JET-fi-nSu">
@@ -355,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1oA-Jx-e0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1179" y="1174"/>
+            <point key="canvasLocation" x="1424" y="1194"/>
         </scene>
         <!--What Are The Odds Text Page-->
         <scene sceneID="ZoP-hG-mq2">
@@ -432,7 +432,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzv-88-nov" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562" y="1528"/>
+            <point key="canvasLocation" x="1848" y="1194"/>
         </scene>
         <!--What Are The Odds Number Page-->
         <scene sceneID="bE1-Tr-RgB">
@@ -569,87 +569,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kCM-hV-mgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1017" y="2130"/>
-        </scene>
-        <!--Second View-->
-        <scene sceneID="eLl-fO-JCe">
-            <objects>
-                <viewController storyboardIdentifier="Second View" title="Second View" id="Hdb-Rx-sjp" customClass="SecondViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dkz-2V-wjz"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ikz-a1-GRu"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JcQ-qw-q97">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bhx-JL-eFi">
-                                <rect key="frame" x="45" y="224" width="30" height="30"/>
-                                <accessibility key="accessibilityConfiguration" label="redButton"/>
-                                <state key="normal" title="Red">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.023573720190000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="redButtonPressed:" destination="Hdb-Rx-sjp" eventType="touchUpInside" id="83Z-yH-pUZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4T-4k-jHP">
-                                <rect key="frame" x="245" y="224" width="31" height="30"/>
-                                <accessibility key="accessibilityConfiguration" label="blueButton"/>
-                                <state key="normal" title="Blue">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="blueButtonPressed:" destination="Hdb-Rx-sjp" eventType="touchUpInside" id="FZB-LJ-sEa"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chosen:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9n-yY-R6l">
-                                <rect key="frame" x="128" y="274" width="64" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's your turn." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgS-ur-CzA">
-                                <rect key="frame" x="109" y="204" width="102" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLt-hT-RuA">
-                                <rect key="frame" x="71" y="270" width="192" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerX" secondItem="kgS-ur-CzA" secondAttribute="centerX" id="0gK-la-GwP"/>
-                            <constraint firstAttribute="centerX" secondItem="kgS-ur-CzA" secondAttribute="centerX" id="4Cp-LK-cu7"/>
-                            <constraint firstAttribute="centerX" secondItem="e9n-yY-R6l" secondAttribute="centerX" id="FMb-ai-Kt2"/>
-                            <constraint firstAttribute="centerX" secondItem="vLt-hT-RuA" secondAttribute="centerX" id="G8F-Fq-dtN"/>
-                            <constraint firstAttribute="centerX" secondItem="c4T-4k-jHP" secondAttribute="centerX" constant="-100" id="GH0-ej-mlS"/>
-                            <constraint firstAttribute="centerY" secondItem="c4T-4k-jHP" secondAttribute="centerY" constant="45" id="Nvg-qv-ucm"/>
-                            <constraint firstAttribute="centerX" secondItem="Bhx-JL-eFi" secondAttribute="centerX" constant="100" id="SKB-KC-3Wm"/>
-                            <constraint firstAttribute="centerY" secondItem="vLt-hT-RuA" secondAttribute="centerY" constant="-40" id="d6g-NW-1S2"/>
-                            <constraint firstAttribute="centerY" secondItem="kgS-ur-CzA" secondAttribute="centerY" constant="70" id="fHg-9a-yQ7"/>
-                            <constraint firstAttribute="centerY" secondItem="Bhx-JL-eFi" secondAttribute="centerY" constant="45" id="mdD-T7-gjP"/>
-                            <constraint firstAttribute="centerY" secondItem="e9n-yY-R6l" secondAttribute="centerY" id="zq5-Do-CIJ"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Jhr-sy-Zq2"/>
-                    <connections>
-                        <outlet property="blueButton" destination="c4T-4k-jHP" id="Zpt-AA-gMS"/>
-                        <outlet property="colourChoiceLabel" destination="e9n-yY-R6l" id="8Dt-GA-NgQ"/>
-                        <outlet property="redButton" destination="Bhx-JL-eFi" id="2Ju-nU-ezJ"/>
-                        <outlet property="resultLabel" destination="vLt-hT-RuA" id="fN3-af-p5E"/>
-                        <outlet property="turnLabel" destination="kgS-ur-CzA" id="CCu-Hl-K4p"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zNU-aO-piB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="598.39999999999998" y="-480.90666666666658"/>
+            <point key="canvasLocation" x="2303" y="1194"/>
         </scene>
         <!--Coin Flip - Choose Number of Rounds-->
         <scene sceneID="wK9-Zq-DJy">
@@ -765,7 +685,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3G-Rd-FdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1424" y="-131"/>
+            <point key="canvasLocation" x="1424" y="-150"/>
         </scene>
         <!--RPS - Choose Number Of Rounds-->
         <scene sceneID="tHN-Gi-dbf">
@@ -878,7 +798,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S59-Bp-3gw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1912" y="495"/>
+            <point key="canvasLocation" x="1848" y="487"/>
         </scene>
         <!--Rock Paper Scissors-->
         <scene sceneID="3ZH-bH-4U4">
@@ -1068,7 +988,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCq-M3-MBA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2343" y="612"/>
+            <point key="canvasLocation" x="2303" y="487"/>
         </scene>
         <!--Flip A Coin-->
         <scene sceneID="Vhj-0X-OlZ">
@@ -1253,7 +1173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bR-bw-gdl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="-774"/>
+            <point key="canvasLocation" x="1848" y="-150"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x6Y-Bj-bEM">
@@ -1271,7 +1191,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kgi-2U-dBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-43.733333333333334" y="495.10666666666668"/>
+            <point key="canvasLocation" x="-112" y="495"/>
         </scene>
     </scenes>
     <resources>
@@ -1310,7 +1230,7 @@
         <segue reference="lE7-A5-APl"/>
         <segue reference="aMi-EG-JF7"/>
         <segue reference="vC2-ue-e5y"/>
-        <segue reference="ZOf-l6-p4j"/>
         <segue reference="MZ3-R8-o45"/>
+        <segue reference="tk1-iv-5is"/>
     </inferredMetricsTieBreakers>
 </document>
